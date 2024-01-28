@@ -2,73 +2,59 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const pool = require("../utils/settings/usePool");
 const checkIndexExists = require("../utils/basicQueries/checkIndexExists");
-const { v4: uuidv4 } = require("uuid");
+const jwt = require("jsonwebtoken");
+const generateUniqueId = require("../utils/generateUniqueId");
 dotenv.config();
-const secretKey = process.env.SECRET_KEY;
 
 exports.signup = async function (req, res) {
   try {
-    let id = uuidv4();
+    let id = await generateUniqueId();
     const { username, password, mail } = req.body;
-    console.log(id, username, password, mail);
     if (!username || !password || !mail) {
       return res.status(400).json({ error: "Geçersiz parametre." });
     }
-    while (await checkIndexExists("user", id)) {
-      id = uuidv4();
-      console.log(id);
-    }
+
     const registerSql =
       "INSERT INTO user (id, username, password, mail) VALUES (?, ?, ?, ?)";
 
-    pool.getConnection((getConnectionErr, connection) => {
-      if (getConnectionErr) {
-        console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
-        );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) {
+        console.error("Salt üretilirken hata oluştu: " + err.message);
+        return res.status(500).json({ error: "Salt üretilirken hata oluştu." });
       }
 
-      connection.beginTransaction((beginTransactionErr) => {
-        if (beginTransactionErr) {
-          connection.release();
-          console.error(
-            "Transaction başlatılamadı: " + beginTransactionErr.message
-          );
-          return res.status(500).json({ error: "Transaction başlatılamadı." });
+      bcrypt.hash(password, salt, function (hashErr, hash) {
+        if (hashErr) {
+          console.error("Şifreleme hatası: " + hashErr.message);
+          return res.status(500).json({ error: "Şifreleme hatası." });
         }
+        pool.getConnection(function (getConnectionErr, connection) {
+          if (getConnectionErr) {
+            console.error(
+              "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+            );
+            return res
+              .status(500)
+              .json({ error: "Veritabanı bağlantısı kurulamadı." });
+          }
 
-        bcrypt.genSalt(10, (genSaltErr, salt) => {
-          if (genSaltErr) {
-            connection.rollback(() => {
+          connection.beginTransaction(function (beginTransactionErr) {
+            if (beginTransactionErr) {
               connection.release();
               console.error(
-                "Salt üretilirken hata oluştu: " + genSaltErr.message
+                "Transaction başlatılamadı: " + beginTransactionErr.message
               );
               return res
                 .status(500)
-                .json({ error: "Salt üretilirken hata oluştu." });
-            });
-          }
-
-          bcrypt.hash(password, salt, (hashErr, hash) => {
-            console.log(salt);
-            if (hashErr) {
-              connection.rollback(() => {
-                connection.release();
-                console.error("Şifreleme hatası: " + hashErr.message);
-                return res.status(500).json({ error: "Şifreleme hatası." });
-              });
+                .json({ error: "Transaction başlatılamadı." });
             }
 
             connection.query(
               registerSql,
               [id, username, hash, mail],
-              (registerQueryErr) => {
+              function (registerQueryErr) {
                 if (registerQueryErr) {
-                  connection.rollback(() => {
+                  connection.rollback(function () {
                     connection.release();
                     console.error(
                       "Kayıt sırasında hata oluştu: " + registerQueryErr.message
@@ -78,9 +64,9 @@ exports.signup = async function (req, res) {
                       .json({ error: "Kayıt sırasında hata oluştu." });
                   });
                 } else {
-                  connection.commit((commitErr) => {
+                  connection.commit(function (commitErr) {
                     if (commitErr) {
-                      connection.rollback(() => {
+                      connection.rollback(function () {
                         connection.release();
                         console.error(
                           "Transaction commit hatası: " + commitErr.message
@@ -145,23 +131,31 @@ exports.signin = async function (req, res) {
         }
 
         const user = getUserRes[0];
-
-        bcrypt.compare(password, user.password, (compareErr, match) => {
-          console.log(password);
-          console.log(user.password);
-          if (compareErr) {
+        bcrypt.compare(password, user.password, (bcryptErr, result) => {
+          if (bcryptErr) {
             connection.release();
-            console.error("Şifre karşılaştırma hatası: " + compareErr.message);
+            console.error("Şifre karşılaştırma hatası: " + bcryptErr.message);
             return res
               .status(500)
               .json({ error: "Şifre karşılaştırma hatası." });
           }
-          console.log(match);
-          if (!match) {
+
+          if (result) {
+            const token = jwt.sign(
+              { userId: user.id, username: user.username },
+              process.env.SECRET_KEY,
+              { expiresIn: "1h" }
+            );
+
             connection.release();
             return res.status(200).json({
               message: "Success",
-              data: { id: user.id, username: user.username, mail: user.mail },
+              data: {
+                id: user.id,
+                username: user.username,
+                mail: user.mail,
+                token,
+              },
             });
           } else {
             connection.release();
