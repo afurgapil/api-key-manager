@@ -9,6 +9,7 @@ dotenv.config();
 exports.signup = async function (req, res) {
   try {
     let id = await generateUniqueId();
+    console.log(id);
     const { username, password, mail } = req.body;
     if (!username || !password || !mail) {
       return res.status(400).json({ error: "Geçersiz parametre." });
@@ -28,6 +29,7 @@ exports.signup = async function (req, res) {
           console.error("Şifreleme hatası: " + hashErr.message);
           return res.status(500).json({ error: "Şifreleme hatası." });
         }
+
         pool.getConnection(function (getConnectionErr, connection) {
           if (getConnectionErr) {
             console.error(
@@ -38,55 +40,27 @@ exports.signup = async function (req, res) {
               .json({ error: "Veritabanı bağlantısı kurulamadı." });
           }
 
-          connection.beginTransaction(function (beginTransactionErr) {
-            if (beginTransactionErr) {
-              connection.release();
-              console.error(
-                "Transaction başlatılamadı: " + beginTransactionErr.message
-              );
-              return res
-                .status(500)
-                .json({ error: "Transaction başlatılamadı." });
-            }
-
-            connection.query(
-              registerSql,
-              [id, username, hash, mail],
-              function (registerQueryErr) {
-                if (registerQueryErr) {
-                  connection.rollback(function () {
-                    connection.release();
-                    console.error(
-                      "Kayıt sırasında hata oluştu: " + registerQueryErr.message
-                    );
-                    return res
-                      .status(500)
-                      .json({ error: "Kayıt sırasında hata oluştu." });
-                  });
-                } else {
-                  connection.commit(function (commitErr) {
-                    if (commitErr) {
-                      connection.rollback(function () {
-                        connection.release();
-                        console.error(
-                          "Transaction commit hatası: " + commitErr.message
-                        );
-                        return res
-                          .status(500)
-                          .json({ error: "Transaction commit hatası." });
-                      });
-                    } else {
-                      connection.release();
-                      return res.status(201).json({
-                        message: "Success",
-                        data: { id, username, mail },
-                      });
-                    }
-                  });
-                }
+          connection.query(
+            registerSql,
+            [id, username, hash, mail],
+            function (registerQueryErr) {
+              if (registerQueryErr) {
+                connection.release();
+                console.error(
+                  "Kayıt sırasında hata oluştu: " + registerQueryErr.message
+                );
+                return res
+                  .status(500)
+                  .json({ error: "Kayıt sırasında hata oluştu." });
+              } else {
+                connection.release();
+                return res.status(201).json({
+                  message: "Success",
+                  data: { id, username, mail },
+                });
               }
-            );
-          });
+            }
+          );
         });
       });
     });
