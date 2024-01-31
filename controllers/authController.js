@@ -118,18 +118,18 @@ exports.signin = async function (req, res) {
             const token = jwt.sign(
               { userId: user.id, username: user.username },
               process.env.SECRET_KEY,
-              { expiresIn: "1h" }
+              { expiresIn: "8h" }
             );
 
             connection.release();
             return res.status(200).json({
               message: "Success",
-              data: {
+              user: {
                 id: user.id,
                 username: user.username,
                 mail: user.mail,
-                token,
               },
+              token: token,
             });
           } else {
             connection.release();
