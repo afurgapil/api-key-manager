@@ -1,7 +1,6 @@
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const pool = require("../utils/settings/usePool");
-const checkIndexExists = require("../utils/basicQueries/checkIndexExists");
 const jwt = require("jsonwebtoken");
 const generateUniqueId = require("../utils/generateUniqueId");
 dotenv.config();
@@ -9,10 +8,9 @@ dotenv.config();
 exports.signup = async function (req, res) {
   try {
     let id = await generateUniqueId();
-    console.log(id);
     const { username, password, mail } = req.body;
     if (!username || !password || !mail) {
-      return res.status(400).json({ error: "Geçersiz parametre." });
+      return res.status(400).json({ error: "Invalid parameter." });
     }
 
     const registerSql =
@@ -20,24 +18,24 @@ exports.signup = async function (req, res) {
 
     bcrypt.genSalt(10, function (err, salt) {
       if (err) {
-        console.error("Salt üretilirken hata oluştu: " + err.message);
-        return res.status(500).json({ error: "Salt üretilirken hata oluştu." });
+        console.error("Error generating salt: " + err.message);
+        return res.status(500).json({ error: "Error generating salt." });
       }
 
       bcrypt.hash(password, salt, function (hashErr, hash) {
         if (hashErr) {
-          console.error("Şifreleme hatası: " + hashErr.message);
-          return res.status(500).json({ error: "Şifreleme hatası." });
+          console.error("Hashing error: " + hashErr.message);
+          return res.status(500).json({ error: "Hashing error." });
         }
 
         pool.getConnection(function (getConnectionErr, connection) {
           if (getConnectionErr) {
             console.error(
-              "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+              "Database connection failed: " + getConnectionErr.message
             );
             return res
               .status(500)
-              .json({ error: "Veritabanı bağlantısı kurulamadı." });
+              .json({ error: "Database connection failed." });
           }
 
           connection.query(
@@ -47,11 +45,11 @@ exports.signup = async function (req, res) {
               if (registerQueryErr) {
                 connection.release();
                 console.error(
-                  "Kayıt sırasında hata oluştu: " + registerQueryErr.message
+                  "Error during registration: " + registerQueryErr.message
                 );
                 return res
                   .status(500)
-                  .json({ error: "Kayıt sırasında hata oluştu." });
+                  .json({ error: "Error during registration." });
               } else {
                 connection.release();
                 return res.status(201).json({
@@ -74,7 +72,7 @@ exports.signin = async function (req, res) {
   try {
     const { username, password } = req.body;
     if (!username || !password) {
-      return res.status(400).json({ error: "Geçersiz parametre." });
+      return res.status(400).json({ error: "Invalid parameter." });
     }
 
     const getUserSql =
@@ -83,35 +81,35 @@ exports.signin = async function (req, res) {
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+          "Database connection failed: " + getConnectionErr.message
         );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+        return res.status(500).json({ error: "Database connection failed." });
       }
 
       connection.query(getUserSql, [username], (getUserErr, getUserRes) => {
         if (getUserErr) {
           connection.release();
-          console.error("Kullanıcı bilgileri alınamadı: " + getUserErr.message);
+          console.error(
+            "Unable to retrieve user information: " + getUserErr.message
+          );
           return res
             .status(500)
-            .json({ error: "Kullanıcı bilgileri alınamadı." });
+            .json({ error: "Unable to retrieve user information." });
         }
 
         if (getUserRes.length === 0) {
           connection.release();
-          return res.status(401).json({ error: "Kullanıcı bulunamadı." });
+          return res.status(401).json({ error: "User not found." });
         }
 
         const user = getUserRes[0];
         bcrypt.compare(password, user.password, (bcryptErr, result) => {
           if (bcryptErr) {
             connection.release();
-            console.error("Şifre karşılaştırma hatası: " + bcryptErr.message);
+            console.error("Password comparison error: " + bcryptErr.message);
             return res
               .status(500)
-              .json({ error: "Şifre karşılaştırma hatası." });
+              .json({ error: "Password comparison error." });
           }
 
           if (result) {
@@ -133,7 +131,7 @@ exports.signin = async function (req, res) {
             });
           } else {
             connection.release();
-            return res.status(401).json({ error: "Hatalı şifre." });
+            return res.status(401).json({ error: "Incorrect password." });
           }
         });
       });

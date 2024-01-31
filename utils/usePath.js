@@ -7,8 +7,7 @@ module.exports = function usePath(id) {
 
     pool.getConnection((err, connection) => {
       if (err) {
-        console.error("Veritabanı bağlantısı kurulamadı: " + err.message);
-
+        console.error("Database connection failed: " + err.message);
         reject(err);
         return;
       }
@@ -16,17 +15,14 @@ module.exports = function usePath(id) {
       connection.query(selectSql, [userId], (queryErr, results) => {
         if (queryErr) {
           connection.release();
-          console.error(
-            "Kullanıcı sorgulanırken hata oluştu: " + queryErr.message
-          );
-
+          console.error("Error querying user: " + queryErr.message);
           reject(queryErr);
           return;
         }
 
         if (results.length === 0) {
           connection.release();
-          reject(new Error("Kullanıcı bulunamadı"));
+          reject(new Error("User not found"));
           return;
         }
         connection.release();

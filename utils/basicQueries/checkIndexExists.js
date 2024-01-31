@@ -6,14 +6,14 @@ module.exports = function checkIndexExists(tableName, index) {
 
     pool.getConnection((err, connection) => {
       if (err) {
-        console.error("Veritabanı bağlantısı kurulamadı: " + err.message);
+        console.error("Database connection failed: " + err.message);
         reject(err);
         return;
       }
       connection.query(selectSql, [index], (queryErr, results) => {
         if (queryErr) {
           console.error(
-            "Kayıt sorgulanırken bir hata oluştu: " + queryErr.message
+            "An error occurred while querying the record: " + queryErr.message
           );
 
           reject(queryErr);

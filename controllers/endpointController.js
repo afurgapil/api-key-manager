@@ -10,27 +10,21 @@ exports.add = async function (req, res) {
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+          "Database connection failed: " + getConnectionErr.message
         );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+        return res.status(500).json({ error: "Database connection failed." });
       }
 
       connection.query(insertSql, [id, userId, url, key], (insertQueryErr) => {
         if (insertQueryErr) {
           connection.release();
-          console.error(
-            "Path oluşturulurken hata oluştu: " + insertQueryErr.message
-          );
-          return res
-            .status(500)
-            .json({ error: "Path oluşturulurken hata oluştu." });
+          console.error("Error creating path: " + insertQueryErr.message);
+          return res.status(500).json({ error: "Error creating path." });
         }
 
         connection.release();
         return res.status(201).json({
-          message: "Path oluşturuldu.",
+          message: "Path created.",
           data: { id, userId, url, key },
         });
       });
@@ -40,6 +34,7 @@ exports.add = async function (req, res) {
     res.status(500).json({ error: "An error occurred." });
   }
 };
+
 exports.get = async function (req, res) {
   try {
     const pathId = req.params.id;
@@ -48,27 +43,21 @@ exports.get = async function (req, res) {
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+          "Database connection failed: " + getConnectionErr.message
         );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+        return res.status(500).json({ error: "Database connection failed." });
       }
 
       connection.query(selectSql, [pathId], (selectQueryErr, results) => {
         if (selectQueryErr) {
           connection.release();
-          console.error(
-            "Path getirilirken hata oluştu: " + selectQueryErr.message
-          );
-          return res
-            .status(500)
-            .json({ error: "Path getirilirken hata oluştu." });
+          console.error("Error retrieving path: " + selectQueryErr.message);
+          return res.status(500).json({ error: "Error retrieving path." });
         }
 
         if (results.length === 0) {
           connection.release();
-          return res.status(404).json({ error: "Path bulunamadı." });
+          return res.status(404).json({ error: "Path not found." });
         }
 
         const pathData = results[0];
@@ -81,6 +70,7 @@ exports.get = async function (req, res) {
     res.status(500).json({ error: "An error occurred." });
   }
 };
+
 exports.update = async function (req, res) {
   try {
     const pathId = req.params.pathId;
@@ -90,11 +80,9 @@ exports.update = async function (req, res) {
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+          "Database connection failed: " + getConnectionErr.message
         );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+        return res.status(500).json({ error: "Database connection failed." });
       }
 
       connection.query(
@@ -103,15 +91,11 @@ exports.update = async function (req, res) {
         (updateQueryErr) => {
           if (updateQueryErr) {
             connection.release();
-            console.error(
-              "Path güncellenirken hata oluştu: " + updateQueryErr.message
-            );
-            return res
-              .status(500)
-              .json({ error: "Path güncellenirken hata oluştu." });
+            console.error("Error updating path: " + updateQueryErr.message);
+            return res.status(500).json({ error: "Error updating path." });
           }
           connection.release();
-          return res.status(200).json({ message: "Path güncellendi." });
+          return res.status(200).json({ message: "Path updated." });
         }
       );
     });
@@ -120,6 +104,7 @@ exports.update = async function (req, res) {
     res.status(500).json({ error: "An error occurred." });
   }
 };
+
 exports.delete = async function (req, res) {
   try {
     const pathId = req.params.pathId;
@@ -128,26 +113,20 @@ exports.delete = async function (req, res) {
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
-          "Veritabanı bağlantısı kurulamadı: " + getConnectionErr.message
+          "Database connection failed: " + getConnectionErr.message
         );
-        return res
-          .status(500)
-          .json({ error: "Veritabanı bağlantısı kurulamadı." });
+        return res.status(500).json({ error: "Database connection failed." });
       }
 
       connection.query(deleteSql, [pathId], (deleteQueryErr) => {
         if (deleteQueryErr) {
           connection.release();
-          console.error(
-            "Path silinirken hata oluştu: " + deleteQueryErr.message
-          );
-          return res
-            .status(500)
-            .json({ error: "Path silinirken hata oluştu." });
+          console.error("Error deleting path: " + deleteQueryErr.message);
+          return res.status(500).json({ error: "Error deleting path." });
         }
 
         connection.release();
-        return res.status(200).json({ message: "Path silindi." });
+        return res.status(200).json({ message: "Path deleted." });
       });
     });
   } catch (error) {
