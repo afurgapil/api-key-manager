@@ -7,12 +7,16 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import ResetCheck from "./pages/ResetCheck";
+import ResetRequest from "./pages/ResetRequest";
 function PreApp() {
   // const privateRoutes = [];
   const publicRoutes = [
+    { path: "/", element: Home },
+    { path: "/signin", element: SignIn },
     { path: "/signup", element: SignUp },
-    { path: "/signin", element: SignIn },
-    { path: "/signin", element: SignIn },
+    { path: "/reset-check/:mail", element: ResetCheck },
+    { path: "/reset-request", element: ResetRequest },
   ];
   return (
     <Routes>

@@ -7,6 +7,7 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
+  const [theme, setTheme] = useState("dark");
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
@@ -77,15 +78,59 @@ const UserProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   };
+  const reset_request = async (email) => {
+    try {
+      const response = await fetch(USER_API.RESET_REQUEST, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(JSON.stringify({ error: errorData.error }));
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+  const reset_check = async (email, token, newPassword) => {
+    try {
+      const response = await fetch(`${USER_API.RESET_CHECK}/${email}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token, newPassword }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(JSON.stringify({ error: errorData.error }));
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
   return (
     <UserContext.Provider
       value={{
         user,
         token,
+        theme,
+        toggleTheme,
         signup,
         signin,
         signout,
+        reset_request,
+        reset_check,
       }}
     >
       {children}

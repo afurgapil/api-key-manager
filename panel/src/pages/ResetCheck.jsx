@@ -1,19 +1,20 @@
 import { useState, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { Link, useNavigate } from "react-router-dom";
-
-function SignIn() {
-  const { signin } = useContext(UserContext);
-  const [username, setUsername] = useState("");
+function ResetCheck() {
+  const { reset_check } = useContext(UserContext);
+  const { mail } = useParams();
+  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState({
-    username: "",
-    password: "",
-  });
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorResponse, setErrorResponse] = useState({
     bool: false,
     message: "",
+  });
+  const [error, setError] = useState({
+    code: "",
+    password: "",
+    confirmPassword: "",
   });
   const navigate = useNavigate();
   const handleError = (event, message) => {
@@ -23,43 +24,45 @@ function SignIn() {
     }));
   };
 
+  const handleClear = (event) => {
+    setError((prevError) => ({
+      ...prevError,
+      [event]: "",
+    }));
+  };
   const checkData = (event) => {
     const fieldName = event.target.name;
     switch (fieldName) {
-      case "username":
-        if (username.length < 1) {
-          handleError("username", "Please enter a valid username!");
+      case "code":
+        if (code.length !== 6) {
+          handleError("code", "Codes must be 6  characters!");
         } else {
-          handleError("username", "");
+          handleClear("code");
         }
         break;
       case "password":
-        if (password.length < 1) {
-          handleError("password", "Please enter a valid password");
+        if (password.length < 8) {
+          handleError("password", "Passwords must be minimum 8 characters!");
         } else {
-          handleError("password", "");
+          handleClear("password");
+        }
+        break;
+      case "confirm-password":
+        if (!(password === confirmPassword)) {
+          handleError("confirmPassword", "Passwords don't match!");
+        } else {
+          handleClear("confirmPassword");
         }
         break;
       default:
         break;
     }
   };
-  const handleSignIn = async (e) => {
+  const handleCheck = async (e) => {
     e.preventDefault();
     try {
-      if (username.length >= 4 && username.length <= 32) {
-        if (password.length >= 8) {
-          await signin(username, password, rememberMe);
-          navigate("/");
-        } else {
-          handleError("password", "Passwords must be minimum 8 characters!");
-        }
-      } else {
-        handleError(
-          "username",
-          "Usernames must be between 4 and 32 characters."
-        );
-      }
+      await reset_check(mail, code, password);
+      navigate("/signin");
     } catch (error) {
       const errorMessage = JSON.parse(error.message).error;
       setErrorResponse({
@@ -68,11 +71,10 @@ function SignIn() {
       });
     }
   };
-
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-start  px-6 py-10 mx-auto md:h-screen ">
           <a
             href="#"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -82,40 +84,41 @@ function SignIn() {
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
               alt="logo"
             />
-            Flowbite
+            APILMAN
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Sign in to your account
+                Confirm Your Account
               </h1>
               <form
-                onSubmit={handleSignIn}
+                onSubmit={handleCheck}
                 className="space-y-4 md:space-y-6"
                 action="#"
               >
                 <div>
                   <label
-                    htmlFor="username"
+                    htmlFor="code"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your username
+                    Verification Code
                   </label>
                   <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name="code"
+                    id="code"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="gafurapil"
+                    placeholder="123456"
+                    maxLength="6"
                     required
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setCode(e.target.value)}
                     onBlur={(e) => {
                       checkData(e);
                     }}
                   />
-                  {error.username && (
+                  {error.code && (
                     <div className="text-xs text-red-500 dark:text-red-400">
-                      {error.username}
+                      {error.code}
                     </div>
                   )}
                 </div>
@@ -138,38 +141,39 @@ function SignIn() {
                       checkData(e);
                     }}
                   />
+                  <div className="text-xs text-gray-500 dark:text-gray-400 m-0 p-1">
+                    *** Passwords must be minimum 8 characters.
+                  </div>
                   {error.password && (
                     <div className="text-xs text-red-500 dark:text-red-400">
                       {error.password}
                     </div>
                   )}
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <Link
-                    to="/reset-request"
-                    className="text-gray-300 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                <div>
+                  <label
+                    htmlFor="confirm-password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Forgot password?
-                  </Link>
+                    Confirm password
+                  </label>
+                  <input
+                    type="password"
+                    name="confirm-password"
+                    id="confirm-password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onBlur={(e) => {
+                      checkData(e);
+                    }}
+                  />
+                  {error.confirmPassword && (
+                    <div className="text-xs text-red-500 dark:text-red-400">
+                      {error.confirmPassword}
+                    </div>
+                  )}
                 </div>
                 <button
                   type="submit"
@@ -180,22 +184,13 @@ function SignIn() {
                     (errMsg) => errMsg !== ""
                   )}
                 >
-                  Sign in
+                  Submit
                 </button>
                 {errorResponse.bool && (
                   <div className="bg-red-100 text-red-800 text-mg text-center font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
                     {errorResponse.message}
                   </div>
                 )}
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Don’t have an account yet?{" "}
-                  <Link
-                    to="/signup"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Sign up
-                  </Link>
-                </p>
               </form>
             </div>
           </div>
@@ -205,4 +200,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default ResetCheck;

@@ -1,14 +1,21 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
+import { UserContext } from "../context/UserContext";
 import SignOut from "./SignOut";
+import { FaSun, FaMoon } from "react-icons/fa";
 function Header() {
   const user = useUser();
+  const { toggleTheme, theme } = useContext(UserContext);
 
   return (
     <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+      <nav
+        className={`bg-white border-gray-200 px-4 lg:px-6 py-2.5 ${
+          theme === "dark" ? "dark:bg-gray-800" : ""
+        }`}
+      >
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
@@ -44,6 +51,14 @@ function Header() {
               >
                 Sign Up
               </NavLink>
+              <button
+                onClick={toggleTheme}
+                className={`${
+                  theme === "dark" ? "text-white" : "text-gray-800"
+                }`}
+              >
+                {theme === "light" ? <FaMoon /> : <FaSun />}
+              </button>
             </div>
           )}
           <div
