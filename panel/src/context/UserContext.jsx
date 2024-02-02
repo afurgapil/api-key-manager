@@ -117,6 +117,7 @@ const UserProvider = ({ children }) => {
     }
   };
   const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
   return (
