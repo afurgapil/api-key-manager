@@ -52,7 +52,7 @@ function SignIn() {
       if (username.length >= 4 && username.length <= 32) {
         if (password.length >= 8) {
           await signin(username, password, rememberMe);
-          navigate("/");
+          navigate("/dashboard");
         } else {
           handleError("password", "Passwords must be minimum 8 characters!");
         }

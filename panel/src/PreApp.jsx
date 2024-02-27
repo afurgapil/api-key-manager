@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "./routes/PrivateRoute";
 //layouts
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -9,8 +10,14 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ResetCheck from "./pages/ResetCheck";
 import ResetRequest from "./pages/ResetRequest";
+//private
+import Dashboard from "./pages/Dashboard";
+import Apis from "./pages/Apis";
 function PreApp() {
-  // const privateRoutes = [];
+  const privateRoutes = [
+    { path: "/dashboard", element: Dashboard },
+    { path: "/apis", element: Apis },
+  ];
   const publicRoutes = [
     { path: "/", element: Home },
     { path: "/signin", element: SignIn },
@@ -34,7 +41,7 @@ function PreApp() {
                   element={<route.element />}
                 />
               ))}
-              {/* {privateRoutes.map((route) => (
+              {privateRoutes.map((route) => (
                 <Route
                   key={route.path}
                   path={route.path}
@@ -45,17 +52,6 @@ function PreApp() {
                   }
                 />
               ))}
-              {protectedRoutes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={
-                    <ProtectedRoute>
-                      <route.element />
-                    </ProtectedRoute>
-                  }
-                />
-              ))} */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

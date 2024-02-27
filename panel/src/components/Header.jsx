@@ -26,7 +26,7 @@ function Header() {
               alt="Api Manager"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap text-white ">
-              APIMAN
+              APILMAN
             </span>
           </Link>
           {user && Object.keys(user).length > 0 ? (
@@ -38,6 +38,32 @@ function Header() {
                 {user.username}
               </NavLink>
               <SignOut></SignOut>
+              <button
+                onClick={toggleTheme}
+                id="toggle "
+                className="dark:text-yellow-600 text-white
+                "
+              >
+                {theme === "light" ? <FaMoon /> : <FaSun />}
+              </button>
+              <div className="flex items-center lg:order-2">
+                <button
+                  onClick={() => {
+                    toggleMobileMenu();
+                  }}
+                  type="button"
+                  className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700 "
+                  aria-controls="mobile-menu-2"
+                  aria-expanded={mobileMenuOpen ? "true" : "false"}
+                >
+                  <span className="sr-only">Toggle mobile menu</span>
+                  {mobileMenuOpen ? (
+                    <FaArrowUp className=" w-6 h-6 " />
+                  ) : (
+                    <FaBars className=" w-6 h-6 " />
+                  )}
+                </button>
+              </div>
             </div>
           ) : (
             <div className="flex items-center lg:order-2">
@@ -61,6 +87,24 @@ function Header() {
               >
                 {theme === "light" ? <FaMoon /> : <FaSun />}
               </button>
+              <div className="flex items-center lg:order-2">
+                <button
+                  onClick={() => {
+                    toggleMobileMenu();
+                  }}
+                  type="button"
+                  className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700 "
+                  aria-controls="mobile-menu-2"
+                  aria-expanded={mobileMenuOpen ? "true" : "false"}
+                >
+                  <span className="sr-only">Toggle mobile menu</span>
+                  {mobileMenuOpen ? (
+                    <FaArrowUp className=" w-6 h-6 " />
+                  ) : (
+                    <FaBars className=" w-6 h-6 " />
+                  )}
+                </button>
+              </div>
             </div>
           )}
           <div
@@ -70,7 +114,7 @@ function Header() {
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 ">
-              <li>
+              {/* <li>
                 <NavLink
                   to="/"
                   exact
@@ -78,66 +122,40 @@ function Header() {
                 >
                   Home
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
-                  to="/a"
+                  to="/dashboard"
                   className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  Company
+                  Dashboard
+                </NavLink>
+              </li>{" "}
+              <li>
+                <NavLink
+                  to="/apis"
+                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  APIs
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/b"
+                  to="/community"
                   className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  Marketplace
+                  Community
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/c"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Features
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/d"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Team
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/e"
+                  to="/contact"
                   className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Contact
                 </NavLink>
               </li>
             </ul>
-          </div>
-          <div className="flex items-center lg:order-2">
-            <button
-              onClick={() => {
-                toggleMobileMenu();
-              }}
-              type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700 "
-              aria-controls="mobile-menu-2"
-              aria-expanded={mobileMenuOpen ? "true" : "false"}
-            >
-              <span className="sr-only">Toggle mobile menu</span>
-              {mobileMenuOpen ? (
-                <FaArrowUp className=" w-6 h-6 " />
-              ) : (
-                <FaBars className=" w-6 h-6 " />
-              )}
-            </button>
           </div>
         </div>
       </nav>

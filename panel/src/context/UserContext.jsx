@@ -8,9 +8,13 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
   const [theme, setTheme] = useState("dark");
+  const [tier, setTier] = useState("");
+  const [limit, setLimit] = useState(null);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
+    const storedTier = localStorage.getItem("tier");
+    const storedLimit = localStorage.getItem("limit");
 
     if (storedUser !== null && storedUser !== undefined) {
       setUser(JSON.parse(storedUser));
@@ -18,6 +22,12 @@ const UserProvider = ({ children }) => {
 
     if (storedToken !== null && storedToken !== undefined) {
       setToken(JSON.parse(storedToken));
+    }
+    if (storedTier !== null && storedTier !== undefined) {
+      setTier(JSON.parse(storedTier));
+    }
+    if (storedLimit !== null && storedLimit !== undefined) {
+      setLimit(JSON.parse(storedLimit));
     }
   }, []);
 
@@ -57,10 +67,30 @@ const UserProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+        setTier(data.user.tier);
+        switch (data.user.tier) {
+          case "bronze":
+            setLimit(3);
+            break;
+          case "gold":
+            setLimit(5);
+
+            break;
+          case "diamond":
+            setLimit(7);
+
+            break;
+          default:
+            setLimit(0);
+
+            break;
+        }
         setToken(data.token);
         if (isChecked) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", JSON.stringify(data.token));
+          localStorage.setItem("limit", JSON.stringify(limit));
+          localStorage.setItem("tier", JSON.stringify(tier));
         }
       } else {
         const errorData = await response.json();
@@ -126,6 +156,8 @@ const UserProvider = ({ children }) => {
         user,
         token,
         theme,
+        tier,
+        limit,
         toggleTheme,
         signup,
         signin,

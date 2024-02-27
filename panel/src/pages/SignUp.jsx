@@ -316,10 +316,10 @@ function SignUp() {
                     ? "cursor-not-allowed"
                     : ""
                 }`}
-                disabled={
-                  Object.values(error).some((errMsg) => errMsg !== "") ||
-                  !termsConfirm
-                }
+                // disabled={
+                //   Object.values(error).some((errMsg) => errMsg !== "") ||
+                //   !termsConfirm
+                // }
               >
                 Create an account
               </button>
@@ -344,5 +344,6 @@ function SignUp() {
     </section>
   );
 }
+//TODO kayit basarili ise ekrana badge ile yazdir ve oyle yonlendir
 
 export default SignUp;

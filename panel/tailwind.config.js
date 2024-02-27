@@ -21,12 +21,15 @@ export default {
         lightPrimary: "#057a39",
         lightSecondary: "#080a0b",
         lightTertiary: "#5d5d5b",
-        darkPrimary: "#yourDarkPrimaryColor",
+        lightGreen: "#8bb29a",
+        lightGray: "#9ba0a8",
       },
       backgroundColor: {
         lightPrimary: "#057a39",
         lightSecondary: "#080a0b",
         lightTertiary: "#5d5d5b",
+        lightGreen: "#8bb29a",
+        lightGray: "#9ba0a8",
       },
       fontFamily: {
         sourceSansPro: ["Source Sans Pro", "sans-serif"],
