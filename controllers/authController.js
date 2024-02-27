@@ -86,7 +86,7 @@ exports.signin = async function (req, res) {
     }
 
     const getUserSql =
-      "SELECT id, username, password, mail, is_verificated FROM user WHERE username = ?";
+      "SELECT id, username, password, mail, is_verificated, tier FROM user WHERE username = ?";
 
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
@@ -141,6 +141,7 @@ exports.signin = async function (req, res) {
                 id: user.id,
                 username: user.username,
                 mail: user.mail,
+                tier: user.tier,
               },
               token: token,
             });

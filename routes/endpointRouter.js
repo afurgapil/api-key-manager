@@ -5,7 +5,7 @@ const endpointController = require("../controllers/endpointController");
 
 router.post("/add", verifyToken, endpointController.add);
 
-router.get("/get", verifyToken, endpointController.get);
+router.get("/get/:pathId", verifyToken, endpointController.get);
 
 router.get("/get-all/:userId", verifyToken, endpointController.get_all);
 
