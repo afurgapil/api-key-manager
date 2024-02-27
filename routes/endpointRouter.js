@@ -5,9 +5,11 @@ const endpointController = require("../controllers/endpointController");
 
 router.post("/add", verifyToken, endpointController.add);
 
-router.get("/get", endpointController.get);
+router.get("/get", verifyToken, endpointController.get);
 
-router.patch("/update/:pathId", verifyToken, endpointController.update);
+router.get("/get-all/:userId", verifyToken, endpointController.get_all);
+
+router.put("/update/:pathId", verifyToken, endpointController.update);
 
 router.delete("/delete/:pathId", verifyToken, endpointController.delete);
 module.exports = router;

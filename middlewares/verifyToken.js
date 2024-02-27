@@ -5,7 +5,7 @@ const secretKey = process.env.SECRET_KEY;
 
 module.exports = async function verifyToken(req, res, next) {
   const token = req.headers.authorization;
-  const userId = req.body.userId;
+  const userId = req.body.userId || req.params.userId;
   if (!token) {
     return res.status(401).json({ error: "Token not found." });
   }

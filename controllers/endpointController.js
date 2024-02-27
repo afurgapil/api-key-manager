@@ -71,6 +71,41 @@ exports.get = async function (req, res) {
   }
 };
 
+exports.get_all = async function (req, res) {
+  try {
+    const userId = req.params.userId;
+    const selectSql = "SELECT * FROM `path` WHERE `user_id` = ?";
+
+    pool.getConnection((getConnectionErr, connection) => {
+      if (getConnectionErr) {
+        console.error(
+          "Database connection failed: " + getConnectionErr.message
+        );
+        return res.status(500).json({ error: "Database connection failed." });
+      }
+
+      connection.query(selectSql, [userId], (selectQueryErr, results) => {
+        if (selectQueryErr) {
+          connection.release();
+          console.error("Error retrieving path: " + selectQueryErr.message);
+          return res.status(500).json({ error: "Error retrieving path." });
+        }
+
+        if (results.length === 0) {
+          connection.release();
+          return res.status(404).json({ error: "Path not found." });
+        }
+
+        connection.release();
+        return res.status(200).json({ data: results });
+      });
+    });
+  } catch (error) {
+    console.error("An error occurred. " + error.message);
+    res.status(500).json({ error: "An error occurred." });
+  }
+};
+
 exports.update = async function (req, res) {
   try {
     const pathId = req.params.pathId;
