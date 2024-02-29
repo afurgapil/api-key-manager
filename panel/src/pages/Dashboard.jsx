@@ -9,6 +9,7 @@ import { USER_API } from "../urls";
 
 function Dashboard() {
   const [endpointList, setEndpointList] = useState([]);
+  const [apiUsage, setApiUsage] = useState(null);
   const token = useToken();
   const user = useUser();
   const tier = useTier();
@@ -16,7 +17,9 @@ function Dashboard() {
   useEffect(() => {
     if (user) {
       fetchEndpoints();
+      fetchUsage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const fetchEndpoints = async () => {
@@ -36,6 +39,36 @@ function Dashboard() {
 
       const data = await response.json();
       setEndpointList(data.data);
+    } catch (error) {
+      console.error("Error creating path: ", error.message);
+    }
+  };
+
+  const fetchUsage = async () => {
+    try {
+      const response = await fetch(
+        `${USER_API.GET_ALL_USAGES_ENDPOINT}/${user.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Request failed");
+      }
+
+      const data = await response.json();
+      const sumValue = data.data["SUM(`usage`)"];
+      if (sumValue) {
+        setApiUsage(sumValue);
+      } else {
+        setApiUsage("N/A");
+      }
     } catch (error) {
       console.error("Error creating path: ", error.message);
     }
@@ -73,8 +106,8 @@ function Dashboard() {
                 <ImStatsBars className="text-3xl text-white"></ImStatsBars>
               </div>
               <div className="flex flex-col justify-center items-start">
-                <div className="underline text-xl">API Keys</div>
-                <div className="font-bold text-2xl">16.146</div>
+                <div className="underline text-xl">API Call</div>
+                <div className="font-bold text-2xl">{apiUsage}</div>
               </div>
             </div>
           </div>

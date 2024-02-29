@@ -74,23 +74,29 @@ const UserProvider = ({ children }) => {
             break;
           case "gold":
             setLimit(5);
-
             break;
           case "diamond":
             setLimit(7);
-
             break;
           default:
             setLimit(0);
-
             break;
         }
         setToken(data.token);
         if (isChecked) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", JSON.stringify(data.token));
-          localStorage.setItem("limit", JSON.stringify(limit));
-          localStorage.setItem("tier", JSON.stringify(tier));
+          localStorage.setItem(
+            "limit",
+            JSON.stringify(
+              data.user.tier === "diamond"
+                ? 7
+                : data.user.tier === "gold"
+                ? 5
+                : 3
+            )
+          );
+          localStorage.setItem("tier", JSON.stringify(data.user.tier));
         }
       } else {
         const errorData = await response.json();
@@ -105,8 +111,12 @@ const UserProvider = ({ children }) => {
   const signout = () => {
     setUser(null);
     setToken(null);
+    setLimit(null);
+    setTier("");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("tier");
+    localStorage.removeItem("limit");
   };
   const reset_request = async (email) => {
     try {

@@ -17,12 +17,15 @@ function Apis() {
     userId: user.id,
     url: "",
     key: "",
+    company: "",
+    type: "",
   });
   const [editedEndpointId, setEditedEndpointId] = useState(null);
   useEffect(() => {
     if (token && user) {
       fetchEndpoints();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, token]);
 
   const fetchEndpoints = async () => {
@@ -48,8 +51,6 @@ function Apis() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("sonuc", limit - endpointList.length);
-
     try {
       const response = await fetch(USER_API.ADD_ENDPOINT, {
         method: "POST",
@@ -72,6 +73,8 @@ function Apis() {
           userId: user.id,
           url: "",
           key: "",
+          company: "",
+          type: "",
         });
         closeModal("add");
         fetchEndpoints();
@@ -109,10 +112,7 @@ function Apis() {
     }
   };
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const openEdit = (dataItem) => {
     setFormData({
@@ -125,7 +125,6 @@ function Apis() {
   };
   const saveEdit = async () => {
     try {
-      console.log(formData);
       const response = await fetch(
         `${USER_API.EDIT_ENDPOINT}/${editedEndpointId}`,
         {
@@ -137,7 +136,6 @@ function Apis() {
           body: JSON.stringify(formData),
         }
       );
-      console.log("formdata", formData);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Path updated.");
@@ -180,6 +178,8 @@ function Apis() {
       userId: user.id,
       url: "",
       key: "",
+      company: "",
+      type: "",
     });
   };
 
@@ -213,7 +213,16 @@ function Apis() {
                   key={dataItem.id}
                   className="flex flex-row justify-between items-center py-2 gap-x-12 border-b border-gray-400 w-full"
                 >
-                  <div className="flex flex-col py-1">
+                  <div className="flex flex-col py-1 w-1/4">
+                    <div className="">
+                      <span className="bg-green-600 text-black text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-900 dark:text-stone-300 uppercase">
+                        {dataItem.company}
+                      </span>
+                      /{" "}
+                      <span className="bg-green-200 text-black text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-600 dark:text-stone-300 uppercase">
+                        {dataItem.type}
+                      </span>
+                    </div>
                     <h5>
                       <span className="font-bold">Endpoint ID:</span>
                       {dataItem.id}
@@ -250,7 +259,9 @@ function Apis() {
             </ul>
           </div>
         ) : (
-          <p>No data received yet.</p>
+          <p className="text-center font-bold text-4xl">
+            No data received yet.
+          </p>
         )}
       </div>
       {/* Add Modal */}
@@ -318,6 +329,53 @@ function Apis() {
                     required
                   />
                 </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="company"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Company
+                  </label>
+                  <select
+                    className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    value={formData.company}
+                    onChange={handleChange}
+                    name="company"
+                  >
+                    <option value="null">Choose a Company</option>
+                    <option value="openai">OpenAI</option>
+                    <option value="google">Google</option>
+                  </select>
+                </div>
+                {formData.company !== "null" && (
+                  <div className="col-span-2">
+                    <label
+                      htmlFor="type"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Type
+                    </label>
+                    <select
+                      className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      value={formData.type}
+                      onChange={handleChange}
+                      name="type"
+                    >
+                      <option value="null">Choose a Type</option>
+                      {formData.company === "openai" ? (
+                        <>
+                          <option value="ChatGPT">ChatGPT</option>
+                          <option value="google">Resim</option>
+                        </>
+                      ) : formData.company === "google" ? (
+                        <>
+                          <option value="Gemini">Gemini</option>
+                          <option value="google">Resim</option>
+                        </>
+                      ) : null}
+                    </select>
+                  </div>
+                )}
               </div>
               <button
                 type="submit"

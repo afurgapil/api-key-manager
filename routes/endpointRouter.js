@@ -9,6 +9,12 @@ router.get("/get/:pathId", verifyToken, endpointController.get);
 
 router.get("/get-all/:userId", verifyToken, endpointController.get_all);
 
+router.get(
+  "/get-all-usages/:userId",
+  verifyToken,
+  endpointController.get_all_usage
+);
+
 router.put("/update/:pathId", verifyToken, endpointController.update);
 
 router.delete("/delete/:pathId", verifyToken, endpointController.delete);
