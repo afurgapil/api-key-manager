@@ -6,21 +6,90 @@ import { useToken } from "../hooks/useToken";
 import { useTier } from "../hooks/useTier";
 import { useLimit } from "../hooks/useLimit";
 import { USER_API } from "../urls";
-
+import Chart from "react-apexcharts";
 function Dashboard() {
   const [endpointList, setEndpointList] = useState([]);
   const [apiUsage, setApiUsage] = useState(null);
+  const [names, setNames] = useState([]);
+  const [timeInterval, setTimeInterval] = useState("all");
   const token = useToken();
   const user = useUser();
   const tier = useTier();
   const limit = useLimit();
+  const [areaChartOptions, setAreaChartOptions] = useState({
+    options: {
+      chart: {
+        id: "area-chart",
+      },
+      xaxis: {
+        categories: [],
+      },
+    },
+    series: [],
+  });
   useEffect(() => {
-    if (user) {
-      fetchEndpoints();
-      fetchUsage();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchData = async () => {
+      try {
+        if (user) {
+          await fetchEndpoints();
+          await fetchUsage();
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error.message);
+      }
+    };
+
+    fetchData();
   }, [user]);
+
+  useEffect(() => {
+    const fetchAndTransformData = async () => {
+      try {
+        if (names.length > 0) {
+          await fetchPathUsage();
+        }
+      } catch (error) {
+        console.error("Error fetching and transforming data: ", error.message);
+      }
+    };
+
+    fetchAndTransformData();
+  }, [names, timeInterval]);
+
+  const transformDataForChart = (apiPathUsage) => {
+    const series = apiPathUsage.map((item) => {
+      const dayCounts = item.timestamps.split(",").reduce((acc, timestamp) => {
+        const day = timestamp.split(" ")[0];
+        if (!acc[day]) {
+          acc[day] = 0;
+        }
+        acc[day]++;
+        return acc;
+      }, {});
+
+      const data = Object.keys(dayCounts).map((day) => ({
+        x: day,
+        y: dayCounts[day],
+      }));
+
+      return {
+        name: `${item.company.toUpperCase()}-${item.type.toUpperCase()}`,
+        data,
+      };
+    });
+
+    setAreaChartOptions({
+      options: {
+        chart: {
+          id: "area-chart",
+        },
+        xaxis: {
+          type: "datetime",
+        },
+      },
+      series,
+    });
+  };
 
   const fetchEndpoints = async () => {
     try {
@@ -39,6 +108,30 @@ function Dashboard() {
 
       const data = await response.json();
       setEndpointList(data.data);
+      const pathIds = data.data.map((item) => item.id);
+      const fetchPathName = async (pathIdss) => {
+        try {
+          const response = await fetch(`${USER_API.GET_PATH_NAME}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+            body: JSON.stringify({ pathIds: pathIdss }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Request failed");
+          }
+
+          const data = await response.json();
+          setNames(data.data);
+        } catch (error) {
+          console.error("Error creating path: ", error.message);
+        }
+      };
+      fetchPathName(pathIds);
     } catch (error) {
       console.error("Error creating path: ", error.message);
     }
@@ -73,12 +166,47 @@ function Dashboard() {
       console.error("Error creating path: ", error.message);
     }
   };
+  const fetchPathUsage = async () => {
+    try {
+      const response = await fetch(
+        `${USER_API.GET_USAGE}/${user.id}/${timeInterval}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Request failed");
+      }
+
+      const data = await response.json();
+      const mergedArray = data.map((pathUsage, index) => {
+        const pathName = names[index][0];
+        return {
+          ...pathUsage,
+          company: pathName[0],
+          type: pathName[1],
+        };
+      });
+      if (response.status === 200) {
+        transformDataForChart(mergedArray);
+      }
+    } catch (error) {
+      console.error("Error creating path: ", error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-50 dark:bg-slate-300">
       <div id="sol" className="w-8/12 flex flex-col gap-y-12 ">
         <div
           id="sec1"
-          className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center"
+          className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center  pb-8"
         >
           <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-4 text-left w-full">
             API Usage Overview
@@ -111,77 +239,41 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <div
-            id="button"
-            className="flex flex-col justify-cenendter items-end w-full"
-          >
-            <button
-              type="button"
-              className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-2"
-            >
-              Check APIs
-            </button>
-          </div>
         </div>
         <div
           id="sec2"
-          className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center"
+          className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center pb-8"
         >
-          <div className="w-full flex flex-row items-center justify-between px-4">
-            <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
-              API Usage Details
-            </h1>
-            <form action="" className="p-2">
-              <select
-                id="large"
-                className="block px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option selected value="1">
-                  Last Month
-                </option>
-                <option value="3">Last 3 Months</option>
-                <option value="6">last 6 Months</option>
-                <option value="12">Last Year</option>
-              </select>
-            </form>
-          </div>
-
-          <div className="flex flex-row justify-between items-center gap-x-8">
-            <div
-              id="api-usage"
-              className="flex flex-row justify-center items-center  bg-white"
-            >
-              <div>
-                <AiOutlineApi></AiOutlineApi>
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <div>API Usage</div>
-                <div>3/5</div>
-              </div>
+          <div className="w-full flex flex-col items-center justify-between px-4">
+            <div className="flex flex-row justify-between items-center w-full">
+              <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
+                API Usage Details
+              </h1>
+              <form action="" className="p-2">
+                <select
+                  id="large"
+                  className="block px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={(e) => {
+                    setTimeInterval(e.target.value);
+                  }}
+                >
+                  <option selected value="all">
+                    All Time
+                  </option>
+                  <option value="1">Last Month</option>
+                  <option value="3">Last 3 Months</option>
+                  <option value="6">last 6 Months</option>
+                  <option value="12">Last Year</option>
+                </select>
+              </form>
             </div>
-            <div
-              id="api-keys"
-              className="flex flex-row justify-center items-center  bg-white"
-            >
-              <div>
-                <ImStatsBars></ImStatsBars>
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <div>API Keys</div>
-                <div>16.146</div>
-              </div>
+            <div className="w-full">
+              <Chart
+                options={areaChartOptions.options}
+                series={areaChartOptions.series}
+                type="area"
+              />
             </div>
-          </div>
-          <div
-            id="button"
-            className="flex flex-col justify-cenendter items-end w-full"
-          >
-            <button
-              type="button"
-              className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-2"
-            >
-              Check APIs
-            </button>
           </div>
         </div>
         <div id="sec3 tips"></div>

@@ -10,6 +10,14 @@ router.get("/get/:pathId", verifyToken, endpointController.get);
 router.get("/get-all/:userId", verifyToken, endpointController.get_all);
 
 router.get(
+  "/get-usage/:userId/:timeInterval",
+  verifyToken,
+  endpointController.get_usage
+);
+
+router.post("/get-path-names", endpointController.get_path_names);
+
+router.get(
   "/get-all-usages/:userId",
   verifyToken,
   endpointController.get_all_usage

@@ -7,6 +7,8 @@ export const USER_API = {
   RESET_CHECK: `${API_URL}/auth/reset/check`,
   ADD_ENDPOINT: `${API_URL}/endpoint/add`,
   GET_ALL_ENDPOINT: `${API_URL}/endpoint/get-all`,
+  GET_USAGE: `${API_URL}/endpoint/get-usage`,
+  GET_PATH_NAME: `${API_URL}/endpoint/get-path-names`,
   GET_ALL_USAGES_ENDPOINT: `${API_URL}/endpoint/get-all-usages`,
   GET_ENDPOINT: `${API_URL}/endpoint/get`,
   EDIT_ENDPOINT: `${API_URL}/endpoint/update`,
