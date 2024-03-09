@@ -2,10 +2,10 @@ const pool = require("../utils/settings/usePool");
 const generateUniqueId = require("../utils/generateUniqueId");
 exports.add = async function (req, res) {
   try {
-    const { userId, url, key, company, type } = req.body;
+    const { userId, url, key, company, type, price } = req.body;
     let id = await generateUniqueId();
     const insertSql =
-      "INSERT INTO `path` (`id`, `user_id`, `url`, `key`, `company`, `type`) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO `path` (`id`, `user_id`, `url`, `key`, `company`, `type`, `price`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
@@ -17,7 +17,7 @@ exports.add = async function (req, res) {
 
       connection.query(
         insertSql,
-        [id, userId, url, key, company, type],
+        [id, userId, url, key, company, type, price],
         (insertQueryErr) => {
           if (insertQueryErr) {
             connection.release();
@@ -194,6 +194,45 @@ exports.get_usage = async function (req, res) {
   }
 };
 
+exports.get_prices = async function (req, res) {
+  try {
+    const userId = req.params.userId;
+    const selectSql = `
+          SELECT path_id, COUNT(*) as usage_count, GROUP_CONCAT(timestamp ORDER BY timestamp SEPARATOR ',') AS timestamps
+          FROM api_usage
+          WHERE user_id = ? AND timestamp >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+          GROUP BY path_id
+        `;
+
+    pool.getConnection((getConnectionErr, connection) => {
+      if (getConnectionErr) {
+        console.error(
+          "Database connection failed: " + getConnectionErr.message
+        );
+        return res.status(500).json({ error: "Database connection failed." });
+      }
+
+      connection.query(selectSql, [userId], (selectQueryErr, results) => {
+        if (selectQueryErr) {
+          connection.release();
+          console.error("Error retrieving path: " + selectQueryErr.message);
+          return res.status(500).json({ error: "Error retrieving path." });
+        }
+
+        if (results.length === 0) {
+          connection.release();
+          return res.status(404).json({ error: "Usage not found." });
+        }
+        connection.release();
+        return res.status(200).json(results);
+      });
+    });
+  } catch (error) {
+    console.error("An error occurred. " + error.message);
+    res.status(500).json({ error: "An error occurred." });
+  }
+};
+
 exports.get_all_usage = async function (req, res) {
   try {
     const userId = req.params.userId;
@@ -285,9 +324,9 @@ exports.get_path_names = async function (req, res) {
 exports.update = async function (req, res) {
   try {
     const pathId = req.params.pathId;
-    const { userId, url, key } = req.body;
+    const { userId, url, key, price } = req.body;
     const updateSql =
-      "UPDATE `path` SET `user_id` = ?, `url` = ?, `key` = ? WHERE `id` = ?";
+      "UPDATE `path` SET `user_id` = ?, `url` = ?, `key` = ?, `price` = ? WHERE `id` = ?";
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
@@ -298,7 +337,7 @@ exports.update = async function (req, res) {
 
       connection.query(
         updateSql,
-        [userId, url, key, pathId],
+        [userId, url, key, price, pathId],
         (updateQueryErr) => {
           if (updateQueryErr) {
             connection.release();

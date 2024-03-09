@@ -11,6 +11,10 @@ export const USER_API = {
   GET_PATH_NAME: `${API_URL}/endpoint/get-path-names`,
   GET_ALL_USAGES_ENDPOINT: `${API_URL}/endpoint/get-all-usages`,
   GET_ENDPOINT: `${API_URL}/endpoint/get`,
+  GET_PRICES: `${API_URL}/endpoint/get-prices`,
+  GET_LOGS: `${API_URL}/log/get-all`,
   EDIT_ENDPOINT: `${API_URL}/endpoint/update`,
   DELETE_ENDPOINT: `${API_URL}/endpoint/delete`,
+  DELETE_LOG: `${API_URL}/log/delete`,
+  DELETE_ALL_LOG: `${API_URL}/log/delete-all`,
 };

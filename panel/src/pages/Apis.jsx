@@ -19,6 +19,7 @@ function Apis() {
     key: "",
     company: "",
     type: "",
+    price: "",
   });
   const [editedEndpointId, setEditedEndpointId] = useState(null);
   useEffect(() => {
@@ -75,6 +76,7 @@ function Apis() {
           key: "",
           company: "",
           type: "",
+          price: null,
         });
         closeModal("add");
         fetchEndpoints();
@@ -119,6 +121,7 @@ function Apis() {
       userId: user.id,
       url: dataItem.url,
       key: dataItem.key,
+      price: dataItem.price,
     });
     setEditedEndpointId(dataItem.id);
     openModal("update");
@@ -180,6 +183,7 @@ function Apis() {
       key: "",
       company: "",
       type: "",
+      price: null,
     });
   };
 
@@ -213,7 +217,7 @@ function Apis() {
                   key={dataItem.id}
                   className="flex flex-row justify-between items-center py-2 gap-x-12 border-b border-gray-400 w-full"
                 >
-                  <div className="flex flex-col py-1 w-1/4">
+                  <div className="flex flex-col py-1 w-2/4">
                     <div className="">
                       <span className="bg-green-600 text-black text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-900 dark:text-stone-300 uppercase">
                         {dataItem.company}
@@ -234,6 +238,10 @@ function Apis() {
                     <p>
                       <span className="font-bold">Key:</span>
                       {dataItem.key}
+                    </p>
+                    <p>
+                      <span className="font-bold">Price per Request:</span>
+                      {dataItem.price}
                     </p>
                   </div>
                   <div className="flex flex-row justify-center items-center gap-x-4">
@@ -329,53 +337,77 @@ function Apis() {
                     required
                   />
                 </div>
-                <div className="col-span-2">
-                  <label
-                    htmlFor="company"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Company
-                  </label>
-                  <select
-                    className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    value={formData.company}
-                    onChange={handleChange}
-                    name="company"
-                  >
-                    <option value="null">Choose a Company</option>
-                    <option value="openai">OpenAI</option>
-                    <option value="google">Google</option>
-                  </select>
-                </div>
-                {formData.company !== "null" && (
+                <div className="flex flex-row justify-between items-center col-span-2">
                   <div className="col-span-2">
                     <label
-                      htmlFor="type"
+                      htmlFor="company"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Type
+                      Company
                     </label>
                     <select
                       className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      value={formData.type}
+                      value={formData.company}
                       onChange={handleChange}
-                      name="type"
+                      name="company"
                     >
-                      <option value="null">Choose a Type</option>
-                      {formData.company === "openai" ? (
-                        <>
-                          <option value="ChatGPT">ChatGPT</option>
-                          <option value="google">Resim</option>
-                        </>
-                      ) : formData.company === "google" ? (
-                        <>
-                          <option value="Gemini">Gemini</option>
-                          <option value="google">Resim</option>
-                        </>
-                      ) : null}
+                      <option value="null">Choose a Company</option>
+                      <option value="openai">OpenAI</option>
+                      <option value="google">Google</option>
                     </select>
                   </div>
-                )}
+                  {formData.company !== "null" && (
+                    <div className="col-span-2">
+                      <label
+                        htmlFor="type"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Type
+                      </label>
+                      <select
+                        className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        value={formData.type}
+                        onChange={handleChange}
+                        name="type"
+                      >
+                        <option value="null">Choose a Type</option>
+                        {formData.company === "openai" ? (
+                          <>
+                            <option value="ChatGPT">ChatGPT</option>
+                            <option value="google">Resim</option>
+                          </>
+                        ) : formData.company === "google" ? (
+                          <>
+                            <option value="Gemini">Gemini</option>
+                            <option value="google">Resim</option>
+                          </>
+                        ) : null}
+                      </select>
+                    </div>
+                  )}
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="price"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Price
+                  </label>
+                  <div className="mt-1 relative rounded-md shadow-sm">
+                    <div className="absolute text-gray-950 text-center rounded-s-md px-2 bg-gray-400 inset-y-0 left-0 flex flex-col justify-center items-center pointer-events-none">
+                      USD
+                    </div>
+                    <input
+                      type="number"
+                      name="price"
+                      id="price"
+                      value={formData.price || ""}
+                      onChange={handleChange}
+                      className="pl-14 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Price per Request"
+                    />
+                  </div>
+                </div>
               </div>
               <button
                 type="submit"
@@ -457,6 +489,28 @@ function Apis() {
                     placeholder="Enter key"
                     required
                   />
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="price"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Price
+                  </label>
+                  <div className="mt-1 relative rounded-md shadow-sm">
+                    <div className="absolute text-gray-950 text-center rounded-s-md px-2 bg-gray-400 inset-y-0 left-0 flex flex-col justify-center items-center pointer-events-none">
+                      USD
+                    </div>
+                    <input
+                      type="number"
+                      name="price"
+                      id="price"
+                      value={formData.price || ""}
+                      onChange={handleChange}
+                      className="pl-14 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Price per Request"
+                    />
+                  </div>
                 </div>
               </div>
               <button

@@ -13,10 +13,12 @@ import ResetRequest from "./pages/ResetRequest";
 //private
 import Dashboard from "./pages/Dashboard";
 import Apis from "./pages/Apis";
+import ErrorLogs from "./pages/ErrorLogs";
 function PreApp() {
   const privateRoutes = [
     { path: "/dashboard", element: Dashboard },
     { path: "/apis", element: Apis },
+    { path: "/error-logs", element: ErrorLogs },
   ];
   const publicRoutes = [
     { path: "/", element: Home },

@@ -2,7 +2,6 @@ const axios = require("axios");
 
 module.exports = async function sendRequest(url, data) {
   const compUrl = `${url}?tags=${data}`;
-
   try {
     const response = await axios.get(compUrl);
     return response.data;

@@ -17,6 +17,8 @@ router.get(
 
 router.post("/get-path-names", endpointController.get_path_names);
 
+router.get("/get-prices/:userId", endpointController.get_prices);
+
 router.get(
   "/get-all-usages/:userId",
   verifyToken,

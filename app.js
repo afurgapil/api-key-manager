@@ -5,6 +5,7 @@ const app = express();
 const endpointRouter = require("./routes/endpointRouter");
 const authRouter = require("./routes/authRouter");
 const requestRouter = require("./routes/requestRouter");
+const logRouter = require("./routes/logRouter");
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 dotenv.config();
@@ -12,6 +13,7 @@ dotenv.config();
 app.use("/endpoint", endpointRouter);
 app.use("/auth", authRouter);
 app.use("/request", requestRouter);
+app.use("/log", logRouter);
 
 const port = process.env.PORT || 8001;
 app.listen(port, () => {
