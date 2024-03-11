@@ -14,6 +14,7 @@ import ResetRequest from "./pages/ResetRequest";
 import Dashboard from "./pages/Dashboard";
 import Apis from "./pages/Apis";
 import ErrorLogs from "./pages/ErrorLogs";
+import Contact from "./pages/Contact";
 function PreApp() {
   const privateRoutes = [
     { path: "/dashboard", element: Dashboard },
@@ -24,6 +25,7 @@ function PreApp() {
     { path: "/", element: Home },
     { path: "/signin", element: SignIn },
     { path: "/signup", element: SignUp },
+    { path: "/contact", element: Contact },
     { path: "/reset-check/:mail", element: ResetCheck },
     { path: "/reset-request", element: ResetRequest },
   ];
