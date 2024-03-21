@@ -33,16 +33,15 @@ function Header() {
             <div className="flex items-center lg:order-2">
               <NavLink
                 to="/profile"
-                className="text-white dark:text-white hover:bg-gray-50  font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
+                className="text-white dark:text-white hover:bg-gray-50 hover:text-green-700  font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
               >
-                {user.username}
+                {user.username.toUpperCase()}
               </NavLink>
               <SignOut></SignOut>
               <button
                 onClick={toggleTheme}
                 id="toggle "
-                className="dark:text-yellow-600 text-white
-                "
+                className="dark:text-yellow-600 text-white text-2xl hover:bg-gray-50 hover:text-green-800 ease-in-out transition-all dura font-medium rounded-lg  px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
               >
                 {theme === "light" ? <FaMoon /> : <FaSun />}
               </button>
@@ -82,8 +81,7 @@ function Header() {
               <button
                 onClick={toggleTheme}
                 id="toggle "
-                className="dark:text-yellow-600 text-white
-                "
+                className="dark:text-yellow-600 text-white text-2xl hover:bg-gray-50 hover:text-green-800 ease-in-out transition-all dura font-medium rounded-lg  px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
               >
                 {theme === "light" ? <FaMoon /> : <FaSun />}
               </button>
@@ -123,46 +121,101 @@ function Header() {
                   Home
                 </NavLink>
               </li> */}
-              <li>
-                <NavLink
-                  to="/dashboard"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Dashboard
-                </NavLink>
-              </li>{" "}
-              <li>
-                <NavLink
-                  to="/apis"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  APIs
-                </NavLink>
-              </li>{" "}
-              <li>
-                <NavLink
-                  to="/error-logs"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Logs
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/community"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Community
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/contact"
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Contact
-                </NavLink>
-              </li>
+              {user && Object.keys(user).length > 0 ? (
+                <>
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>{" "}
+                  <li>
+                    <NavLink
+                      to="/apis"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      APIs
+                    </NavLink>
+                  </li>{" "}
+                  <li>
+                    <NavLink
+                      to="/error-logs"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Logs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/community"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Community
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/contact"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Contact
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/faq"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      FAQ
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/how-it-works"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Explore
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink
+                      to="/community"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Community
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/contact"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Contact
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/faq"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      FAQ
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/how-it-works"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Explore
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

@@ -68,8 +68,8 @@ const Contact = () => {
     }
   };
   return (
-    <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-50 dark:bg-slate-300">
-      <div className="bg-neutral-50 dark:bg-gray-800 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto rounded-xl">
+    <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-200 dark:bg-slate-300">
+      <div className="bg-neutral-200 dark:bg-gray-800 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto rounded-xl">
         <div className="max-w-2xl lg:max-w-5xl mx-auto">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">

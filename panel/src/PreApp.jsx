@@ -15,6 +15,8 @@ import Dashboard from "./pages/Dashboard";
 import Apis from "./pages/Apis";
 import ErrorLogs from "./pages/ErrorLogs";
 import Contact from "./pages/Contact";
+import Logic from "./pages/Logic";
+import Faq from "./pages/Faq";
 function PreApp() {
   const privateRoutes = [
     { path: "/dashboard", element: Dashboard },
@@ -26,6 +28,8 @@ function PreApp() {
     { path: "/signin", element: SignIn },
     { path: "/signup", element: SignUp },
     { path: "/contact", element: Contact },
+    { path: "/how-it-works", element: Logic },
+    { path: "/faq", element: Faq },
     { path: "/reset-check/:mail", element: ResetCheck },
     { path: "/reset-request", element: ResetRequest },
   ];

@@ -3,7 +3,7 @@ import { faqData } from "../constant/faqData";
 import QMark from "../assets/qmark.png";
 const Faq = () => {
   return (
-    <div className="min-h-screen w-full py-8 px-8  bg-neutral-50 dark:bg-slate-300">
+    <div className="min-h-screen w-full py-8 px-8  bg-neutral-200 dark:bg-slate-300">
       <div className="flex flex-row justify-evenly items-start">
         <div className="w-1/3 flex justify-center items-center">
           <div className="flex flex-col justify-center items-start gap-y-4">

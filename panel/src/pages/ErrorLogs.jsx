@@ -99,7 +99,7 @@ function ErrorLogs() {
     setSortOrder(event.target.value);
   };
   return (
-    <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-50 dark:bg-slate-300">
+    <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
         <h1 className="font-bold text-3xl">Error Logs List</h1>
         <div className="flex flex-row gap-x-2 my-2">
