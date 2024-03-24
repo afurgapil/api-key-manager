@@ -16,6 +16,7 @@ function Apis() {
   const [formData, setFormData] = useState({
     userId: user.id,
     url: "",
+    api_key: "",
     key: "",
     company: "",
     type: "",
@@ -73,6 +74,7 @@ function Apis() {
         setFormData({
           userId: user.id,
           url: "",
+          api_key: "",
           key: "",
           company: "",
           type: "",
@@ -120,6 +122,7 @@ function Apis() {
     setFormData({
       userId: user.id,
       url: dataItem.url,
+      api_key: dataItem.api_key,
       key: dataItem.key,
       price: dataItem.price,
     });
@@ -180,6 +183,7 @@ function Apis() {
     setFormData({
       userId: user.id,
       url: "",
+      api_key: "",
       key: "",
       company: "",
       type: "",
@@ -234,6 +238,10 @@ function Apis() {
                     <p>
                       <span className="font-bold">URL:</span>
                       {dataItem.url}
+                    </p>
+                    <p>
+                      <span className="font-bold">API Key:</span>
+                      {dataItem.api_key}
                     </p>
                     <p>
                       <span className="font-bold">Key:</span>
@@ -316,6 +324,24 @@ function Apis() {
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Enter URL"
+                    required
+                  />
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="api_key"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    API Key
+                  </label>
+                  <input
+                    type="text"
+                    name="api_key"
+                    id="api_key"
+                    value={formData.api_key}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Enter API key"
                     required
                   />
                 </div>
@@ -469,6 +495,24 @@ function Apis() {
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Enter URL"
+                    required
+                  />
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="api_key"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    API Key
+                  </label>
+                  <input
+                    type="text"
+                    name="api_key"
+                    id="api_key"
+                    value={formData.api_key}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Enter key"
                     required
                   />
                 </div>

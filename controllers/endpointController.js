@@ -2,10 +2,10 @@ const pool = require("../utils/settings/usePool");
 const generateUniqueId = require("../utils/generateUniqueId");
 exports.add = async function (req, res) {
   try {
-    const { userId, url, key, company, type, price } = req.body;
+    const { userId, url, api_key, key, company, type, price } = req.body;
     let id = await generateUniqueId();
     const insertSql =
-      "INSERT INTO `path` (`id`, `user_id`, `url`, `key`, `company`, `type`, `price`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO `path` (`id`, `user_id`, `url`, `api_key`, `key`, `company`, `type`, `price`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
@@ -17,7 +17,7 @@ exports.add = async function (req, res) {
 
       connection.query(
         insertSql,
-        [id, userId, url, key, company, type, price],
+        [id, userId, url, api_key, key, company, type, price],
         (insertQueryErr) => {
           if (insertQueryErr) {
             connection.release();
@@ -28,7 +28,7 @@ exports.add = async function (req, res) {
           connection.release();
           return res.status(201).json({
             message: "Path created.",
-            data: { id, userId, url, key, type },
+            data: { id },
           });
         }
       );
@@ -112,8 +112,7 @@ exports.get_usage = async function (req, res) {
   try {
     const userId = req.params.userId;
     const timeInterval = req.params.timeInterval;
-    let selectSql = `
-  `;
+    let selectSql = ``;
     switch (timeInterval) {
       case "all":
         selectSql = `
@@ -182,7 +181,7 @@ exports.get_usage = async function (req, res) {
 
         if (results.length === 0) {
           connection.release();
-          return res.status(404).json({ error: "Usage not found." });
+          return res.status(204).json({ error: "Usage not found." });
         }
         connection.release();
         return res.status(200).json(results);
@@ -221,7 +220,7 @@ exports.get_prices = async function (req, res) {
 
         if (results.length === 0) {
           connection.release();
-          return res.status(404).json({ error: "Usage not found." });
+          return res.status(204).json({ error: "Usage not found." });
         }
         connection.release();
         return res.status(200).json(results);
@@ -324,9 +323,9 @@ exports.get_path_names = async function (req, res) {
 exports.update = async function (req, res) {
   try {
     const pathId = req.params.pathId;
-    const { userId, url, key, price } = req.body;
+    const { userId, url, api_key, key, price } = req.body;
     const updateSql =
-      "UPDATE `path` SET `user_id` = ?, `url` = ?, `key` = ?, `price` = ? WHERE `id` = ?";
+      "UPDATE `path` SET `user_id` = ?, `url` = ?, `api_key` = ?, `key` = ?, `price` = ? WHERE `id` = ?";
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
@@ -337,7 +336,7 @@ exports.update = async function (req, res) {
 
       connection.query(
         updateSql,
-        [userId, url, key, price, pathId],
+        [userId, url, api_key, key, price, pathId],
         (updateQueryErr) => {
           if (updateQueryErr) {
             connection.release();

@@ -17,6 +17,8 @@ function Dashboard() {
   const [timeInterval, setTimeInterval] = useState("all");
   const [totalCost, setTotalCost] = useState("");
   const [logs, setLogs] = useState([]);
+  const [isUsageActive, setIsUsageActive] = useState(true);
+  const [isPriceActive, setIsPriceActive] = useState(true);
   const token = useToken();
   const user = useUser();
   const tier = useTier();
@@ -35,7 +37,7 @@ function Dashboard() {
   const [barChartOptions, setBarChartOptions] = useState({
     series: [
       {
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+        data: [],
       },
     ],
     options: {
@@ -53,18 +55,7 @@ function Dashboard() {
         enabled: false,
       },
       xaxis: {
-        categories: [
-          "South Korea",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany",
-        ],
+        categories: [],
       },
     },
   });
@@ -148,9 +139,9 @@ function Dashboard() {
         throw new Error(errorData.message || "Request failed");
       }
 
-      const data = await response.json();
-      setEndpointList(data.data);
-      const pathIds = data.data.map((item) => item.id);
+      const dataOne = await response.json();
+      setEndpointList(dataOne.data);
+      const pathIds = dataOne.data.map((item) => item.id);
       const fetchPathName = async (pathIdss) => {
         try {
           const response = await fetch(`${USER_API.GET_PATH_NAME}`, {
@@ -167,8 +158,8 @@ function Dashboard() {
             throw new Error(errorData.message || "Request failed");
           }
 
-          const data = await response.json();
-          setNames(data.data);
+          const dataTwo = await response.json();
+          setNames(dataTwo.data);
         } catch (error) {
           console.error("Error creating path: ", error.message);
         }
@@ -183,14 +174,16 @@ function Dashboard() {
               Authorization: token,
             },
           });
-
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || "Request failed");
           }
+          if (response.status === 204) {
+            setIsPriceActive(false);
+          }
 
-          const data = await response.json();
-          const mergedArray = data
+          const dataThree = await response.json();
+          const mergedArray = dataThree
             .map((obj1) => {
               const obj2 = array2.find((item) => item.id == obj1.path_id);
               if (obj2 && obj2.price !== null && obj1.usage_count !== null) {
@@ -244,7 +237,7 @@ function Dashboard() {
           console.error("Error creating path: ", error.message);
         }
       };
-      fetchPrices(data.data);
+      fetchPrices(dataOne.data);
     } catch (error) {
       console.error("Error creating path: ", error.message);
     }
@@ -270,7 +263,7 @@ function Dashboard() {
 
       const data = await response.json();
       const sumValue = data.data["SUM(`usage`)"];
-      if (sumValue) {
+      if (!sumValue === null) {
         setApiUsage(sumValue);
       } else {
         setApiUsage("N/A");
@@ -279,6 +272,7 @@ function Dashboard() {
       console.error("Error creating path: ", error.message);
     }
   };
+
   const fetchPathUsage = async () => {
     try {
       const response = await fetch(
@@ -296,7 +290,11 @@ function Dashboard() {
         const errorData = await response.json();
         throw new Error(errorData.message || "Request failed");
       }
-
+      console.log(response.status);
+      if (response.status === 204) {
+        setIsUsageActive(false);
+        console.log(isUsageActive);
+      }
       const data = await response.json();
       const mergedArray = data.map((pathUsage, index) => {
         const pathName = names[index][0];
@@ -313,6 +311,7 @@ function Dashboard() {
       console.error("Error creating path: ", error.message);
     }
   };
+
   const fetchLogs = async () => {
     try {
       const response = await fetch(`${USER_API.GET_LOGS}`, {
@@ -380,7 +379,9 @@ function Dashboard() {
               </div>
               <div className="flex flex-col justify-center items-start">
                 <div className="underline text-xl">Monthly Cost</div>
-                <div className="font-bold text-2xl">{totalCost}</div>
+                <div className="font-bold text-2xl">
+                  {totalCost ? totalCost : "N/A"}
+                </div>
               </div>
             </div>
           </div>
@@ -393,6 +394,7 @@ function Dashboard() {
             <div className="flex flex-row justify-between items-center w-full">
               <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
                 API Usage Details
+                {!isUsageActive && <span> (No Data Found)</span>}
               </h1>
               <form action="" className="p-2">
                 <select
@@ -429,6 +431,7 @@ function Dashboard() {
             <div className="flex flex-row justify-between items-center w-full">
               <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
                 API Price Details
+                {!isPriceActive && <span> (No Data Found)</span>}
               </h1>
             </div>
             <div className="w-full">
