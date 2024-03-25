@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { USER_API } from "../urls";
+import { USER_API } from "../constant/urls";
 import isValidMail from "../utils/isValidMail";
 import { SiDialogflow } from "react-icons/si";
 import { AiOutlineCode } from "react-icons/ai";

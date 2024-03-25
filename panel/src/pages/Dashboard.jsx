@@ -6,7 +6,7 @@ import { useUser } from "../hooks/useUser";
 import { useToken } from "../hooks/useToken";
 import { useTier } from "../hooks/useTier";
 import { useLimit } from "../hooks/useLimit";
-import { USER_API } from "../urls";
+import { USER_API } from "../constant/urls";
 import Chart from "react-apexcharts";
 import ErrorLogs from "../components/ErrorLogs";
 import { Link } from "react-router-dom";

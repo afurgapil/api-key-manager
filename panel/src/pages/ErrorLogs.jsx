@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import { useToken } from "../hooks/useToken";
-import { USER_API } from "../urls";
+import { USER_API } from "../constant/urls";
 import { FaTrashAlt } from "react-icons/fa";
 function ErrorLogs() {
   const user = useUser();

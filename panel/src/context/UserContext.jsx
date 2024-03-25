@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { USER_API } from "../urls";
+import { USER_API } from "../constant/urls";
 
 const UserContext = createContext();
 
