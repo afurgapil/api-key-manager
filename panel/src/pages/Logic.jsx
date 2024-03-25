@@ -2,11 +2,16 @@ import { IoIosCreate } from "react-icons/io";
 import { BsShieldLockFill } from "react-icons/bs";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { BiSolidMessageError } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function Logic() {
   const { t } = useTranslation();
   return (
     <div className="min-h-screen w-full py-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-800">
+      <Helmet>
+        <title> {t("helmet.logic.title")}</title>
+        <meta name="description" lang="en" content="A page for logic" />
+      </Helmet>
       <div className="w-full flex justify-center items-center">
         <h3 className="text-center font-[Handjet] text-black dark:text-white text-[96px]">
           {t("pagesLogic.howItWorks")}

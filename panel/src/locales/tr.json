@@ -1,4 +1,42 @@
 {
+  "helmet": {
+    "apis": {
+      "title": "API | APILMAN"
+    },
+    "contact": {
+      "title": "İletişim | APILMAN"
+    },
+    "dashboard": {
+      "title": "Panel | APILMAN"
+    },
+    "errorLogs": {
+      "title": "Kayıtlar | APILMAN"
+    },
+    "faq": {
+      "title": "SSS | APILMAN"
+    },
+    "home": {
+      "title": "APILMAN"
+    },
+    "logic": {
+      "title": "Keşfet | APILMAN"
+    },
+    "notFound": {
+      "title": "404 | APILMAN"
+    },
+    "resetCheck": {
+      "title": "Sıfırla | APILMAN"
+    },
+    "resetRequest": {
+      "title": "Sıfırla | APILMAN"
+    },
+    "signIn": {
+      "title": "Giriş Yap | APILMAN"
+    },
+    "signUp": {
+      "title": "Kayıt Ol | APILMAN"
+    }
+  },
   "pagesApis": {
     "titles": "API Listesi",
     "noData": "Veri mevcut değil",

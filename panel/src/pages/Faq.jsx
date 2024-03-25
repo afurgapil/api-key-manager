@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Category from "../components/FaqCategory";
 import { faqDataEn, faqDataTr, faqDataDe } from "../constant/faqData";
 import QMark from "../assets/qmark.png";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 const Faq = () => {
   const { t } = useTranslation();
@@ -45,6 +46,10 @@ const Faq = () => {
   }, [i18n]);
   return (
     <div className="min-h-screen w-full py-8 px-8  bg-neutral-200 dark:bg-slate-300">
+      <Helmet>
+        <title> {t("helmet.faq.title")}</title>
+        <meta name="description" lang="en" content="A page for FAQ" />
+      </Helmet>
       <div className="flex flex-row justify-evenly items-start">
         <div className="w-1/3 flex justify-center items-center">
           <div className="flex flex-col justify-center items-start gap-y-4">

@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function ResetCheck() {
   const { t } = useTranslation();
@@ -75,6 +76,10 @@ function ResetCheck() {
   };
   return (
     <section className="bg-bg5l dark:bg-bg5d bg-scroll bg-center bg-no-repeat min-h-screen">
+      <Helmet>
+        <title> {t("helmet.resetCheck.title")}</title>
+        <meta name="description" lang="en" content="A page for reset check" />
+      </Helmet>
       <div className="flex flex-col items-center justify-start  px-6 py-10 mx-auto md:h-screen ">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

@@ -3,6 +3,7 @@ import { useUser } from "../hooks/useUser";
 import { useToken } from "../hooks/useToken";
 import { USER_API } from "../constant/urls";
 import { FaTrashAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function ErrorLogs() {
   const { t } = useTranslation();
@@ -102,6 +103,10 @@ function ErrorLogs() {
   };
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
+      <Helmet>
+        <title> {t("helmet.errorLogs.title")}</title>
+        <meta name="description" lang="en" content="A page for error logs" />
+      </Helmet>
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
         <h1 className="font-bold text-3xl">{t("pagesErrorLogs.title")}</h1>
         <div className="flex flex-row gap-x-2 my-2">

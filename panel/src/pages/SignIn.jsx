@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import logoGreen from "../assets/logo-green.svg";
 import logoGrey from "../assets/logo-grey.svg";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function SignIn() {
   const { t } = useTranslation();
@@ -71,6 +72,10 @@ function SignIn() {
 
   return (
     <section className="bg-bg1l dark:bg-bg1d bg-scroll bg-center bg-no-repeat min-h-screen">
+      <Helmet>
+        <title> {t("helmet.signIn.title")}</title>
+        <meta name="description" lang="en" content="A page for signin" />
+      </Helmet>
       <div className="flex flex-col items-center justify-start px-6 py-8  mx-auto md:h-screen ">
         <Link to="/" className="flex items-center mb-6">
           {theme === "dark" ? (

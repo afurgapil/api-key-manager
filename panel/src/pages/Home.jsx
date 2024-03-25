@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import logoWhite from "../assets/logo-white.svg";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function Home() {
   const { t } = useTranslation();
   return (
     <main className="bg-encryption bg-scroll bg-center bg-no-repeat bg-cover flex flex-col min-h-screen justify-center items-center">
+      <Helmet>
+        <title> {t("helmet.home.title")}</title>
+        <meta name="description" lang="en" content="A page for home" />
+      </Helmet>
       <div className="w-full min-h-screen flex flex-col justify-start items-center p-8 bg-gray-300 bg-opacity-35">
         <div className="flex flex-col justify-start items-center mb-8">
           <img src={logoWhite} alt="Logo White" />

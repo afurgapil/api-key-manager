@@ -8,6 +8,7 @@ import { useLimit } from "../hooks/useLimit";
 import { USER_API } from "../constant/urls";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import AccordionCode from "../components/AccordionCode";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function Apis() {
   const user = useUser();
@@ -198,6 +199,14 @@ function Apis() {
 
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
+      <Helmet>
+        <title> {t("helmet.apis.title")}</title>
+        <meta
+          name="description"
+          lang="en"
+          content="A page for adding, organising and managing new api."
+        />
+      </Helmet>
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
         <h1 className="font-bold text-3xl">{t("pagesApis.titles")}</h1>
         <button

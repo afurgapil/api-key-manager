@@ -10,6 +10,7 @@ import { USER_API } from "../constant/urls";
 import Chart from "react-apexcharts";
 import ErrorLogs from "../components/ErrorLogs";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function Dashboard() {
   const { t } = useTranslation();
@@ -338,6 +339,10 @@ function Dashboard() {
   };
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-200 dark:bg-slate-300">
+      <Helmet>
+        <title> {t("helmet.dashboard.title")}</title>
+        <meta name="description" lang="en" content="A page for dashboard" />
+      </Helmet>
       <div id="sol" className="w-8/12 flex flex-col gap-y-12 ">
         <div
           id="sec1"

@@ -1,4 +1,42 @@
 {
+  "helmet": {
+    "apis": {
+      "title": "APIs | APILMAN"
+    },
+    "contact": {
+      "title": "Kontakt | APILMAN"
+    },
+    "dashboard": {
+      "title": "Dashboard | APILMAN"
+    },
+    "errorLogs": {
+      "title": "Protokolle | APILMAN"
+    },
+    "faq": {
+      "title": "FAQ | APILMAN"
+    },
+    "home": {
+      "title": "APILMAN"
+    },
+    "logic": {
+      "title": "Erkunden | APILMAN"
+    },
+    "notFound": {
+      "title": "404 | APILMAN"
+    },
+    "resetCheck": {
+      "title": "Zurücksetzen | APILMAN"
+    },
+    "resetRequest": {
+      "title": "Zurücksetzen | APILMAN"
+    },
+    "signIn": {
+      "title": "Anmelden | APILMAN"
+    },
+    "signUp": {
+      "title": "Registrieren | APILMAN"
+    }
+  },
   "pagesApis": {
     "titles": "API-Liste",
     "noData": "Keine Daten verfügbar",

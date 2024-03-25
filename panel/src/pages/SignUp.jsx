@@ -4,6 +4,7 @@ import isValidMail from "../utils/isValidMail";
 import logoGreen from "../assets/logo-green.svg";
 import logoGrey from "../assets/logo-grey.svg";
 import { UserContext } from "../context/UserContext";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 function SignUp() {
   const { t } = useTranslation();
@@ -125,6 +126,10 @@ function SignUp() {
   };
   return (
     <section className="bg-bg2l dark:bg-bg2d bg-scroll bg-center bg-no-repeat min-h-screen">
+      <Helmet>
+        <title> {t("helmet.signUp.title")}</title>
+        <meta name="description" lang="en" content="A page for signup" />
+      </Helmet>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen ">
         <Link to="/" className="flex items-center mb-6 ">
           {theme === "dark" ? (

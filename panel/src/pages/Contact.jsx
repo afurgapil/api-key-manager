@@ -6,6 +6,7 @@ import { AiOutlineCode } from "react-icons/ai";
 import { GoMail } from "react-icons/go";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 const Contact = () => {
   const { t } = useTranslation();
@@ -71,6 +72,10 @@ const Contact = () => {
   };
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-200 dark:bg-slate-300">
+      <Helmet>
+        <title> {t("helmet.contact.title")}</title>
+        <meta name="description" lang="en" content="A page for contact" />
+      </Helmet>
       <div className="bg-neutral-200 dark:bg-gray-800 max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto rounded-xl">
         <div className="max-w-2xl lg:max-w-5xl mx-auto">
           <div className="text-center">
