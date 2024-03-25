@@ -1,7 +1,9 @@
 import { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { useTranslation } from "react-i18next";
 function ResetCheck() {
+  const { t } = useTranslation();
   const { reset_check } = useContext(UserContext);
   const { mail } = useParams();
   const [code, setCode] = useState("");
@@ -77,7 +79,7 @@ function ResetCheck() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Confirm Your Account
+              {t("pagesResetCheck.confirmAccountTitle")}
             </h1>
             <form
               onSubmit={handleCheck}
@@ -89,7 +91,7 @@ function ResetCheck() {
                   htmlFor="code"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Verification Code
+                  {t("pagesResetCheck.verificationCodeLabel")}
                 </label>
                 <input
                   type="text"
@@ -115,7 +117,7 @@ function ResetCheck() {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Password
+                  {t("pagesResetCheck.passwordLabel")}
                 </label>
                 <input
                   type="password"
@@ -130,7 +132,7 @@ function ResetCheck() {
                   }}
                 />
                 <div className="text-xs text-gray-500 dark:text-gray-400 m-0 p-1">
-                  *** Passwords must be minimum 8 characters.
+                  {t("pagesResetCheck.passwordRequirementText")}
                 </div>
                 {error.password && (
                   <div className="text-xs text-red-500 dark:text-red-400">
@@ -143,7 +145,7 @@ function ResetCheck() {
                   htmlFor="confirm-password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Confirm password
+                  {t("pagesResetCheck.confirmPasswordLabel")}
                 </label>
                 <input
                   type="password"
@@ -170,7 +172,7 @@ function ResetCheck() {
                 ).some((errMsg) => errMsg !== "")}`}
                 disabled={Object.values(error).some((errMsg) => errMsg !== "")}
               >
-                Submit
+                {t("pagesResetCheck.submitButton")}
               </button>
               {errorResponse.bool && (
                 <div className="bg-red-100 text-red-800 text-mg text-center font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">

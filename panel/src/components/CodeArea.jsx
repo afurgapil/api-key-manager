@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-// eslint-disable-next-line react/prop-types
+import { useTranslation } from "react-i18next";
 const CodeArea = ({ code }) => {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
@@ -26,7 +28,9 @@ const CodeArea = ({ code }) => {
         className="absolute top-2 right-2 bg-green-500 dark:bg-gray-500 hover:bg-green-400 hover:dark:bg-gray-400 duration-300 transition-all ease-in-out text-white font-bold py-1 px-3 rounded"
         onClick={copyToClipboard}
       >
-        {copied ? "Copied!" : "Copy"}
+        {copied
+          ? `${t("componentsCodeArea.copied")}`
+          : `${t("componentsCodeArea.copy")}`}
       </button>
     </div>
   );

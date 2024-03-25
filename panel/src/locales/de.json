@@ -1,0 +1,231 @@
+{
+  "pagesApis": {
+    "titles": "API-Liste",
+    "noData": "Keine Daten verfügbar",
+    "dataItem": {
+      "id": "ID: ",
+      "url": "URL: ",
+      "apiKey": "API-Schlüssel: ",
+      "key": "Schlüssel: ",
+      "price": "Preis: "
+    },
+    "modal": {
+      "addTitle": "Neues Produkt erstellen",
+      "updateTitle": "Produkt aktualisieren",
+      "addButton": "Neues Produkt hinzufügen",
+      "updateButton": "Produkt aktualisieren"
+    },
+    "formLabels": {
+      "url": "URL",
+      "apiKey": "API-Schlüssel",
+      "key": "Schlüssel",
+      "price": "Preis",
+      "company": "Unternehmen",
+      "type": "Typ"
+    },
+    "placeholders": {
+      "url": "URL eingeben",
+      "apiKey": "API-Schlüssel eingeben",
+      "key": "Schlüssel eingeben",
+      "price": "Preis pro Anfrage",
+      "chooseCompany": "Unternehmen auswählen",
+      "chooseType": "Typ auswählen"
+    }
+  },
+  "pagesContact": {
+    "contactUs": "Kontaktieren Sie uns",
+    "weLoveToTalk": "Wir sprechen gerne darüber, wie wir Ihnen helfen können.",
+    "fillInTheForm": "Füllen Sie das Formular aus",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "details": "Einzelheiten",
+    "sendInquiry": "Anfrage senden",
+    "getBackIn1To2Days": "Wir werden uns innerhalb von 1-2 Werktagen bei Ihnen melden.",
+    "faq": {
+      "title": "FAQ",
+      "description": "Durchsuchen Sie unsere FAQs nach Antworten auf alle Ihre Fragen.",
+      "visitFaq": "FAQ besuchen"
+    },
+    "explore": {
+      "title": "Erkunden",
+      "description": "Sehen Sie sich unsere Arbeitslogik an.",
+      "contactSales": "Vertrieb kontaktieren"
+    },
+    "contactByEmail": {
+      "title": "Kontaktieren Sie uns per E-Mail",
+      "description": "Wenn Sie uns stattdessen eine E-Mail schreiben möchten, verwenden Sie bitte",
+      "email": "example@site.com"
+    },
+    "invalidEmail": "Ungültige E-Mail-Adresse!",
+    "validMail": "Geben Sie bitte eine gültige E-Mail-Adresse ein."
+  },
+  "pagesDashboard": {
+    "apiUsageOverview": {
+      "title": "API-Nutzungsübersicht",
+      "apiUsage": {
+        "title": "API-Nutzung",
+        "description": "API-Nutzung"
+      },
+      "apiCall": {
+        "title": "API-Aufruf",
+        "description": "API-Aufruf"
+      },
+      "monthlyCost": {
+        "title": "Monatliche Kosten",
+        "description": "Monatliche Kosten"
+      }
+    },
+    "apiUsageDetails": {
+      "title": "API-Nutzungsdetails",
+      "selectTimeInterval": "Zeitintervall auswählen",
+      "allTime": "Alle Zeit",
+      "lastMonth": "Letzter Monat",
+      "last3Months": "Letzte 3 Monate",
+      "last6Months": "Letzte 6 Monate",
+      "lastYear": "Letztes Jahr",
+      "noDataFound": "(Keine Daten gefunden)"
+    },
+    "apiPriceDetails": {
+      "title": "API-Preisdetails",
+      "noDataFound": "(Keine Daten gefunden)"
+    },
+    "yourTier": {
+      "title": "Ihr Tarif: "
+    },
+    "errorLogs": {
+      "title": "Fehlerprotokolle",
+      "exploreAll": "Alle anzeigen",
+      "noErrorRecordFound": "Kein Fehlerdatensatz gefunden"
+    }
+  },
+  "pagesErrorLogs": {
+    "title": "Fehlerprotokollliste",
+    "filterByCompany": "Nach Unternehmen filtern",
+    "all": "Alle",
+    "sortBy": "Sortieren nach",
+    "newestFirst": "Neueste zuerst",
+    "oldestFirst": "Älteste zuerst",
+    "deleteAll": "Alle löschen",
+    "noDataReceived": "Noch keine Daten erhalten.",
+    "logItem": {
+      "id": "Protokoll-ID: ",
+      "url": "URL: ",
+      "msg": "Fehlermeldung: ",
+      "date": "Datum: ",
+      "time": "Uhrzeit: "
+    }
+  },
+  "pagesFaq": {
+    "title": "Häufig",
+    "subtitle": "gestellte Fragen",
+    "motto": "Antworten auf die am häufigsten gestellten Fragen."
+  },
+  "pagesHome": {
+    "welcomeTitle": "Willkommen bei APILMAN",
+    "welcomeSubtitle": "Diese App wurde entwickelt, um Ihnen bei der Verwaltung und Organisation Ihrer API-Schlüssel in einer zentralen Plattform zu helfen. Übernehmen Sie die Kontrolle über Ihre API-Sicherheit mit Leichtigkeit.",
+    "getStarted": "Loslegen",
+    "signIn": "Anmelden",
+    "termsAndConditions": "Durch die Anmeldung stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu."
+  },
+  "pagesLogic": {
+    "howItWorks": "Wie funktioniert es?",
+    "step1Title": "Schritt 1: Einen Pfad erstellen",
+    "step1Content": "Geben Sie zunächst Ihren Endpunkt und Ihren Verschlüsselungsschlüssel ein, um einen neuen Pfad zu erstellen. Dann müssen Sie den API-Typ auswählen, den Sie verwenden, um den Anforderungstyp zu bestimmen. Nach diesem Schritt können Sie optional detaillierte Informationen wie Preisgestaltung auswählen (diese Daten werden Ihnen als Statistiken präsentiert).",
+    "step2Title": "Schritt 2: Ihre Daten verschlüsseln",
+    "step2Content": "Verwenden Sie den von Ihnen erstellten Pfad, verwenden Sie die Ihnen gegebene URL, dann müssen Sie Ihre API-Anforderung in der angegebenen Form erstellen, Sie müssen die API-Anforderung senden, indem Sie Ihre Eingabe mit Ihrem Sicherheitsschlüssel verschlüsseln. Die verschlüsselten Daten werden auf unseren Servern decodiert, und die Antwort wird mit demselben Sicherheitsschlüssel verschlüsselt an Sie gesendet.",
+    "step3Title": "Schritt 3: Statistiken überwachen",
+    "step3Content": "Sie können über die Benutzeroberfläche auf alle verschiedenen APIs zugreifen, die Sie verwendet haben. Sie können auf Daten wie Preisgestaltung und Anzahl der Anfragen zugreifen und die Verwendung Ihrer APIs im Detail untersuchen.",
+    "step4Title": "Schritt 4: Fehlermanagement",
+    "step4Content": "Jeder Fehler, auf den Sie bei Ihren API-Anfragen stoßen, wird protokolliert. Sie können also Ihre APIs von einer einzigen Benutzeroberfläche aus überprüfen und nach Problemen suchen."
+  },
+  "pagesNotFound": {
+    "content": "Hoppla! Die von Ihnen gesuchte Seite konnte nicht gefunden werden.",
+    "button": "Zurück zur Startseite"
+  },
+  "pagesResetCheck": {
+    "confirmAccountTitle": "Bestätigen Sie Ihr Konto",
+    "verificationCodeLabel": "Bestätigungscode",
+    "verificationCodePlaceholder": "123456",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "••••••••",
+    "passwordRequirementText": "*** Passwörter müssen mindestens 8 Zeichen lang sein.",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "submitButton": "Absenden"
+  },
+  "pagesResetRequest": {
+    "resetPasswordTitle": "Setzen Sie Ihr Passwort zurück",
+    "emailLabel": "Ihre E-Mail",
+    "emailPlaceholder": "name@unternehmen.com",
+    "resetPasswordButton": "Passwort zurücksetzen",
+    "errorMessage": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+  },
+  "pagesSignIn": {
+    "signInTitle": "Melden Sie sich bei Ihrem Konto an",
+    "usernameLabel": "Ihr Benutzername",
+    "usernamePlaceholder": "gafurapil",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "••••••••",
+    "rememberMeLabel": "Erinnere dich an mich",
+    "forgotPasswordLink": "Passwort vergessen?",
+    "signInButton": "Anmelden",
+    "noAccountMessage": "Sie haben noch kein Konto?",
+    "signUpLink": "Registrieren",
+    "validUsername": "Bitte geben Sie einen gültigen Benutzernamen ein!",
+    "validPassword": "Bitte geben Sie ein gültiges Passwort ein",
+    "minimumPassword": "Passwörter müssen mindestens 8 Zeichen lang sein!",
+    "minimumUsername": "Benutzernamen müssen zwischen 4 und 32 Zeichen lang sein."
+  },
+  "pagesSignUp": {
+    "createAccountTitle": "Ein Konto erstellen",
+    "labels": {
+      "emailLabel": "Ihre E-Mail",
+      "usernameLabel": "Benutzername",
+      "passwordLabel": "Passwort",
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "termsLabel": "Ich akzeptiere die"
+    },
+    "placeholders": {
+      "emailPlaceholder": "name@unternehmen.com",
+      "usernamePlaceholder": "gafurapil",
+      "passwordPlaceholder": "••••••••"
+    },
+    "usernameRequirements": "*** Benutzernamen müssen zwischen 4 und 32 Zeichen lang sein.",
+    "passwordRequirements": "*** Passwörter müssen mindestens 8 Zeichen lang sein.",
+    "termsLink": " Nutzungsbedingungen",
+    "submitButton": "Ein Konto erstellen",
+    "haveAccountMessage": "Haben Sie bereits ein Konto?",
+    "signInLink": " Melden Sie sich hier an"
+  },
+  "componentsCode": {
+    "title": "Beispielanfrage: "
+  },
+  "componentsCodeArea": {
+    "copy": "Kopieren",
+    "copied": "Kopiert! "
+  },
+  "componentsFooter": {
+    "apilman": "APILMAN",
+    "about": "Über",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "licensing": "Lizenzierung",
+    "contact": "Kontakt",
+    "rightsReserved": " Alle Rechte vorbehalten.",
+    "developerLink": "Gapil™",
+    "developerURL": "https://github.com/afurgapil"
+  },
+  "componentsHeader": {
+    "apilman": "APILMAN",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "apis": "APIs",
+    "logs": "Logs",
+    "community": "Gemeinschaft",
+    "contact": "Kontakt",
+    "faq": "FAQ",
+    "explore": "Erkunden",
+    "toggleMobileMenu": "Mobiles Menü umschalten"
+  }
+}

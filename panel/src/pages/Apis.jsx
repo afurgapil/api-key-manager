@@ -8,10 +8,12 @@ import { useLimit } from "../hooks/useLimit";
 import { USER_API } from "../constant/urls";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import AccordionCode from "../components/AccordionCode";
+import { useTranslation } from "react-i18next";
 function Apis() {
   const user = useUser();
   const token = useToken();
   const limit = useLimit();
+  const { t } = useTranslation();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [endpointList, setEndpointList] = useState([]);
@@ -197,7 +199,7 @@ function Apis() {
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
-        <h1 className="font-bold text-3xl">Endpoints List</h1>
+        <h1 className="font-bold text-3xl">{t("pagesApis.titles")}</h1>
         <button
           type="button"
           disabled={!(limit - endpointList.length > 0)}
@@ -235,27 +237,36 @@ function Apis() {
                       </span>
                     </div>
                     <h5>
-                      <span className="font-bold">Endpoint ID:</span>
+                      <span className="font-bold">
+                        {t("pagesApis.dataItem.id")}
+                      </span>
                       {dataItem.id}
                     </h5>
                     <p>
-                      <span className="font-bold">URL:</span>
+                      <span className="font-bold">
+                        {t("pagesApis.dataItem.url")}
+                      </span>
                       {dataItem.url}
                     </p>
                     <p>
-                      <span className="font-bold">API Key:</span>
+                      <span className="font-bold">
+                        {t("pagesApis.dataItem.apiKey")}
+                      </span>
                       {dataItem.api_key}
                     </p>
                     <p>
-                      <span className="font-bold">Key:</span>
+                      <span className="font-bold">
+                        {t("pagesApis.dataItem.key")}
+                      </span>
                       {dataItem.key}
                     </p>
                     <p>
-                      <span className="font-bold">Price per Request:</span>
+                      <span className="font-bold">
+                        {t("pagesApis.dataItem.price")}
+                      </span>
                       {dataItem.price}
                     </p>
                     <div className="flex flex-col w-3/4 mt-2">
-                      {" "}
                       <p>
                         <AccordionCode type={dataItem.type}></AccordionCode>
                       </p>
@@ -285,7 +296,7 @@ function Apis() {
           </div>
         ) : (
           <p className="text-center font-bold text-4xl">
-            No data received yet.
+            {t("pagesApis.noData")}
           </p>
         )}
       </div>
@@ -302,7 +313,7 @@ function Apis() {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Create New Product
+                {t("pagesApis.modal.addTitle")}
               </h3>
               <button
                 type="button"
@@ -323,7 +334,7 @@ function Apis() {
                     htmlFor="url"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    URL
+                    {t("pagesApis.formLabels.url")}
                   </label>
                   <input
                     type="text"
@@ -332,7 +343,7 @@ function Apis() {
                     value={formData.url}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter URL"
+                    placeholder={t("pagesApis.placeholders.url")}
                     required
                   />
                 </div>
@@ -341,7 +352,7 @@ function Apis() {
                     htmlFor="api_key"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    API Key
+                    {t("pagesApis.formLabels.apiKey")}
                   </label>
                   <input
                     type="text"
@@ -350,7 +361,7 @@ function Apis() {
                     value={formData.api_key}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter API key"
+                    placeholder={t("pagesApis.placeholders.apiKey")}
                     required
                   />
                 </div>
@@ -359,7 +370,7 @@ function Apis() {
                     htmlFor="key"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Key
+                    {t("pagesApis.formLabels.key")}
                   </label>
                   <input
                     type="text"
@@ -368,7 +379,7 @@ function Apis() {
                     value={formData.key}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter key"
+                    placeholder={t("pagesApis.placeholders.key")}
                     required
                   />
                 </div>
@@ -378,7 +389,7 @@ function Apis() {
                       htmlFor="company"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Company
+                      {t("pagesApis.formLabels.company")}
                     </label>
                     <select
                       className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -386,7 +397,9 @@ function Apis() {
                       onChange={handleChange}
                       name="company"
                     >
-                      <option value="">Choose a Company</option>
+                      <option value="">
+                        {t("pagesApis.placeholders.chooseCompany")}
+                      </option>
                       {Object.entries(COMPANIES).map(([key, value]) => (
                         <option key={key} value={value}>
                           {value}
@@ -399,7 +412,7 @@ function Apis() {
                       htmlFor="type"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Type
+                      {t("pagesApis.formLabels.type")}
                     </label>
                     <select
                       className="bg-gray-50 border font-light border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -407,7 +420,9 @@ function Apis() {
                       onChange={handleChange}
                       name="type"
                     >
-                      <option value="">Choose a Type</option>
+                      <option value="">
+                        {t("pagesApis.placeholders.chooseType")}
+                      </option>
                       {formData.company in MODELS &&
                         Object.entries(MODELS[formData.company]).map(
                           ([key, value]) => (
@@ -424,7 +439,7 @@ function Apis() {
                     htmlFor="price"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Price
+                    {t("pagesApis.formLabels.price")}
                   </label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute text-gray-950 text-center rounded-s-md px-2 bg-gray-400 inset-y-0 left-0 flex flex-col justify-center items-center pointer-events-none">
@@ -437,7 +452,7 @@ function Apis() {
                       value={formData.price || ""}
                       onChange={handleChange}
                       className="pl-14 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Price per Request"
+                      placeholder={t("pagesApis.placeholders.price")}
                     />
                   </div>
                 </div>
@@ -446,12 +461,12 @@ function Apis() {
                 type="submit"
                 className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Add new product
+                {t("pagesApis.modal.addButton")}
               </button>
             </form>
           </div>
         </div>
-      </div>{" "}
+      </div>
       {/* Update Modal */}
       <div
         id="crud-modal"
@@ -465,7 +480,7 @@ function Apis() {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Update Product
+                {t("pagesApis.modal.updateTitle")}
               </h3>
               <button
                 type="button"
@@ -492,7 +507,7 @@ function Apis() {
                     htmlFor="url"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    URL
+                    {t("pagesApis.formLabels.url")}
                   </label>
                   <input
                     type="text"
@@ -501,7 +516,7 @@ function Apis() {
                     value={formData.url}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter URL"
+                    placeholder={t("pagesApis.placeholders.url")}
                     required
                   />
                 </div>
@@ -510,7 +525,7 @@ function Apis() {
                     htmlFor="api_key"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    API Key
+                    {t("pagesApis.formLabels.apiKey")}
                   </label>
                   <input
                     type="text"
@@ -519,7 +534,7 @@ function Apis() {
                     value={formData.api_key}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter key"
+                    placeholder={t("pagesApis.placeholders.apiKey")}
                     required
                   />
                 </div>
@@ -528,7 +543,7 @@ function Apis() {
                     htmlFor="key"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Key
+                    {t("pagesApis.formLabels.key")}
                   </label>
                   <input
                     type="text"
@@ -537,7 +552,7 @@ function Apis() {
                     value={formData.key}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Enter key"
+                    placeholder={t("pagesApis.placeholders.key")}
                     required
                   />
                 </div>
@@ -546,7 +561,7 @@ function Apis() {
                     htmlFor="price"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Price
+                    {t("pagesApis.formLabels.price")}
                   </label>
                   <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute text-gray-950 text-center rounded-s-md px-2 bg-gray-400 inset-y-0 left-0 flex flex-col justify-center items-center pointer-events-none">
@@ -559,7 +574,7 @@ function Apis() {
                       value={formData.price || ""}
                       onChange={handleChange}
                       className="pl-14 bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Price per Request"
+                      placeholder={t("pagesApis.placeholders.price")}
                     />
                   </div>
                 </div>
@@ -568,7 +583,7 @@ function Apis() {
                 type="submit"
                 className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Update product
+                {t("pagesApis.modal.updateButton")}
               </button>
             </form>
           </div>

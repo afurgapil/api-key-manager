@@ -1,0 +1,231 @@
+{
+  "pagesApis": {
+    "titles": "API List",
+    "noData": "No data available",
+    "dataItem": {
+      "id": "ID: ",
+      "url": "URL: ",
+      "apiKey": "API Key: ",
+      "key": "Key: ",
+      "price": "Price: "
+    },
+    "modal": {
+      "addTitle": "Create New Product",
+      "updateTitle": "Update Product",
+      "addButton": "Add new product",
+      "updateButton": "Update product"
+    },
+    "formLabels": {
+      "url": "URL",
+      "apiKey": "API Key",
+      "key": "Key",
+      "price": "Price",
+      "company": "Company",
+      "type": "Model"
+    },
+    "placeholders": {
+      "url": "Enter URL",
+      "apiKey": "Enter API key",
+      "key": "Enter key",
+      "price": "Price per Request",
+      "chooseCompany": "Choose a Company",
+      "chooseType": "Choose a Model"
+    }
+  },
+  "pagesContact": {
+    "contactUs": "Contact us",
+    "weLoveToTalk": "We love to talk about how we can help you.",
+    "fillInTheForm": "Fill in the form",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "details": "Details",
+    "sendInquiry": "Send inquiry",
+    "getBackIn1To2Days": "We get back to you in 1-2 business days.",
+    "faq": {
+      "title": "FAQ",
+      "description": "Search our FAQ for answers to anything you might ask.",
+      "visitFaq": "Visit FAQ"
+    },
+    "explore": {
+      "title": "Explore",
+      "description": "Check out our work logic.",
+      "contactSales": "Contact sales"
+    },
+    "contactByEmail": {
+      "title": "Contact us by email",
+      "description": "If you wish to write us an email instead please use",
+      "email": "example@site.com"
+    },
+    "invalidEmail": "Invalid E-Mail address!",
+    "validMail": "Please enter a valid mail."
+  },
+  "pagesDashboard": {
+    "apiUsageOverview": {
+      "title": "API Usage Overview",
+      "apiUsage": {
+        "title": "API Usage",
+        "description": "API Usage"
+      },
+      "apiCall": {
+        "title": "API Call",
+        "description": "API Call"
+      },
+      "monthlyCost": {
+        "title": "Monthly Cost",
+        "description": "Monthly Cost"
+      }
+    },
+    "apiUsageDetails": {
+      "title": "API Usage Details",
+      "selectTimeInterval": "Select Time Interval",
+      "allTime": "All Time",
+      "lastMonth": "Last Month",
+      "last3Months": "Last 3 Months",
+      "last6Months": "Last 6 Months",
+      "lastYear": "Last Year",
+      "noDataFound": "(No Data Found)"
+    },
+    "apiPriceDetails": {
+      "title": "API Price Details",
+      "noDataFound": "(No Data Found)"
+    },
+    "yourTier": {
+      "title": "Your Tier: "
+    },
+    "errorLogs": {
+      "title": "Error Logs",
+      "exploreAll": "Explore All",
+      "noErrorRecordFound": "No Error Record Found"
+    }
+  },
+  "pagesErrorLogs": {
+    "title": "Error Logs List",
+    "filterByCompany": "Filter by Company",
+    "all": "All",
+    "sortBy": "Sort by",
+    "newestFirst": "Newest First",
+    "oldestFirst": "Oldest First",
+    "deleteAll": "Delete All",
+    "noDataReceived": "No data received yet.",
+    "logItem": {
+      "id": "Log ID: ",
+      "url": "URL: ",
+      "msg": "Error Message: ",
+      "date": "Date: ",
+      "time": "Time: "
+    }
+  },
+  "pagesFaq": {
+    "title": "Frequently",
+    "subtitle": "asked questions",
+    "motto": "Answers to the most frequently asked questions."
+  },
+  "pagesHome": {
+    "welcomeTitle": "Welcome to the APILMAN",
+    "welcomeSubtitle": "This app is designed to help you manage and organize your API keys in a centralized platform. Take control of your API security with ease.",
+    "getStarted": "Get Started",
+    "signIn": "Sign In",
+    "termsAndConditions": "By signing up, you agree to our Terms and Conditions and Privacy Policy."
+  },
+  "pagesLogic": {
+    "howItWorks": "How It Works?",
+    "step1Title": "Step 1: Create an Path",
+    "step1Content": "Firstly, enter your endpoint and encryption key to create a new path. then you must select the api type you use to determine the request type. after this step, you can optionally select detailed information such as pricing (this data will be presented to you as statistics).",
+    "step2Title": "Step 2: Encrypt Your Data",
+    "step2Content": "To use the path you have created, use the url given to you, then you must create your api request in the specified form, you must send the api request by encrypting your prompt with your security key. The encrypted data will be decoded on our servers and the response will come to you encrypted with the same security key.",
+    "step3Title": "Step 3: Monitor Statistics",
+    "step3Content": "You can access all the different apis you have used through the interface. you can access data such as pricing and number of requests and examine the usage of your apis in detail.",
+    "step4Title": "Step 4: Error Management",
+    "step4Content": "Every error you encounter in your api requests is logged, so you can check your apis from a single interface and look for problems."
+  },
+  "pagesNotFound": {
+    "content": "Oops! The page you are looking for could not be found.",
+    "button": "Go back to Home"
+  },
+  "pagesResetCheck": {
+    "confirmAccountTitle": "Confirm Your Account",
+    "verificationCodeLabel": "Verification Code",
+    "verificationCodePlaceholder": "123456",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "passwordRequirementText": "*** Passwords must be minimum 8 characters.",
+    "confirmPasswordLabel": "Confirm password",
+    "submitButton": "Submit"
+  },
+  "pagesResetRequest": {
+    "resetPasswordTitle": "Reset your password",
+    "emailLabel": "Your email",
+    "emailPlaceholder": "name@company.com",
+    "resetPasswordButton": "Reset Password",
+    "errorMessage": "Please enter a valid mail."
+  },
+  "pagesSignIn": {
+    "signInTitle": "Sign in to your account",
+    "usernameLabel": "Your username",
+    "usernamePlaceholder": "gafurapil",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "rememberMeLabel": "Remember me",
+    "forgotPasswordLink": "Forgot password?",
+    "signInButton": "Sign in",
+    "noAccountMessage": "Don’t have an account yet?",
+    "signUpLink": "Sign up",
+    "validUsername": "Please enter a valid username!",
+    "validPassword": "Please enter a valid password",
+    "minimumPassword": "Passwords must be minimum 8 characters!",
+    "minimumUsername": "Usernames must be between 4 and 32 characters."
+  },
+  "pagesSignUp": {
+    "createAccountTitle": "Create an account",
+    "labels": {
+      "emailLabel": "Your email",
+      "usernameLabel": "Username",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm password",
+      "termsLabel": "I accept the"
+    },
+    "placeholders": {
+      "emailPlaceholder": "name@company.com",
+      "usernamePlaceholder": "gafurapil",
+      "passwordPlaceholder": "••••••••"
+    },
+    "usernameRequirements": "*** Usernames must be between 4 and 32 characters.",
+    "passwordRequirements": "*** Passwords must be minimum 8 characters.",
+    "termsLink": " Terms and Conditions",
+    "submitButton": "Create an account",
+    "haveAccountMessage": "Already have an account?",
+    "signInLink": " Login here"
+  },
+  "componentsCode": {
+    "title": "Example Request: "
+  },
+  "componentsCodeArea": {
+    "copy": "Copy",
+    "copied": "Copied! "
+  },
+  "componentsFooter": {
+    "apilman": "APILMAN",
+    "about": "About",
+    "privacyPolicy": "Privacy Policy",
+    "licensing": "Licensing",
+    "contact": "Contact",
+    "rightsReserved": " All Rights Reserved.",
+    "developerLink": "Gapil™",
+    "developerURL": "https://github.com/afurgapil"
+  },
+  "componentsHeader": {
+    "apilman": "APILMAN",
+    "signIn": "Sign in",
+    "signUp": "Sign Up",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "apis": "APIs",
+    "logs": "Logs",
+    "community": "Community",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "explore": "Explore",
+    "toggleMobileMenu": "Toggle mobile menu"
+  }
+}

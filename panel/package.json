@@ -12,10 +12,12 @@
   "dependencies": {
     "@preline/input-number": "^2.0.2",
     "apexcharts": "^3.46.0",
+    "i18next": "^23.10.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-i18next": "^14.1.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3"
   },

@@ -1,4 +1,4 @@
-export const faqData = [
+export const faqDataEn = [
   {
     category: "General Questions",
     faqs: [
@@ -83,6 +83,188 @@ export const faqData = [
       {
         question: "How can I delete my account?",
         answer: "We are very sorry to hear this, please contact us via email",
+      },
+    ],
+  },
+];
+export const faqDataTr = [
+  {
+    category: "Genel Sorular",
+    faqs: [
+      {
+        question: "APILMAN nedir?",
+        answer:
+          "APILMAN, kullanıcıların API anahtarlarını güvenli bir şekilde saklamalarını, yönetmelerini ve kullanım detaylarını, sıklık ve limitleri gibi, izlemelerini sağlayan bir platformdur.",
+      },
+      {
+        question: "Nasıl bir hesap oluşturabilirim?",
+        answer:
+          "Hesap oluşturma süreci adım adım açıklanmıştır: kayıt sayfasına gitmek, gerekli bilgileri doldurmak ve bir onay e-postası aracılığıyla hesabı doğrulamak.",
+      },
+      {
+        question: "API anahtarlarımı nasıl ekleyebilirim?",
+        answer:
+          "API anahtarları eklemek için kullanıcı arayüzünde 'API'ler' bölümüne gidin, gerekli detayları doldurun ve 'Yeni Ürün Ekle' butonuna tıklayın.",
+      },
+      {
+        question: "Hangi API'ler destekleniyor?",
+        answer:
+          "Şu anda popüler hizmet sağlayıcılarını kullanabilirsiniz. Ürün yelpazemizi genişletmeye çalışıyoruz, bu konuda bir talebiniz veya sorunuz varsa bize ulaşabilirsiniz.",
+      },
+    ],
+  },
+  {
+    category: "Güvenlik Soruları",
+    faqs: [
+      {
+        question: "API anahtarlarım güvende mi?",
+        answer:
+          "Platformun güvenlik önlemleri, şifreleme standartları ve kullanıcıların API anahtarlarının nasıl korunduğu detaylı bir şekilde açıklanmıştır. 'Keşfet' sayfasından kontrol edebilirsiniz.",
+      },
+      {
+        question: "API anahtarlarımı kim görebilir?",
+        answer: "API anahtarlarınız tamamen sizin kontrolünüz altındadır.",
+      },
+    ],
+  },
+  {
+    category: "Kullanım ve İzleme",
+    faqs: [
+      {
+        question: "API kullanımımı nasıl izleyebilirim?",
+        answer:
+          "API istatistiklerinizi Gösterge Tablosu sayfasından görüntüleyebilirsiniz.",
+      },
+      {
+        question: "API kullanım limitlerim nelerdir ve limiti aşarsam ne olur?",
+        answer:
+          "APILMAN yalnızca yönlendirme hizmeti sunar, bu nedenle bir limit yoktur. Sunucularımız tüm müşterilerimize maksimum hizmeti sağlamaya çalışır.",
+      },
+    ],
+  },
+  {
+    category: "Faturalandırma ve Planlar",
+    faqs: [
+      {
+        question: "Farklı kullanım planları nelerdir ve nasıl yükseltebilirim?",
+        answer: "Detaylı bilgi fiyatlandırma sayfasında bulunabilir.",
+      },
+      // {
+      //   question: "Hangi ödeme yöntemleri kabul edilir?",
+      //   answer:
+      //     "Kabul edilen ödeme yöntemleri ve ödeme süreci açıklanmıştır.",
+      // },
+    ],
+  },
+  {
+    category: "Teknik Destek",
+    faqs: [
+      {
+        question: "Teknik destek nasıl alabilirim?",
+        answer:
+          "İletişim sayfasından bize bir mesaj gönderebilir veya ..... adresinden bize e-posta gönderebilirsiniz.",
+      },
+    ],
+  },
+  {
+    category: "Hesap Yönetimi",
+    faqs: [
+      {
+        question: "Hesabımı nasıl silebilirim?",
+        answer:
+          "Bunu duyduğumuza çok üzüldük, lütfen e-posta yoluyla bize ulaşın",
+      },
+    ],
+  },
+];
+export const faqDataDe = [
+  {
+    category: "Allgemeine Fragen",
+    faqs: [
+      {
+        question: "Was ist APILMAN?",
+        answer:
+          "APILMAN ist eine Plattform, die es Benutzern ermöglicht, ihre API-Schlüssel sicher zu speichern, zu verwalten und ihre Nutzungsdetails wie Häufigkeit und Grenzen zu überwachen.",
+      },
+      {
+        question: "Wie erstelle ich ein Konto?",
+        answer:
+          "Der Prozess der Kontenerstellung wird Schritt für Schritt erklärt: Navigieren Sie zur Anmeldeseite, füllen Sie die erforderlichen Informationen aus und verifizieren Sie das Konto über eine Bestätigungs-E-Mail.",
+      },
+      {
+        question: "Wie kann ich meine API-Schlüssel hinzufügen?",
+        answer:
+          "Um API-Schlüssel hinzuzufügen, gehen Sie zum Abschnitt 'APIs' in der Benutzeroberfläche, geben Sie die notwendigen Details ein und klicken Sie auf die Schaltfläche 'Neues Produkt hinzufügen'.",
+      },
+      {
+        question: "Welche APIs werden unterstützt?",
+        answer:
+          "Sie können derzeit beliebte Dienstanbieter verwenden. Wir versuchen, unser Produktangebot zu erweitern. Wenn Sie dazu eine Anfrage oder Frage haben, können Sie uns kontaktieren.",
+      },
+    ],
+  },
+  {
+    category: "Sicherheitsfragen",
+    faqs: [
+      {
+        question: "Sind meine API-Schlüssel sicher?",
+        answer:
+          "Die Sicherheitsmaßnahmen der Plattform, Verschlüsselungsstandards und wie die API-Schlüssel der Benutzer geschützt werden, werden detailliert beschrieben. Sie können dies auf der 'Erkunden'-Seite nachprüfen.",
+      },
+      {
+        question: "Wer kann meine API-Schlüssel sehen?",
+        answer: "Ihre API-Schlüssel stehen vollständig unter Ihrer Kontrolle.",
+      },
+    ],
+  },
+  {
+    category: "Nutzung und Überwachung",
+    faqs: [
+      {
+        question: "Wie kann ich meine API-Nutzung überwachen?",
+        answer:
+          "Sie können Ihre API-Statistiken auf der Dashboard-Seite einsehen.",
+      },
+      {
+        question:
+          "Was sind meine API-Nutzungslimits und was passiert, wenn ich sie überschreite?",
+        answer:
+          "APILMAN bietet nur einen Routing-Dienst an, dafür gibt es kein Limit. Unsere Server versuchen, allen unseren Kunden den maximalen Service zu bieten.",
+      },
+    ],
+  },
+  {
+    category: "Abrechnung und Tarife",
+    faqs: [
+      {
+        question:
+          "Welche verschiedenen Nutzungstarife gibt es und wie kann ich ein Upgrade durchführen?",
+        answer: "Detaillierte Informationen finden Sie auf der Preisseite.",
+      },
+      // {
+      //   question: "Welche Zahlungsmethoden werden akzeptiert?",
+      //   answer:
+      //     "Akzeptierte Zahlungsmethoden und der Zahlungsprozess werden beschrieben.",
+      // },
+    ],
+  },
+  {
+    category: "Technischer Support",
+    faqs: [
+      {
+        question: "Wie kann ich technischen Support erhalten?",
+        answer:
+          "Sie können uns eine Nachricht auf der Kontaktseite senden oder uns eine E-Mail an ..... senden.",
+      },
+    ],
+  },
+  {
+    category: "Kontoverwaltung",
+    faqs: [
+      {
+        question: "Wie kann ich mein Konto löschen?",
+        answer:
+          "Es tut uns sehr leid, dies zu hören. Bitte kontaktieren Sie uns per E-Mail",
       },
     ],
   },

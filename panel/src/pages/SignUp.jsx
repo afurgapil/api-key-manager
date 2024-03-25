@@ -4,7 +4,9 @@ import isValidMail from "../utils/isValidMail";
 import logoGreen from "../assets/logo-green.svg";
 import logoGrey from "../assets/logo-grey.svg";
 import { UserContext } from "../context/UserContext";
+import { useTranslation } from "react-i18next";
 function SignUp() {
+  const { t } = useTranslation();
   const { signup, theme } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -146,7 +148,7 @@ function SignUp() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create an account
+              {t("pagesSignUp.createAccountTitle")}
             </h1>
             <form
               onSubmit={handleSignUp}
@@ -158,14 +160,14 @@ function SignUp() {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your email
+                  {t("pagesSignUp.labels.emailLabel")}
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
+                  placeholder={t("pagesSignUp.placeholders.emailPlaceholder")}
                   required
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={(e) => {
@@ -183,13 +185,15 @@ function SignUp() {
                   htmlFor="username"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Username
+                  {t("pagesSignUp.labels.usernameLabel")}
                 </label>
                 <input
                   type="text"
                   name="username"
                   id="username"
-                  placeholder="gafurapil"
+                  placeholder={t(
+                    "pagesSignUp.placeholders.usernamePlaceholder"
+                  )}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   onChange={(e) => setUsername(e.target.value)}
@@ -198,7 +202,7 @@ function SignUp() {
                   }}
                 />
                 <div className="text-xs text-gray-500 dark:text-gray-400 p-1">
-                  *** Usernames must be between 4 and 32 characters.
+                  {t("pagesSignUp.usernameRequirements")}
                 </div>
                 {error.username && (
                   <div className="text-xs text-red-500 dark:text-red-400">
@@ -212,13 +216,15 @@ function SignUp() {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Password
+                  {t("pagesSignUp.labels.passwordLabel")}
                 </label>
                 <input
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="••••••••"
+                  placeholder={t(
+                    "pagesSignUp.placeholders.passwordPlaceholder"
+                  )}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   maxLength={16}
@@ -229,7 +235,7 @@ function SignUp() {
                   }}
                 />
                 <div className="text-xs text-gray-500 dark:text-gray-400 m-0 p-1">
-                  *** Passwords must be minimum 8 characters.
+                  {t("pagesSignUp.passwordRequirements")}
                 </div>
                 {error.password && (
                   <div className="text-xs text-red-500 dark:text-red-400">
@@ -242,13 +248,15 @@ function SignUp() {
                   htmlFor="confirm-password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Confirm password
+                  {t("pagesSignUp.labels.confirmPasswordLabel")}
                 </label>
                 <input
                   type="password"
                   name="confirm-password"
                   id="confirm-password"
-                  placeholder="••••••••"
+                  placeholder={t(
+                    "pagesSignUp.placeholders.passwordPlaceholder"
+                  )}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -294,7 +302,7 @@ function SignUp() {
                         : "text-gray-500 dark:text-gray-300"
                     } `}
                   >
-                    I accept the{" "}
+                    {t("pagesSignUp.labels.termsLabel")}
                     <a
                       href="#"
                       className={`font-medium ${
@@ -303,7 +311,7 @@ function SignUp() {
                           : "text-primary-600 dark:text-primary-500"
                       }  hover:underline `}
                     >
-                      Terms and Conditions
+                      {t("pagesSignUp.termsLink")}
                     </a>
                   </label>
                 </div>
@@ -321,7 +329,7 @@ function SignUp() {
                 //   !termsConfirm
                 // }
               >
-                Create an account
+                {t("pagesSignUp.submitButton")}
               </button>
               {errorResponse.bool && (
                 <div className="bg-red-100 text-red-800 text-mg text-center font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
@@ -329,12 +337,12 @@ function SignUp() {
                 </div>
               )}
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
+                {t("pagesSignUp.haveAccountMessage")}
                 <Link
                   to="/signin"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Login here
+                  {t("pagesSignUp.signInLink")}
                 </Link>
               </p>
             </form>

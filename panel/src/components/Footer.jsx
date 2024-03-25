@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import logoGrey from "../assets/logo-grey.svg";
-
+import { useTranslation } from "react-i18next";
 function Footer() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
   return (
     <footer className="bg-green-900 dark:bg-gray-900  shadow ">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -12,29 +17,40 @@ function Footer() {
           >
             <img src={logoGrey} className="h-8" alt="Apilman Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
-              Api Manager
+              {t("componentsFooter.apilman")}
             </span>
           </Link>
-          <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-white dark:text-gray-400 sm:mb-0 ">
+          <ul className="flex flex-wrap justify-center gap-x-4 items-center mb-6 text-sm font-medium text-white dark:text-gray-400 sm:mb-0 ">
             <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">
-                Licensing
+              <a href="#" className="hover:underline">
+                {t("componentsFooter.about")}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                Contact
+                {t("componentsFooter.privacyPolicy")}
               </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                {t("componentsFooter.licensing")}
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                {t("componentsFooter.contact")}
+              </a>
+            </li>
+            <li>
+              <select
+                onChange={(e) => changeLanguage(e.target.value)}
+                value={i18n.language}
+                className="bg-transparent text-4xl"
+              >
+                <option value="en">🇬🇧</option>
+                <option value="de">🇩🇪</option>
+                <option value="tr">🇹🇷</option>
+              </select>
             </li>
           </ul>
         </div>
@@ -49,7 +65,7 @@ function Footer() {
           >
             Gapil™
           </a>
-          . All Rights Reserved.
+          {t("componentsFooter.rightsReserved")}
         </span>
       </div>
     </footer>

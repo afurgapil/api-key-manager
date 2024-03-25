@@ -1,0 +1,231 @@
+{
+  "pagesApis": {
+    "titles": "API Listesi",
+    "noData": "Veri mevcut değil",
+    "dataItem": {
+      "id": "Kimlik: ",
+      "url": "URL: ",
+      "apiKey": "API Anahtarı: ",
+      "key": "Anahtar: ",
+      "price": "Fiyat: "
+    },
+    "modal": {
+      "addTitle": "Yeni Ürün Oluştur",
+      "updateTitle": "Ürün Güncelle",
+      "addButton": "Yeni ürün ekle",
+      "updateButton": "Ürün güncelle"
+    },
+    "formLabels": {
+      "url": "URL",
+      "apiKey": "API Anahtarı",
+      "key": "Anahtar",
+      "price": "Fiyat",
+      "company": "Şirket",
+      "type": "Model"
+    },
+    "placeholders": {
+      "url": "URL girin",
+      "apiKey": "API anahtarını girin",
+      "key": "Anahtarı girin",
+      "price": "İstek Başına Fiyat",
+      "chooseCompany": "Bir Şirket Seçin",
+      "chooseType": "Bir Model Seçin"
+    }
+  },
+  "pagesContact": {
+    "contactUs": "Bize Ulaşın",
+    "weLoveToTalk": "Size nasıl yardımcı olabileceğimiz hakkında konuşmayı çok seviyoruz.",
+    "fillInTheForm": "Formu doldurun",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "details": "Detaylar",
+    "sendInquiry": "Soru Gönder",
+    "getBackIn1To2Days": "1-2 iş günü içinde size geri döneceğiz.",
+    "faq": {
+      "title": "SSS",
+      "description": "Sorabileceğiniz her şeyin cevabını SSS bölümümüzden arayın.",
+      "visitFaq": "SSS'i ziyaret edin"
+    },
+    "explore": {
+      "title": "Keşfedin",
+      "description": "Çalışma mantığımızı inceleyin.",
+      "contactSales": "Satış ile İletişime Geçin"
+    },
+    "contactByEmail": {
+      "title": "Bize e-posta ile ulaşın",
+      "description": "Bize e-posta yazmak istiyorsanız lütfen",
+      "email": "example@site.com"
+    },
+    "invalidEmail": "Geçersiz E-posta adresi!",
+    "validMail": "Lütfen geçerli bir e-posta giriniz."
+  },
+  "pagesDashboard": {
+    "apiUsageOverview": {
+      "title": "API Kullanım Özeti",
+      "apiUsage": {
+        "title": "API Kullanımı",
+        "description": "API Kullanımı"
+      },
+      "apiCall": {
+        "title": "API Çağrısı",
+        "description": "API Çağrısı"
+      },
+      "monthlyCost": {
+        "title": "Aylık Maliyet",
+        "description": "Aylık Maliyet"
+      }
+    },
+    "apiUsageDetails": {
+      "title": "API Kullanım Detayları",
+      "selectTimeInterval": "Zaman Aralık Seçin",
+      "allTime": "Tüm Zamanlar",
+      "lastMonth": "Geçen Ay",
+      "last3Months": "Son 3 Ay",
+      "last6Months": "Son 6 Ay",
+      "lastYear": "Geçen Yıl",
+      "noDataFound": "(Veri Bulunamadı)"
+    },
+    "apiPriceDetails": {
+      "title": "API Fiyat Detayları",
+      "noDataFound": "(Veri Bulunamadı)"
+    },
+    "yourTier": {
+      "title": "Planınız: "
+    },
+    "errorLogs": {
+      "title": "Hata Kayıtları",
+      "exploreAll": "Tümünü Göster",
+      "noErrorRecordFound": "Hata Kaydı Bulunamadı"
+    }
+  },
+  "pagesErrorLogs": {
+    "title": "Hata Kayıtları Listesi",
+    "filterByCompany": "Şirkete Göre Filtrele",
+    "all": "Tümü",
+    "sortBy": "Sırala",
+    "newestFirst": "En Yeniler Önce",
+    "oldestFirst": "En Eskiiler Önce",
+    "deleteAll": "Tümünü Sil",
+    "noDataReceived": "Henüz veri alınmadı.",
+    "logItem": {
+      "id": "Hata ID: ",
+      "url": "URL: ",
+      "msg": "Hata Mesajı: ",
+      "date": "Tarih: ",
+      "time": "Saat: "
+    }
+  },
+  "pagesFaq": {
+    "title": "Sıkça",
+    "subtitle": "sorulan sorular",
+    "motto": "En sık sorulan sorulara cevaplar."
+  },
+  "pagesHome": {
+    "welcomeTitle": "APILMAN'a Hoş Geldiniz",
+    "welcomeSubtitle": "Bu uygulama, API anahtarlarınızı merkezi bir platformda yönetmenize ve düzenlemenize yardımcı olmak için tasarlanmıştır. API güvenliğinizi kolayca kontrol edin.",
+    "getStarted": "Başlayın",
+    "signIn": "Giriş Yap",
+    "termsAndConditions": "Kaydolarak, Kullanım Şartlarımızı ve Gizlilik Politikamızı kabul etmiş olursunuz."
+  },
+  "pagesLogic": {
+    "howItWorks": "Nasıl Çalışır?",
+    "step1Title": "Adım 1: Bir Yol Oluşturun",
+    "step1Content": "Öncelikle, yeni bir yol oluşturmak için uç noktanızı ve şifreleme anahtarınızı girin. Ardından, istek türünü belirlemek için kullandığınız API türünü seçmelisiniz. Bu adımdan sonra, isteğe bağlı olarak fiyatlandırma gibi detaylı bilgileri seçebilirsiniz (bu veriler size istatistikler olarak sunulacaktır).",
+    "step2Title": "Adım 2: Verilerinizi Şifreleyin",
+    "step2Content": "Oluşturduğunuz yolu kullanmak için size verilen URL'yi kullanın, ardından belirtilen formatta API isteğinizi oluşturmalısınız, güvenlik anahtarınızı kullanarak isteğinizi şifreleyerek API isteğini göndermelisiniz. Şifrelenmiş veriler sunucularımızda çözümlenecek ve yanıt aynı güvenlik anahtarıyla size şifrelenmiş olarak gelecektir.",
+    "step3Title": "Adım 3: İstatistikleri İzleyin",
+    "step3Content": "Kullandığınız tüm farklı API'lere arayüz üzerinden erişebilirsiniz. fiyatlandırma ve istek sayısı gibi verilere erişebilir ve API'lerinizin kullanımını detaylı olarak inceleyebilirsiniz.",
+    "step4Title": "Adım 4: Hata Yönetimi",
+    "step4Content": "API isteklerinizde karşılaştığınız her hata kaydedilir, bu nedenle tüm API'lerinizi tek bir arayüzden kontrol edebilir ve sorunları arayabilirsiniz."
+  },
+  "pagesNotFound": {
+    "content": "Ups! Aradığınız sayfa bulunamadı.",
+    "button": "Ana Sayfaya Dön"
+  },
+  "pagesResetCheck": {
+    "confirmAccountTitle": "Hesabınızı Doğrulayın",
+    "verificationCodeLabel": "Doğrulama Kodu",
+    "verificationCodePlaceholder": "123456",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "••••••••",
+    "passwordRequirementText": "*** Şifreler minimum 8 karakter olmalıdır.",
+    "confirmPasswordLabel": "Şifreyi Onayla",
+    "submitButton": "Gönder"
+  },
+  "pagesResetRequest": {
+    "resetPasswordTitle": "Şifrenizi Sıfırlayın",
+    "emailLabel": "E-posta Adresiniz",
+    "emailPlaceholder": "isim@sirket.com",
+    "resetPasswordButton": "Şifreyi Sıfırla",
+    "errorMessage": "Lütfen geçerli bir e-posta girin."
+  },
+  "pagesSignIn": {
+    "signInTitle": "Hesabınıza Giriş Yapın",
+    "usernameLabel": "Kullanıcı Adınız",
+    "usernamePlaceholder": "gafurapil",
+    "passwordLabel": "Şifre",
+    "passwordPlaceholder": "••••••••",
+    "rememberMeLabel": "Beni Hatırla",
+    "forgotPasswordLink": "Şifrenizi mi unuttunuz?",
+    "signInButton": "Giriş Yap",
+    "noAccountMessage": "Henüz bir hesabınız yok mu?",
+    "signUpLink": "Kayıt Ol",
+    "validUsername": "Lütfen geçerli bir kullanıcı adı girin!",
+    "validPassword": "Lütfen geçerli bir şifre girin",
+    "minimumPassword": "Şifreler en az 8 karakter olmalıdır!",
+    "minimumUsername": "Kullanıcı adları 4 ile 32 karakter arasında olmalıdır."
+  },
+  "pagesSignUp": {
+    "createAccountTitle": "Hesap Oluştur",
+    "labels": {
+      "emailLabel": "E-posta Adresiniz",
+      "usernameLabel": "Kullanıcı Adı",
+      "passwordLabel": "Şifre",
+      "confirmPasswordLabel": "Şifreyi Onayla",
+      "termsLabel": "Kabul Ediyorum"
+    },
+    "placeholders": {
+      "emailPlaceholder": "isim@sirket.com",
+      "usernamePlaceholder": "gafurapil",
+      "passwordPlaceholder": "••••••••"
+    },
+    "usernameRequirements": "*** Kullanıcı adları 4 ile 32 karakter arasında olmalıdır.",
+    "passwordRequirements": "*** Şifreler minimum 8 karakter olmalıdır.",
+    "termsLink": " Kullanım Şartları",
+    "submitButton": "Hesap Oluştur",
+    "haveAccountMessage": "Zaten bir hesabınız mı var?",
+    "signInLink": " Buradan giriş yapın"
+  },
+  "componentsCode": {
+    "title": "Örnek İstek: "
+  },
+  "componentsCodeArea": {
+    "copy": "Kopyala",
+    "copied": "Kopyalandı! "
+  },
+  "componentsFooter": {
+    "apilman": "APILMAN",
+    "about": "Hakkında",
+    "privacyPolicy": "Gizlilik Politikası",
+    "licensing": "Lisanslama",
+    "contact": "İletişim",
+    "rightsReserved": " Tüm Hakları Saklıdır.",
+    "developerLink": "Gapil™",
+    "developerURL": "https://github.com/afurgapil"
+  },
+  "componentsHeader": {
+    "apilman": "APILMAN",
+    "signIn": "Giriş Yap",
+    "signUp": "Kayıt Ol",
+    "home": "Ana Sayfa",
+    "dashboard": "Panel",
+    "apis": "API'lar",
+    "logs": "Kayıtlar",
+    "community": "Topluluk",
+    "contact": "İletişim",
+    "faq": "SSS",
+    "explore": "Keşfet",
+    "toggleMobileMenu": "Mobil menüyü aç/kapat"
+  }
+}

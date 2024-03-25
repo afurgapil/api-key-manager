@@ -6,7 +6,9 @@ import { AiOutlineCode } from "react-icons/ai";
 import { GoMail } from "react-icons/go";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
@@ -57,12 +59,12 @@ const Contact = () => {
         console.error("Error sending mail: ", error.message);
       }
     } else {
-      setError("Please enter a valid mail.");
+      setError(`${t("pagesContact.validMail")}`);
     }
   };
   const checkData = (email) => {
     if (!isValidMail(email)) {
-      handleError("Invalid E-Mail address!");
+      handleError(`${t("pagesContact.invalidEmail")}`);
     } else {
       handleClear();
     }
@@ -73,45 +75,49 @@ const Contact = () => {
         <div className="max-w-2xl lg:max-w-5xl mx-auto">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
-              Contact us
+              {t("pagesContact.contactUs")}
             </h1>
             <p className="mt-1 text-gray-600 dark:text-gray-400">
-              We love to talk about how we can help you.
+              {t("pagesContact.weLoveToTalk")}
             </p>
           </div>
           <div className="mt-12 grid items-center lg:grid-cols-2 gap-6 lg:gap-16">
             <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700">
               <h2 className="mb-8 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                Fill in the form
+                {t("pagesContact.fillInTheForm")}
               </h2>
               <form onSubmit={handleSubmit}>
                 <div className="grid gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="sr-only">First Name</label>
+                      <label className="sr-only">
+                        {t("pagesContact.firstName")}
+                      </label>
                       <input
                         type="text"
                         name="name"
                         onChange={handleChange}
                         className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                        placeholder="First Name"
+                        placeholder={t("pagesContact.firstName")}
                       ></input>
                     </div>
 
                     <div>
-                      <label className="sr-only">Last Name</label>
+                      <label className="sr-only">
+                        {t("pagesContact.lastName")}
+                      </label>
                       <input
                         type="text"
                         name="lastname"
                         onChange={handleChange}
                         className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                        placeholder="Last Name"
+                        placeholder={t("pagesContact.lastName")}
                       ></input>
                     </div>
                   </div>
 
                   <div>
-                    <label className="sr-only">Email</label>
+                    <label className="sr-only">{t("pagesContact.email")}</label>
                     <input
                       type="email"
                       name="email"
@@ -121,7 +127,7 @@ const Contact = () => {
                       }}
                       autoComplete="email"
                       className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                      placeholder="Email"
+                      placeholder={t("pagesContact.email")}
                     ></input>
                     {error && (
                       <div className="text-xs text-red-500 dark:text-red-400 mx-2 my-1">
@@ -131,13 +137,15 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="sr-only">Details</label>
+                    <label className="sr-only">
+                      {t("pagesContact.details")}
+                    </label>
                     <textarea
                       onChange={handleChange}
                       name="message"
                       rows="4"
                       className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                      placeholder="Details"
+                      placeholder={t("pagesContact.details")}
                     ></textarea>
                   </div>
                 </div>
@@ -147,13 +155,13 @@ const Contact = () => {
                     type="submit"
                     className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                   >
-                    Send inquiry
+                    {t("pagesContact.sendInquiry")}
                   </button>
                 </div>
 
                 <div className="mt-3 text-center">
                   <p className="text-sm text-gray-500">
-                    We get back to you in 1-2 business days.
+                    {t("pagesContact.getBackIn1To2Days")}
                   </p>
                 </div>
               </form>
@@ -163,16 +171,16 @@ const Contact = () => {
                 <SiDialogflow className="text-black dark:text-white text-xl" />
                 <div className="grow">
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">
-                    FAQ
+                    {t("pagesContact.faq.title")}
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    Search our FAQ for answers to anything you might ask.
+                    {t("pagesContact.faq.description")}
                   </p>
                   <Link
                     className="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     to="/faq"
                   >
-                    Visit FAQ
+                    {t("pagesContact.faq.visitFaq")}
                     <IoIosArrowRoundForward className="text-lg" />
                   </Link>
                 </div>
@@ -181,16 +189,16 @@ const Contact = () => {
                 <AiOutlineCode className="text-black dark:text-white text-xl" />
                 <div className="grow">
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">
-                    Explore
+                    {t("pagesContact.explore.title")}
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    Check out our work logic .
+                    {t("pagesContact.explore.description")}
                   </p>
                   <Link
                     className="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     to="/how-it-works"
                   >
-                    Contact sales
+                    {t("pagesContact.explore.contactSales")}
                     <IoIosArrowRoundForward className="text-lg" />
                   </Link>
                 </div>
@@ -200,16 +208,16 @@ const Contact = () => {
                 <GoMail className="text-black dark:text-white text-xl" />
                 <div className="grow">
                   <h3 className="font-semibold text-gray-800 dark:text-gray-200">
-                    Contact us by email
+                    {t("pagesContact.contactByEmail.title")}
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    If you wish to write us an email instead please use
+                    {t("pagesContact.contactByEmail.description")}
                   </p>
                   <a
                     className="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     href="mailto:someone@example.com"
                   >
-                    example@site.com
+                    {t("pagesContact.contactByEmail.email")}
                   </a>
                 </div>
               </div>

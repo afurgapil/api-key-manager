@@ -3,8 +3,9 @@ import { UserContext } from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import logoGreen from "../assets/logo-green.svg";
 import logoGrey from "../assets/logo-grey.svg";
-
+import { useTranslation } from "react-i18next";
 function SignIn() {
+  const { t } = useTranslation();
   const { signin, theme } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,14 +31,14 @@ function SignIn() {
     switch (fieldName) {
       case "username":
         if (username.length < 4 || username.length > 32) {
-          handleError("username", "Please enter a valid username!");
+          handleError("username", t("pagesSignIn.validUsername"));
         } else {
           handleError("username", "");
         }
         break;
       case "password":
         if (password.length < 8) {
-          handleError("password", "Please enter a valid password");
+          handleError("password", t("pagesSignIn.validPassword"));
         } else {
           handleError("password", "");
         }
@@ -54,13 +55,10 @@ function SignIn() {
           await signin(username, password, rememberMe);
           navigate("/dashboard");
         } else {
-          handleError("password", "Passwords must be minimum 8 characters!");
+          handleError("password", t("pagesSignIn.minimumPassword"));
         }
       } else {
-        handleError(
-          "username",
-          "Usernames must be between 4 and 32 characters."
-        );
+        handleError("username", t("pagesSignIn.minimumUsername"));
       }
     } catch (error) {
       const errorMessage = JSON.parse(error.message).error;
@@ -96,7 +94,7 @@ function SignIn() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              {t("pagesSignIn.signInTitle")}
             </h1>
             <form
               onSubmit={handleSignIn}
@@ -108,7 +106,7 @@ function SignIn() {
                   htmlFor="username"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your username
+                  {t("pagesSignIn.usernameLabel")}
                 </label>
                 <input
                   type="text"
@@ -133,7 +131,7 @@ function SignIn() {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Password
+                  {t("pagesSignIn.passwordLabel")}
                 </label>
                 <input
                   type="password"
@@ -169,7 +167,7 @@ function SignIn() {
                       htmlFor="remember"
                       className="text-gray-500 dark:text-gray-300"
                     >
-                      Remember me
+                      {t("pagesSignIn.rememberMeLabel")}
                     </label>
                   </div>
                 </div>
@@ -177,7 +175,7 @@ function SignIn() {
                   to="/reset-request"
                   className="text-gray-400 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Forgot password?
+                  {t("pagesSignIn.forgotPasswordLink")}
                 </Link>
               </div>
               <button
@@ -187,7 +185,7 @@ function SignIn() {
                 ).some((errMsg) => errMsg !== "")}`}
                 disabled={Object.values(error).some((errMsg) => errMsg !== "")}
               >
-                Sign in
+                {t("pagesSignIn.signInButton")}
               </button>
               {errorResponse.bool && (
                 <div className="bg-red-100 text-red-800 text-mg text-center font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
@@ -195,12 +193,12 @@ function SignIn() {
                 </div>
               )}
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
+                {t("pagesSignIn.noAccountMessage")}
                 <Link
                   to="/signup"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Sign up
+                  {t("pagesSignIn.signUpLink")}
                 </Link>
               </p>
             </form>

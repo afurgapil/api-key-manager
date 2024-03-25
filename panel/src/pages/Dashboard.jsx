@@ -10,7 +10,13 @@ import { USER_API } from "../constant/urls";
 import Chart from "react-apexcharts";
 import ErrorLogs from "../components/ErrorLogs";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 function Dashboard() {
+  const { t } = useTranslation();
+  const token = useToken();
+  const user = useUser();
+  const tier = useTier();
+  const limit = useLimit();
   const [endpointList, setEndpointList] = useState([]);
   const [apiUsage, setApiUsage] = useState(null);
   const [names, setNames] = useState([]);
@@ -19,10 +25,7 @@ function Dashboard() {
   const [logs, setLogs] = useState([]);
   const [isUsageActive, setIsUsageActive] = useState(true);
   const [isPriceActive, setIsPriceActive] = useState(true);
-  const token = useToken();
-  const user = useUser();
-  const tier = useTier();
-  const limit = useLimit();
+
   const [areaChartOptions, setAreaChartOptions] = useState({
     options: {
       chart: {
@@ -341,7 +344,7 @@ function Dashboard() {
           className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center  pb-8"
         >
           <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-4 text-left w-full">
-            API Usage Overview
+            {t("pagesDashboard.apiUsageOverview.title")}
           </h1>
           <div className="flex flex-row justify-between items-center gap-x-8">
             <div
@@ -352,7 +355,9 @@ function Dashboard() {
                 <AiOutlineApi className="text-3xl text-white"></AiOutlineApi>
               </div>
               <div className="flex flex-col justify-center items-start">
-                <div className="underline text-xl">API Usage</div>
+                <div className="underline text-xl">
+                  {t("pagesDashboard.apiUsageOverview.apiUsage.title")}
+                </div>
                 <div className="font-bold text-2xl">
                   {endpointList.length}/{limit}
                 </div>
@@ -366,7 +371,9 @@ function Dashboard() {
                 <ImStatsBars className="text-3xl text-white"></ImStatsBars>
               </div>
               <div className="flex flex-col justify-center items-start">
-                <div className="underline text-xl">API Call</div>
+                <div className="underline text-xl">
+                  {t("pagesDashboard.apiUsageOverview.apiCall.title")}
+                </div>
                 <div className="font-bold text-2xl">{apiUsage}</div>
               </div>
             </div>
@@ -378,7 +385,9 @@ function Dashboard() {
                 <FaDollarSign className="text-3xl text-white"></FaDollarSign>
               </div>
               <div className="flex flex-col justify-center items-start">
-                <div className="underline text-xl">Monthly Cost</div>
+                <div className="underline text-xl">
+                  {t("pagesDashboard.apiUsageOverview.monthlyCost.title")}
+                </div>
                 <div className="font-bold text-2xl">
                   {totalCost ? totalCost : "N/A"}
                 </div>
@@ -393,8 +402,10 @@ function Dashboard() {
           <div className="w-full flex flex-col items-center justify-between px-4">
             <div className="flex flex-row justify-between items-center w-full">
               <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
-                API Usage Details
-                {!isUsageActive && <span> (No Data Found)</span>}
+                {t("pagesDashboard.apiUsageDetails.title")}
+                {!isUsageActive && (
+                  <span>{t("pagesDashboard.apiUsageDetails.noDataFound")}</span>
+                )}
               </h1>
               <form action="" className="p-2">
                 <select
@@ -405,12 +416,20 @@ function Dashboard() {
                   }}
                 >
                   <option selected value="all">
-                    All Time
+                    {t("pagesDashboard.apiUsageDetails.allTime")}
                   </option>
-                  <option value="1">Last Month</option>
-                  <option value="3">Last 3 Months</option>
-                  <option value="6">last 6 Months</option>
-                  <option value="12">Last Year</option>
+                  <option value="1">
+                    {t("pagesDashboard.apiUsageDetails.lastMonth")}
+                  </option>
+                  <option value="3">
+                    {t("pagesDashboard.apiUsageDetails.last3Months")}
+                  </option>
+                  <option value="6">
+                    {t("pagesDashboard.apiUsageDetails.last6Months")}
+                  </option>
+                  <option value="12">
+                    {t("pagesDashboard.apiUsageDetails.lastYear")}
+                  </option>
                 </select>
               </form>
             </div>
@@ -430,8 +449,10 @@ function Dashboard() {
           <div className="w-full flex flex-col items-center justify-between px-4">
             <div className="flex flex-row justify-between items-center w-full">
               <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
-                API Price Details
-                {!isPriceActive && <span> (No Data Found)</span>}
+                {t("pagesDashboard.apiPriceDetails.title")}
+                {!isPriceActive && (
+                  <span>{t("pagesDashboard.apiPriceDetails.noDataFound")}</span>
+                )}
               </h1>
             </div>
             <div className="w-full">
@@ -451,7 +472,7 @@ function Dashboard() {
         <div className="w-full flex flex-col justify-center items-center bg-lightGreen dark:bg-lightGray rounded-2xl px-2 py-4">
           <div id="acc-tier">
             <h4 id="title">
-              Your Tier:{" "}
+              {t("pagesDashboard.yourTier.title")}
               <span className="bg-green-900 text-green-300 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-900 dark:text-stone-300 uppercase">
                 {tier}
               </span>
@@ -466,7 +487,7 @@ function Dashboard() {
               type="button"
               className="py-3 px-4 mb-4 w-10/12 text-center flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none  dark:hover:bg-gray-900 dark:text-gray-500 dark:bg-gray-300 dark:hover:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all duration-300"
             >
-              Explore All
+              {t("pagesDashboard.errorLogs.title")}
             </Link>
           </div>
         ) : (
@@ -475,14 +496,14 @@ function Dashboard() {
               id="no-error-logs"
               className="flex flex-col justify-center items-center"
             >
-              No Error Record Found
+              {t("pagesDashboard.errorLogs.noErrorRecordFound")}
             </h1>
             <Link
               to="/error-logs"
               type="button"
               className="py-3 px-4 mb-4 w-10/12 text-center flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-100 text-teal-800 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-gray-900 dark:text-gray-500 dark:bg-gray-300 dark:hover:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all duration-300"
             >
-              Explore All
+              {t("pagesDashboard.errorLogs.exploreAll")}
             </Link>
           </div>
         )}

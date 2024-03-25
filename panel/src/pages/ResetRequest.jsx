@@ -2,8 +2,9 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import isValidMail from "../utils/isValidMail";
-
+import { useTranslation } from "react-i18next";
 function ResetRequest() {
+  const { t } = useTranslation();
   const { reset_request } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [error, setError] = useState({
@@ -25,7 +26,7 @@ function ResetRequest() {
       } else {
         setError({
           isValidMail: false,
-          errorResponse: "Please enter a valid mail.",
+          errorResponse: t("pagesResetRequest.errorMessage"),
         });
       }
     } catch (error) {
@@ -42,7 +43,7 @@ function ResetRequest() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Reset your password
+              {t("pagesResetRequest.resetPasswordTitle")}
             </h1>
             <form
               onSubmit={handleRequest}
@@ -54,14 +55,14 @@ function ResetRequest() {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your email
+                  {t("pagesResetRequest.emailLabel")}
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
+                  placeholder={t("pagesResetRequest.emailPlaceholder")}
                   required
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={() => {
@@ -89,7 +90,7 @@ function ResetRequest() {
                 type="submit"
                 className={`w-full text-white bg-green-800 hover:bg-green-900  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700  transition-all ease-in-out duration-200`}
               >
-                Reset Password
+                {t("pagesResetRequest.resetPasswordButton")}
               </button>
               {errorResponse.bool && (
                 <div className="bg-red-100 text-red-800 text-mg text-center font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">

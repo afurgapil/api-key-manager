@@ -3,7 +3,9 @@ import { useUser } from "../hooks/useUser";
 import { useToken } from "../hooks/useToken";
 import { USER_API } from "../constant/urls";
 import { FaTrashAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 function ErrorLogs() {
+  const { t } = useTranslation();
   const user = useUser();
   const token = useToken();
   const [logs, setLogs] = useState([]);
@@ -101,14 +103,14 @@ function ErrorLogs() {
   return (
     <div className="min-h-screen w-full py-8 px-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
-        <h1 className="font-bold text-3xl">Error Logs List</h1>
+        <h1 className="font-bold text-3xl">{t("pagesErrorLogs.title")}</h1>
         <div className="flex flex-row gap-x-2 my-2">
           <form>
             <select
               className="py-3 px-4 pe-9 block w-full border-gray-200 rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               onChange={handleFilterChange}
             >
-              <option selected>Filter by Company</option>
+              <option selected>{t("pagesErrorLogs.filterByCompany")}</option>
               <option value="All">All</option>
               <option value="Google">Google</option>
               <option value="OpenAI">OpenAI</option>
@@ -119,16 +121,16 @@ function ErrorLogs() {
               className="py-3 px-4 pe-9 block w-full border-gray-200 rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
               onChange={handleSortChange}
             >
-              <option selected>Sort by</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
+              <option selected>{t("pagesErrorLogs.sortBy")}</option>
+              <option value="newest">{t("pagesErrorLogs.newestFirst")}</option>
+              <option value="oldest">{t("pagesErrorLogs.oldestFirst")}</option>
             </select>
           </form>
           <button
             onClick={handleRemoveAll}
             className=" bg-red-400 text-red-950 dark:bg-red-700 dark:text-white rounded-2xl px-4 hover:cursor-pointer hover:bg-red-500"
           >
-            Delete All
+            {t("pagesErrorLogs.deleteAll")}
           </button>
         </div>
       </div>
@@ -152,23 +154,33 @@ function ErrorLogs() {
                       </span>
                     </div>
                     <h5>
-                      <span className="font-bold">Log ID:</span>
+                      <span className="font-bold">
+                        {t("pagesErrorLogs.logItem.id")}
+                      </span>
                       {dataItem.id}
                     </h5>
                     <p>
-                      <span className="font-bold">URL:</span>
+                      <span className="font-bold">
+                        {t("pagesErrorLogs.logItem.url")}
+                      </span>
                       {dataItem.path_id}
                     </p>
                     <p>
-                      <span className="font-bold">Error Message:</span>
+                      <span className="font-bold">
+                        {t("pagesErrorLogs.logItem.msg")}
+                      </span>
                       {dataItem.error_msg}
                     </p>
                     <p>
-                      <span className="font-bold">Date:</span>
+                      <span className="font-bold">
+                        {t("pagesErrorLogs.logItem.date")}
+                      </span>
                       {dataItem.timestamp.slice(0, 10)}
                     </p>
                     <p>
-                      <span className="font-bold">Time:</span>
+                      <span className="font-bold">
+                        {t("pagesErrorLogs.logItem.time")}
+                      </span>
                       {dataItem.timestamp.slice(11, 16)}
                     </p>
                   </div>
@@ -188,7 +200,7 @@ function ErrorLogs() {
           </div>
         ) : (
           <p className="text-center font-bold text-4xl">
-            No data received yet.
+            {t("pagesErrorLogs.noDataReceived")}
           </p>
         )}
       </div>
