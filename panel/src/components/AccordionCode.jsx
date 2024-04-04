@@ -11,7 +11,7 @@ const AccordionCode = ({ type }) => {
     switch (type) {
       case "gemini-pro":
         return GEMINI;
-      case "gpt-3.5-turbo":
+      case "chatgpt":
         return OPENAI;
       default:
         return " ";

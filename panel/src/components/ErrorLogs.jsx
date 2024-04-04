@@ -8,12 +8,12 @@ const ErrorLogs = ({ logs }) => {
     <div className="w-full flex flex-col justify-center items-center bg-lightGreen dark:bg-lightGray rounded-2xl px-2 py-4">
       <div
         id="error-logs"
-        className="flex flex-col justify-center items-center gap-y-4"
+        className="flex flex-col justify-center items-center gap-y-4 min-w-full"
       >
         {logs.map((log) => (
           <div
             key={log.id}
-            className="flex flex-col justify-start items-start  rounded-2xl px-2 py-4 border-b border-black rounded-b-none w-48"
+            className="flex flex-col justify-start items-start  rounded-2xl px-2 py-4 border-b border-black rounded-b-none w-full"
           >
             <div className="flex flex-row justify-between items-center gap-x-1">
               <h4 id="title">

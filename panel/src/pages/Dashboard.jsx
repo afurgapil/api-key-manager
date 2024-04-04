@@ -26,7 +26,6 @@ function Dashboard() {
   const [logs, setLogs] = useState([]);
   const [isUsageActive, setIsUsageActive] = useState(true);
   const [isPriceActive, setIsPriceActive] = useState(true);
-
   const [areaChartOptions, setAreaChartOptions] = useState({
     options: {
       chart: {
@@ -338,23 +337,23 @@ function Dashboard() {
     }
   };
   return (
-    <div className="min-h-screen w-full py-8 px-8 flex flex-row justify-evenly items-start bg-neutral-200 dark:bg-slate-300">
+    <div className="min-h-screen w-full py-8 px-8 flex flex-col md:flex-row justify-evenly items-start bg-neutral-200 dark:bg-slate-300">
       <Helmet>
         <title> {t("helmet.dashboard.title")}</title>
         <meta name="description" lang="en" content="A page for dashboard" />
       </Helmet>
-      <div id="sol" className="w-8/12 flex flex-col gap-y-12 ">
+      <div id="sol" className="w-full md:w-8/12 flex flex-col gap-y-12 ">
         <div
           id="sec1"
           className="bg-lightGreen dark:bg-lightGray rounded-2xl flex flex-col justify-center items-center  pb-8"
         >
-          <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-4 text-left w-full">
+          <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-4 md:text-left w-full text-center">
             {t("pagesDashboard.apiUsageOverview.title")}
           </h1>
-          <div className="flex flex-row justify-between items-center gap-x-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-y-6 md:gap-x-8">
             <div
               id="api-usage"
-              className="flex flex-row justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8"
+              className="flex flex-row  justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8 w-11/12"
             >
               <div className="bg-lightGreen dark:bg-lightGray flex flex-col justify-center items-center rounded-full  p-4">
                 <AiOutlineApi className="text-3xl text-white"></AiOutlineApi>
@@ -370,7 +369,7 @@ function Dashboard() {
             </div>
             <div
               id="api-keys"
-              className="flex flex-row justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8"
+              className="flex flex-row justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8 w-11/12"
             >
               <div className="bg-lightGreen dark:bg-lightGray  flex flex-col justify-center items-center rounded-full p-4">
                 <ImStatsBars className="text-3xl text-white"></ImStatsBars>
@@ -384,7 +383,7 @@ function Dashboard() {
             </div>
             <div
               id="api-price"
-              className="flex flex-row justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8"
+              className="flex flex-row justify-center items-center  bg-white rounded-2xl px-8 py-4 gap-x-8 w-11/12"
             >
               <div className="bg-lightGreen dark:bg-lightGray flex flex-col justify-center items-center rounded-full  p-4">
                 <FaDollarSign className="text-3xl text-white"></FaDollarSign>
@@ -406,7 +405,7 @@ function Dashboard() {
         >
           <div className="w-full flex flex-col items-center justify-between px-4">
             <div className="flex flex-row justify-between items-center w-full">
-              <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
+              <h1 className="text-white text-md md:text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
                 {t("pagesDashboard.apiUsageDetails.title")}
                 {!isUsageActive && (
                   <span>{t("pagesDashboard.apiUsageDetails.noDataFound")}</span>
@@ -453,7 +452,7 @@ function Dashboard() {
         >
           <div className="w-full flex flex-col items-center justify-between px-4">
             <div className="flex flex-row justify-between items-center w-full">
-              <h1 className="text-white text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
+              <h1 className="text-white text-md md:text-2xl font-sourceSansPro font-bold leading-6 p-2 text-left ">
                 {t("pagesDashboard.apiPriceDetails.title")}
                 {!isPriceActive && (
                   <span>{t("pagesDashboard.apiPriceDetails.noDataFound")}</span>
@@ -472,7 +471,7 @@ function Dashboard() {
       </div>
       <div
         id="sag"
-        className="w-2/12 flex flex-col justify-center items-center px-2 py-4 gap-y-4"
+        className="w-full md:w-2/12 flex flex-col justify-center items-center px-2 py-4 gap-y-4"
       >
         <div className="w-full flex flex-col justify-center items-center bg-lightGreen dark:bg-lightGray rounded-2xl px-2 py-4">
           <div id="acc-tier">

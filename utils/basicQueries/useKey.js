@@ -3,7 +3,6 @@ const pool = require("../settings/usePool");
 module.exports = function getKey(pathId, userId) {
   return new Promise((resolve, reject) => {
     const selectSql = `SELECT * FROM path WHERE id  = ? AND user_id = ?`;
-
     pool.getConnection((err, connection) => {
       if (err) {
         console.error("Database connection failed: " + err.message);

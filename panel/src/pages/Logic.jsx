@@ -13,13 +13,13 @@ function Logic() {
         <meta name="description" lang="en" content="A page for logic" />
       </Helmet>
       <div className="w-full flex justify-center items-center">
-        <h3 className="text-center font-[Handjet] text-black dark:text-white text-[96px]">
+        <h3 className="text-center font-[Handjet] text-black dark:text-white text-7xl md:text-[96px]">
           {t("pagesLogic.howItWorks")}
         </h3>
       </div>
       <div className="w-full flex flex-row justify-start items-center px-8 ">
-        <div className="h-[200px] w-3/5 flex flex-row justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-          <IoIosCreate className="text-[256px] text-green-900 dark:text-gray-400" />
+        <div className="h-auto md:h-[200px] w-full md:w-3/5 flex flex-col md:flex-row-reverse justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          <IoIosCreate className="text-7xl pt-4 md:pt-0 md:text-[256px] text-green-900 dark:text-gray-400" />
           <div className="flex flex-col justify-start items-start gap-4 p-5">
             <h2 className="text-black dark:text-white text-4xl font-bold">
               {t("pagesLogic.step1Title")}
@@ -31,8 +31,8 @@ function Logic() {
         </div>
       </div>
       <div className="w-full flex flex-row-reverse justify-start items-center px-8 ">
-        <div className="h-[200px] w-3/5 flex flex-row-reverse justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-          <BsShieldLockFill className="text-[256px] text-green-900 dark:text-gray-400" />
+        <div className="h-auto md:h-[200px] w-full md:w-3/5 flex flex-col md:flex-row-reverse justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          <BsShieldLockFill className="text-7xl pt-4 md:pt-0 md:text-[256px] text-green-900 dark:text-gray-400" />
           <div className="flex flex-col justify-start items-start gap-4 p-5">
             <h2 className="text-black dark:text-white text-4xl font-bold">
               {t("pagesLogic.step2Title")}
@@ -44,8 +44,8 @@ function Logic() {
         </div>
       </div>
       <div className="w-full flex flex-row justify-start items-center px-8 ">
-        <div className="h-[200px] w-3/5 flex flex-row justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-          <IoStatsChartSharp className="text-[256px] text-green-900 dark:text-gray-400" />
+        <div className="h-auto md:h-[200px] w-full md:w-3/5 flex flex-col md:flex-row-reverse justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          <IoStatsChartSharp className="text-7xl pt-4 md:pt-0 md:text-[256px] text-green-900 dark:text-gray-400" />
           <div className="flex flex-col justify-start items-start gap-4 p-5">
             <h2 className="text-black dark:text-white text-4xl font-bold">
               {t("pagesLogic.step3Title")}
@@ -57,8 +57,8 @@ function Logic() {
         </div>
       </div>
       <div className="w-full flex flex-row-reverse justify-start items-center px-8 ">
-        <div className="h-[200px] w-3/5 flex flex-row justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-          <BiSolidMessageError className="text-[256px] text-green-900 dark:text-gray-400" />
+        <div className="h-auto md:h-[200px] w-full md:w-3/5 flex flex-col md:flex-row-reverse justify-evenly items-center px-8 my-10 shadow-lg rounded-xl bg-lightGreen dark:bg-gray-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+          <BiSolidMessageError className="text-7xl pt-4 md:pt-0 md:text-[256px] text-green-900 dark:text-gray-400" />
           <div className="flex flex-col justify-start items-start gap-4 p-5">
             <h2 className="text-black dark:text-white text-4xl font-bold">
               {t("pagesLogic.step4Title")}

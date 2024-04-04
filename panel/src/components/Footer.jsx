@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import logoGrey from "../assets/logo-grey.svg";
 import { useTranslation } from "react-i18next";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
+
 function Footer() {
   const { t, i18n } = useTranslation();
+  const { toggleTheme, theme } = useContext(UserContext);
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
@@ -51,6 +56,13 @@ function Footer() {
                 <option value="de">🇩🇪</option>
                 <option value="tr">🇹🇷</option>
               </select>
+              <button
+                onClick={toggleTheme}
+                id="toggle "
+                className="dark:text-yellow-600 text-white text-2xl hover:bg-gray-50 hover:text-green-800 ease-in-out transition-all dura font-medium rounded-lg  px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
+              >
+                {theme === "light" ? <FaMoon /> : <FaSun />}
+              </button>
             </li>
           </ul>
         </div>

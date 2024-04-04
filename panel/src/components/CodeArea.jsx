@@ -21,7 +21,7 @@ const CodeArea = ({ code }) => {
 
   return (
     <div className="bg-green-900 dark:bg-gray-900  rounded-b-lg relative">
-      <pre className="text-white">
+      <pre className="text-white overflow-x-auto py-4 md:py-0">
         <code>{code}</code>
       </pre>
       <button

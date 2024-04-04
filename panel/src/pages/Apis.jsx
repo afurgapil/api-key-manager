@@ -233,9 +233,9 @@ function Apis() {
               {endpointList.map((dataItem) => (
                 <li
                   key={dataItem.id}
-                  className="flex flex-row justify-between items-start py-2 gap-x-12 border-b border-gray-400 w-full"
+                  className="flex flex-col md:flex-row justify-between items-start py-2 md:gap-x-12 border-b border-gray-400 w-full"
                 >
-                  <div className="flex flex-col py-1 w-3/4">
+                  <div className="flex flex-col py-1 md:w-3/4 w-full">
                     <div className="">
                       <span className="bg-green-600 text-black text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-900 dark:text-stone-300 uppercase">
                         {dataItem.company}
@@ -261,7 +261,7 @@ function Apis() {
                       <span className="font-bold">
                         {t("pagesApis.dataItem.apiKey")}
                       </span>
-                      {dataItem.api_key}
+                      {dataItem.api_key.slice(0, 3)}*************
                     </p>
                     <p>
                       <span className="font-bold">
@@ -275,15 +275,15 @@ function Apis() {
                       </span>
                       {dataItem.price}
                     </p>
-                    <div className="flex flex-col w-3/4 mt-2">
-                      <p>
+                    <div className="flex flex-col w-full md:w-3/4 mt-2">
+                      <p className="max-w-full">
                         <AccordionCode type={dataItem.type}></AccordionCode>
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-row justify-center items-center gap-x-4">
+                  <div className="flex flex-row justify-center items-center gap-x-4 w-full md:w-auto">
                     <button
-                      className="bg-green-400 text-green-950 dark:bg-lightSecondary dark:text-white rounded-2xl p-4 hover:cursor-pointer hover:bg-green-500"
+                      className="bg-green-400 text-green-950 dark:bg-lightSecondary dark:text-white rounded-2xl p-4 hover:cursor-pointer hover:bg-green-500 w-full md:w-auto flex justify-center items-center"
                       onClick={() => {
                         openEdit(dataItem);
                       }}
@@ -291,7 +291,7 @@ function Apis() {
                       <FaPenAlt className="text-2xl"></FaPenAlt>
                     </button>
                     <button
-                      className=" bg-red-400 text-red-950 dark:bg-red-700 dark:text-white rounded-2xl p-4 hover:cursor-pointer hover:bg-red-500"
+                      className=" bg-red-400 text-red-950 dark:bg-red-700 dark:text-white rounded-2xl p-4 hover:cursor-pointer hover:bg-red-500 w-full md:w-auto flex justify-center items-center"
                       onClick={() => {
                         handleRemove(dataItem.id);
                       }}
@@ -315,8 +315,8 @@ function Apis() {
         tabIndex="-1"
         aria-hidden={!isAddModalOpen}
         className={`${
-          isAddModalOpen ? "flex mt-20" : "hidden"
-        } overflow-y-auto overflow-x-hidden absolute top-1/2 right-1/2  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
+          isAddModalOpen ? "flex md:mt-20 mt-0" : "hidden"
+        } md:overflow-y-auto overflow-x-hidden absolute md:top-1/2 top-0 md:right-1/2  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
       >
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -482,8 +482,8 @@ function Apis() {
         tabIndex="-1"
         aria-hidden={!isUpdateModalOpen}
         className={`${
-          isUpdateModalOpen ? "flex mt-20" : "hidden"
-        } overflow-y-auto overflow-x-hidden absolute top-1/2 right-1/2  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
+          isUpdateModalOpen ? "flex md:mt-20 mt-0" : "hidden"
+        } md:overflow-y-auto overflow-x-hidden absolute md:top-1/2 top-0 md:right-1/2  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
       >
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

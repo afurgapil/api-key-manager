@@ -46,11 +46,12 @@ exports.googleGemini = async function (req, res) {
     }
     const bytes = CryptoJS.AES.decrypt(prompt, privateKey);
     const plaintext = bytes.toString(CryptoJS.enc.Utf8);
-
+    console.log(plaintext);
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: modelType });
     const result = await model.generateContent(plaintext);
     const response = await result.response;
+    await usageTracker(userId, pathId);
     const text = response.text();
     res.send(text);
   } catch (error) {

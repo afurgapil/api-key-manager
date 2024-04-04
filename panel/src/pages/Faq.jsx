@@ -50,13 +50,12 @@ const Faq = () => {
         <title> {t("helmet.faq.title")}</title>
         <meta name="description" lang="en" content="A page for FAQ" />
       </Helmet>
-      <div className="flex flex-row justify-evenly items-start">
-        <div className="w-1/3 flex justify-center items-center">
-          <div className="flex flex-col justify-center items-start gap-y-4">
-            <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-gray-800">
+      <div className="flex flex-col md:flex-row justify-start md:justify-evenly items-center md:items-start">
+        <div className="w-full md:w-1/3 flex justify-center items-center">
+          <div className="flex flex-col justify-center items-center md:items-start gap-y-4">
+            <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-gray-800 text-center">
               {t("pagesFaq.title")}
               <br />
-
               {t("pagesFaq.subtitle")}
             </h2>
             <p className="mt-1 hidden md:block text-gray-600 dark:text-gray-600">
@@ -65,7 +64,7 @@ const Faq = () => {
             <img src={QMark} alt="Question Mark" />
           </div>
         </div>
-        <div className="w-2/3 flex justify-center items-center">
+        <div className="w-full md:w-2/3 flex justify-center items-center">
           <div className="w-full mx-auto ">
             <h2 className="text-3xl font-semibold mb-5"></h2>
             {currentFaq.map((section, index) => (

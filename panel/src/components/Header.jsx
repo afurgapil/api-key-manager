@@ -1,16 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
-import { UserContext } from "../context/UserContext";
 import SignOut from "./SignOut";
-import { FaSun, FaMoon, FaBars, FaArrowUp } from "react-icons/fa";
+import { FaBars, FaArrowUp } from "react-icons/fa";
 import logoWhite from "../assets/logo-white.svg";
 import { useTranslation } from "react-i18next";
 function Header() {
   const { t } = useTranslation();
   const user = useUser();
-  const { toggleTheme, theme } = useContext(UserContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -40,13 +38,6 @@ function Header() {
                 {user.username.toUpperCase()}
               </NavLink>
               <SignOut></SignOut>
-              <button
-                onClick={toggleTheme}
-                id="toggle "
-                className="dark:text-yellow-600 text-white text-2xl hover:bg-gray-50 hover:text-green-800 ease-in-out transition-all dura font-medium rounded-lg  px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
-              >
-                {theme === "light" ? <FaMoon /> : <FaSun />}
-              </button>
               <div className="flex items-center lg:order-2">
                 <button
                   onClick={() => {
@@ -82,13 +73,7 @@ function Header() {
               >
                 {t("componentsHeader.signUp")}
               </NavLink>
-              <button
-                onClick={toggleTheme}
-                id="toggle "
-                className="dark:text-yellow-600 text-white text-2xl hover:bg-gray-50 hover:text-green-800 ease-in-out transition-all dura font-medium rounded-lg  px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700"
-              >
-                {theme === "light" ? <FaMoon /> : <FaSun />}
-              </button>
+
               <div className="flex items-center lg:order-2">
                 <button
                   onClick={() => {
@@ -122,102 +107,106 @@ function Header() {
                 <NavLink
                   to="/"
                   exact
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 active:dark:text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 active:dark:text-white border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Home
                 </NavLink>
               </li> */}
               {user && Object.keys(user).length > 0 ? (
                 <>
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/dashboard"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.dashboard")}
                     </NavLink>
                   </li>{" "}
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/apis"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.apis")}
                     </NavLink>
                   </li>{" "}
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/error-logs"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.logs")}
                     </NavLink>
                   </li>
-                  <li>
+                  {/* <li
+                  onClick={()=>toggleMobileMenu()}
+                  >
                     <NavLink
                       to="/community"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.community")}
                     </NavLink>
-                  </li>
-                  <li>
+                  </li> */}
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/contact"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.contact")}
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      to="/faq"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                    >
-                      {t("componentsHeader.faq")}
-                    </NavLink>
-                  </li>
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/how-it-works"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.explore")}
+                    </NavLink>
+                  </li>
+                  <li onClick={() => toggleMobileMenu()}>
+                    <NavLink
+                      to="/faq"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      {t("componentsHeader.faq")}
                     </NavLink>
                   </li>
                 </>
               ) : (
                 <>
-                  <li>
+                  {/* <li
+                  onClick={()=>toggleMobileMenu()}
+                  >
                     <NavLink
                       to="/community"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.community")}
                     </NavLink>
-                  </li>
-                  <li>
+                  </li> */}
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
-                      to="/contact"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      to="/how-it-works"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
-                      {t("componentsHeader.contact")}
+                      {t("componentsHeader.explore")}
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/faq"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       {t("componentsHeader.faq")}
                     </NavLink>
                   </li>
-                  <li>
+                  <li onClick={() => toggleMobileMenu()}>
                     <NavLink
-                      to="/how-it-works"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      to="/contact"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                     >
-                      {t("componentsHeader.explore")}
+                      {t("componentsHeader.contact")}
                     </NavLink>
                   </li>
                 </>

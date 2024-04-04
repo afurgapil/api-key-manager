@@ -108,7 +108,9 @@ function ErrorLogs() {
         <meta name="description" lang="en" content="A page for error logs" />
       </Helmet>
       <div className="flex flex-row justify-between items-center w-full border-b-2 border-black">
-        <h1 className="font-bold text-3xl">{t("pagesErrorLogs.title")}</h1>
+        <h1 className="font-bold text-lg md:text-3xl">
+          {t("pagesErrorLogs.title")}
+        </h1>
         <div className="flex flex-row gap-x-2 my-2">
           <form>
             <select
@@ -146,9 +148,9 @@ function ErrorLogs() {
               {filteredLogs.map((dataItem) => (
                 <li
                   key={dataItem.id}
-                  className="flex flex-row justify-between items-center py-2 gap-x-12 border-b border-gray-400 w-full"
+                  className="flex flex-col md:flex-row justify-start items-start md:justify-between md:items-center py-2 gap-x-12 border-b border-gray-400 w-full"
                 >
-                  <div className="flex flex-col py-1 w-2/4">
+                  <div className="flex flex-col py-1 w-full md:w-2/4">
                     <div className="">
                       <span className="bg-green-600 text-black text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-stone-900 dark:text-stone-300 uppercase">
                         {dataItem.company}

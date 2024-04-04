@@ -87,7 +87,7 @@ const Contact = () => {
             </p>
           </div>
           <div className="mt-12 grid items-center lg:grid-cols-2 gap-6 lg:gap-16">
-            <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700">
+            <div className="flex flex-col border border-gray-500 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700">
               <h2 className="mb-8 text-xl font-semibold text-gray-800 dark:text-gray-200">
                 {t("pagesContact.fillInTheForm")}
               </h2>
