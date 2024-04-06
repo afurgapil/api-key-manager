@@ -1,0 +1,13 @@
+Test Case ID ,Test Case Description                                         ,Test Status ,Comments
+TC-001       ,Random code generated  successfully returns a 6 digit number. ,Passed      ,-
+TC-002       ,Random unique id generated  successfully.                     ,Passed      ,-
+TC-003       ,User token authorized successfully.                           ,Passed      ,-
+TC-004       ,Mail delivery system works successfully.                      ,Passed      ,-
+TC-005       ,usePath works successfully.                                   ,Passed      ,-
+TC-006       ,User variable checked successfully.                           ,Passed      ,-
+TC-007       ,Error logged successfully.                                    ,Passed      ,-
+TC-008       ,User updated successfully.                                    ,Passed      ,-
+TC-009       ,Verification Code updated successfully.                       ,Passed      ,-
+TC-010       ,Tracker works successfully.                                   ,Passed      ,-
+TC-011       ,User key fetched successfully.                                ,Passed      ,-
+TC-012       ,User Data fetched successfully.                               ,Passed      ,-
