@@ -13,5 +13,3 @@ module.exports = function generateCode() {
     });
   });
 };
-
-//TODO TEST ET

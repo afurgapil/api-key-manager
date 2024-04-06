@@ -45,10 +45,10 @@ module.exports = async function updateVerification(userId, status) {
         );
       });
     } catch (error) {
-      console.error("Database connection failed: ", error);
+      console.error("An unexpected error occured: ", error);
       reject({
         success: false,
-        message: "Database connection failed: ",
+        message: "An unexpected error occured: ",
       });
     }
   });

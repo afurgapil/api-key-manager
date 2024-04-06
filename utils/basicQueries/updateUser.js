@@ -32,7 +32,7 @@ module.exports = async function updateUser(userId, column, value) {
 
             resolve({
               success: true,
-              message: "User  value updated successfully.",
+              message: "User value updated successfully.",
               column: value,
             });
 
@@ -41,10 +41,10 @@ module.exports = async function updateUser(userId, column, value) {
         );
       });
     } catch (error) {
-      console.error("Database connection failed: ", error);
+      console.error("An unexpected error occured: ", error);
       reject({
         success: false,
-        message: "Database connection failed: ",
+        message: "An unexpected error occured: " + error.message,
       });
     }
   });

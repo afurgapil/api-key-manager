@@ -1,12 +1,15 @@
 //logTracker.js
 const pool = require("../settings/usePool");
-
+const checkIndexExists = require("../basicQueries/checkIndexExists");
 module.exports = async function logError(userId, pathId, message) {
   return new Promise(async (resolve, reject) => {
     try {
-      // Kullanıcı varlığını kontrol etmek için bir kod buraya eklenebilir.
-      // Eğer kullanıcı yoksa reject ile hata dönebilirsiniz.
+      const exists = await checkIndexExists("user", userId);
 
+      if (!exists) {
+        reject(new Error("User not found"));
+        return;
+      }
       const updateSql =
         "INSERT INTO `error_logs` (`user_id`, `path_id`, `error_msg`) VALUES (?, ?, ?)";
 
@@ -32,8 +35,6 @@ module.exports = async function logError(userId, pathId, message) {
             resolve({
               success: true,
               message: "Error log added successfully.",
-              // Burada ekstra bilgi dönebilirsiniz, ancak 'column' ve 'value' değişkenleri
-              // kodunuzda tanımlanmamış görünüyor.
             });
 
             connection.release();
