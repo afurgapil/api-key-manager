@@ -107,7 +107,7 @@ function Header() {
                 <NavLink
                   to="/"
                   exact
-                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 active:dark:text-white border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 active:dark:text-white rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent     dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                 >
                   Home
                 </NavLink>
@@ -117,7 +117,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/dashboard"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-200 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.dashboard")}
                     </NavLink>
@@ -125,7 +125,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/apis"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.apis")}
                     </NavLink>
@@ -133,7 +133,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/error-logs"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.logs")}
                     </NavLink>
@@ -143,7 +143,7 @@ function Header() {
                   >
                     <NavLink
                       to="/community"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.community")}
                     </NavLink>
@@ -151,7 +151,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/contact"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.contact")}
                     </NavLink>
@@ -159,7 +159,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/how-it-works"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.explore")}
                     </NavLink>
@@ -167,7 +167,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/faq"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.faq")}
                     </NavLink>
@@ -180,7 +180,7 @@ function Header() {
                   >
                     <NavLink
                       to="/community"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.community")}
                     </NavLink>
@@ -188,7 +188,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/how-it-works"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.explore")}
                     </NavLink>
@@ -196,7 +196,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/faq"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.faq")}
                     </NavLink>
@@ -204,7 +204,7 @@ function Header() {
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
                       to="/contact"
-                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 border-b border-gray-100 hover:bg-gray-50 hover:text-green-800 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       {t("componentsHeader.contact")}
                     </NavLink>
