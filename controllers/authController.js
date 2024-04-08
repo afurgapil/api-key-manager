@@ -12,6 +12,7 @@ const sendMail = require("../utils/sendMail");
 const encrypt = require("../utils/encrypt");
 const decrypt = require("../utils/decrypt");
 const isValidToken = require("../utils/isValidToken");
+const isValidMail = require("../utils/isValidMail");
 dotenv.config();
 
 exports.signup = async function (req, res) {
@@ -21,6 +22,30 @@ exports.signup = async function (req, res) {
     const { username, password, mail } = req.body;
     if (!username || !password || !mail) {
       return res.status(400).json({ error: "Invalid parameter." });
+    }
+    if (username.length < 4 || username.length > 32) {
+      return res.status(400).json({
+        error: "Username length should be between 4 and 32 characters.",
+      });
+    }
+
+    if (password.length < 8 || password.length > 255) {
+      return res.status(400).json({
+        error: "Password length should be between 8 and 255 characters.",
+      });
+    }
+
+    if (mail.length > 45) {
+      return res.status(400).json({
+        error: "Mail length should be less than or equal to 45 characters.",
+      });
+    }
+    const checkUsername = await useUser("username", username);
+    if (checkUsername) {
+      return res.status(409).json({ error: "Username already exists." });
+    }
+    if (!isValidMail(mail)) {
+      return res.status(400).json({ error: "E-Mail is invalid." });
     }
 
     const registerSql =
@@ -74,7 +99,7 @@ exports.signup = async function (req, res) {
     });
   } catch (error) {
     console.error("An error occurred. " + error.message);
-    res.status(500).json({ error: "An error occurred." });
+    res.status(500).json({ error: "An error occurred." + error.message });
   }
 };
 
@@ -84,7 +109,17 @@ exports.signin = async function (req, res) {
     if (!username || !password) {
       return res.status(400).json({ error: "Invalid parameter." });
     }
+    if (username.length < 4 || username.length > 32) {
+      return res.status(400).json({
+        error: "Username length should be between 4 and 32 characters.",
+      });
+    }
 
+    if (password.length < 8 || password.length > 255) {
+      return res.status(400).json({
+        error: "Password length should be between 8 and 255 characters.",
+      });
+    }
     const getUserSql =
       "SELECT id, username, password, mail, is_verificated, tier FROM user WHERE username = ?";
 
@@ -167,9 +202,11 @@ exports.verify = async function (req, res) {
 
   try {
     const data = await useUser("id", userId);
-
     if (!data) {
       return res.status(404).json({ error: "User not found." });
+    }
+    if (data.is_verificated == 1) {
+      return res.status(500).json({ error: "Account already verified." });
     }
     if (data.verification_code == verificationCode) {
       await updateVerification(userId, 1);
@@ -191,36 +228,28 @@ exports.resetPasswordRequest = async function (req, res) {
     if (!email) {
       return res.status(400).json({ error: "Invalid request body." });
     }
-    try {
-      const user = await useUser("mail", email);
-      if (user) {
-        const updateResult = await updateVerification(user.id, 0);
-        if (updateResult.success) {
-          const encodedMail = encrypt(user.mail + process.env.MAIL_SECRET_KEY);
-          try {
-            const mailOptions = resetMail(
-              email,
-              encodedMail,
-              updateResult.code
-            );
-            await sendMail(mailOptions);
-            res.status(200).json({
-              message: "Reset password instructions sent to your email.",
-            });
-          } catch (error) {
-            res.status(404).json({
-              message: error,
-            });
-          }
-        } else {
-          res
-            .status(500)
-            .json({ message: "Error updating verification code and status." });
+    const user = await useUser("mail", email);
+    if (user) {
+      const updateResult = await updateVerification(user.id, 0);
+      if (updateResult.success) {
+        const encodedMail = encrypt(user.mail + process.env.MAIL_SECRET_KEY);
+        try {
+          const mailOptions = resetMail(email, encodedMail, updateResult.code);
+          await sendMail(mailOptions);
+          res.status(200).json({
+            message: "Reset password instructions sent to your email.",
+          });
+        } catch (error) {
+          res.status(404).json({
+            message: error,
+          });
         }
       } else {
-        res.status(404).json({ message: "User not found." });
+        res
+          .status(500)
+          .json({ message: "Error updating verification code and status." });
       }
-    } catch (error) {
+    } else {
       res.status(404).json({ message: "User not found." });
     }
   } catch (error) {
@@ -240,7 +269,6 @@ exports.resetPasswordCheck = async function (req, res) {
     if (!isValidToken(decodedMail, token)) {
       return res.status(401).json({ error: "Invalid or expired token." });
     }
-
     bcrypt.genSalt(10, function (err, salt) {
       if (err) {
         console.error("Error generating salt: " + err.message);
@@ -255,7 +283,10 @@ exports.resetPasswordCheck = async function (req, res) {
 
         const user = await useUser("mail", decodedMail);
         await updateUser(user.id, "password", hash);
-        await updateVerification(user.id, 1);
+        const updateResult = await updateVerification(user.id, 1);
+        if (!updateResult.success) {
+          throw new Error("Verification update failed");
+        }
         return res
           .status(200)
           .json({ message: "Password reset successfully." });

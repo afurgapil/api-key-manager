@@ -18,6 +18,10 @@ app.use("/log", logRouter);
 app.use("/contact", contactRouter);
 
 const port = process.env.PORT || 8001;
-app.listen(port, () => {
-  console.log(`The server is running on port ${port}.`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+module.exports = app;
