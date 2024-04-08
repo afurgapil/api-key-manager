@@ -1,13 +1,17 @@
 const dotenv = require("dotenv");
 const sendMail = require("../utils/sendMail");
 const infoMail = require("../mailOptions/infoMail");
+const isValidMail = require("../utils/isValidMail");
 dotenv.config();
 
 exports.sendMail = async function (req, res) {
   try {
     const { name, lastname, email, message } = req.body;
-    if (!email) {
+    if (!name || !lastname || !email || !message) {
       return res.status(400).json({ error: "Invalid request body." });
+    }
+    if (!isValidMail(email)) {
+      return res.status(400).json({ error: "Invalid email format." });
     }
     try {
       const mailOptions = infoMail(name, lastname, email, message);
@@ -17,7 +21,7 @@ exports.sendMail = async function (req, res) {
       });
     } catch (error) {
       res.status(404).json({
-        message: error,
+        message: "An error occured while sending mail.",
       });
     }
   } catch (error) {

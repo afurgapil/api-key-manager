@@ -11,11 +11,12 @@ TC-009       ,Verification Code updated successfully.                       ,Pas
 TC-010       ,Tracker works successfully.                                   ,Passed      ,-
 TC-011       ,User key fetched successfully.                                ,Passed      ,-
 TC-012       ,User Data fetched successfully.                               ,Passed      ,-
-TC-013       ,Data encrypted successfully.                               ,Passed      ,-
-TC-014       ,Data decrypted successfully.                         ,Passed      ,-
-TC-015       ,Mail checked successfully.                         ,Passed      ,-
-TC-016       ,User sign up successfully.                         ,Passed      ,Check Try-Catch block again
-TC-017       ,User signed successfully.                         ,Passed      ,-
-TC-018       ,User verified successfully.                         ,Passed      ,-
-TC-019       ,User password request triggerd successfully.                         ,Passed      ,-
-TC-020       ,User password changed successfully.                         ,Passed      ,-
+TC-013       ,Data encrypted successfully.                                  ,Passed      ,-
+TC-014       ,Data decrypted successfully.                                  ,Passed      ,-
+TC-015       ,Mail checked successfully.                                    ,Passed      ,-
+TC-016       ,User sign up successfully.                                    ,Passed      ,Check Try-Catch block again
+TC-017       ,User signed successfully.                                     ,Passed      ,-
+TC-018       ,User verified successfully.                                   ,Passed      ,-
+TC-019       ,User password request triggerd successfully.                  ,Passed      ,-
+TC-020       ,User password changed successfully.                           ,Passed      ,-
+TC-021       ,User can communicate successfully .                           ,Not Completed      ,500 can not handled

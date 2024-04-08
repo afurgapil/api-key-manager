@@ -6,7 +6,6 @@ const useUser = require("../../utils/basicQueries/useUser");
 const updateVerification = require("../../utils/basicQueries/updateVerification");
 const updateUser = require("../../utils/basicQueries/updateUser");
 const sendMail = require("../../utils/sendMail");
-const encrypt = require("../../utils/encrypt");
 const decrypt = require("../../utils/decrypt");
 const isValidToken = require("../../utils/isValidToken");
 jest.mock("bcrypt");
@@ -62,12 +61,23 @@ describe("TC-016", () => {
   });
 
   it("2-Should return 400 if required fields are missing", async () => {
-    const response = await request(server)
-      .post("/auth/signup")
-      .send({ username: "testUser" });
+    const requiredFields = ["username", "password", "mail"];
 
-    expect(response.statusCode).toBe(400);
-    expect(response.body).toEqual({ error: "Invalid parameter." });
+    for (const field of requiredFields) {
+      const mockReqBody = {
+        username: "Gafur",
+        password: "Apil",
+        mail: "test@example.com",
+      };
+      delete mockReqBody[field];
+
+      const response = await request(server)
+        .post("/auth/signup")
+        .send(mockReqBody);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual({ error: "Invalid parameter." });
+    }
   });
 
   it("3-Should return 409 if username already exists", async () => {
@@ -295,10 +305,22 @@ describe("TC-017", () => {
   });
 
   it("2-Should return 400 if required fields are missing", async () => {
-    const response = await request(server).post("/auth/signin").send({});
+    const requiredFields = ["username", "password"];
 
-    expect(response.statusCode).toBe(400);
-    expect(response.body).toEqual({ error: "Invalid parameter." });
+    for (const field of requiredFields) {
+      const mockReqBody = {
+        username: "Gafur",
+        password: "Apil",
+      };
+
+      delete mockReqBody[field];
+      const response = await request(server)
+        .post("/auth/signin")
+        .send(mockReqBody);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual({ error: "Invalid parameter." });
+    }
   });
 
   it("3-Should return 401 if user not found", async () => {
@@ -645,12 +667,21 @@ describe("TC-019", () => {
   });
 
   it("2-Should return 400 if request body is invalid", async () => {
-    const response = await request(server)
-      .patch("/auth/reset/request")
-      .send({});
+    const requiredFields = ["email"];
 
-    expect(response.statusCode).toBe(400);
-    expect(response.body).toEqual({ error: "Invalid request body." });
+    for (const field of requiredFields) {
+      const mockReqBody = {
+        email: "test@mail.com",
+      };
+
+      delete mockReqBody[field];
+      const response = await request(server)
+        .patch("/auth/reset/request")
+        .send(mockReqBody);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual({ error: "Invalid request body." });
+    }
   });
 
   it("3-Should return 404 if user is not found", async () => {
@@ -721,12 +752,22 @@ describe("TC-020", () => {
   });
 
   it("2-Should return 400 if parameters are invalid", async () => {
-    const response = await request(server)
-      .patch("/auth/reset/check/encodedMail")
-      .send({});
+    const requiredFields = ["token", "newPassword"];
 
-    expect(response.statusCode).toBe(400);
-    expect(response.body).toEqual({ error: "Invalid parameter." });
+    for (const field of requiredFields) {
+      const mockReqBody = {
+        token: "token",
+        newPassword: "amazingPassword",
+      };
+
+      delete mockReqBody[field];
+      const response = await request(server)
+        .patch("/auth/reset/check/encodedMail")
+        .send(mockReqBody);
+
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual({ error: "Invalid parameter." });
+    }
   });
 
   it("3-Should return 401 if token is invalid or expired", async () => {
