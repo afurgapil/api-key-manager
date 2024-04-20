@@ -1,0 +1,85 @@
+Test Case Id,Test Scenario ID,Test Scenario Description
+TC-001,1,Random code generated successfully returns a 6 digit number
+TC-002,1,Generates a unique ID
+TC-002,2,Generates a new ID if checkIndexExists returns true
+TC-003,1,Returns true for a valid token
+TC-003,2,Returns false for an invalid token
+TC-004,1,Should send an email successfully
+TC-004,2,should reject with error if sending email fails
+TC-005,1,Returns path information for given id
+TC-005,2,Rejects with error if user not found
+TC-006,1,Returns true if index exists in the table
+TC-006,2,Returns false if index does not exist in the table
+TC-006,3,Rejects with an error if database connection fails
+TC-006,4,Rejects with an error if database query fails
+TC-007,1,Should successfully log error if user exists
+TC-007,2,Should fail to log error if user does not exist
+TC-007,3,Should fail to log error on database connection error
+TC-007,4,Should handle unexpected error
+TC-008,1,Should successfully update user value
+TC-008,2,Should fail to update user value if user does not exist
+TC-008,3,Should fail to update user value on database connection error
+TC-008,4,Should handle unexpected error
+TC-008,5,Should handle update query error
+TC-009,1,Should successfully update user verification status
+TC-009,2,Should fail to update user verification status if user does not exist
+TC-009,3,Should fail to update user verification status on database connection error
+TC-009,4,Should handle unexpected error
+TC-009,5,Should handle update query error
+TC-010,1,Should successfully track API usage
+TC-010,2,Should fail to track API usage on database query error
+TC-011,1,Should successfully retrieve key
+TC-011,2,Should fail to retrieve key if key does not exist
+TC-011,3,Should fail to retrieve key on database query error
+TC-012,1,Should successfully retrieve user by email
+TC-012,2,Should successfully retrieve user by ID
+TC-012,3,Should fail to retrieve user on database query error
+TC-013,1,should correctly encrypt the data
+TC-013,2,should return an empty string if no data is provided
+TC-014,1,should correctly decrypt the data
+TC-014,2,should return an empty string if no data is provided
+TC-014,3,should return an empty string if encrypted data is invalid
+TC-015,1,should return true for valid email addresses
+TC-015,2,should return false for invalid email addresses
+TC-016,1,Should sign up a user successfully
+TC-016,2,Should return 400 if required fields are missing
+TC-016,3,Should return 409 if username already exists
+TC-016,4,Should return 400 if email invalid
+TC-016,5,Should return appropriate status code and error message if database error occured
+TC-016,6,Should return 500 if an unexpected error occured
+TC-016,7,Should return 500 if error generating salt
+TC-016,8,Should return 500 if error hashing password
+TC-016,9.1,Should return 500 if username exceeds maximum character limit
+TC-016,9.2,Should return 500 if username exceeds minimum character limit
+TC-016,9.3,Should return 500 if password exceeds minimum character limit
+TC-016,9.4,Should return 500 if password exceeds maximum character limit
+TC-017,1,Should sign in user successfully
+TC-017,2,Should return 400 if required fields are missing
+TC-017,3,Should return 401 if user not found
+TC-017,4,Should return 401 if user is not verified
+TC-017,5,Should return 401 if password is incorrect
+TC-017,6,Should return 500 if database connection fails
+TC-017,7,Should return 500 if unable to retrieve user information
+TC-017,8,Should return 500 if bcrypt comparison fails
+TC-017,9,Should return 500 if an unexpected error occured
+TC-017,10.1,Should return 400 if username exceeds maximum character limit
+TC-017,10.2,Should return 400 if username exceeds minimum character limit
+TC-017,10.3,Should return 400 if password exceeds minimum character limit
+TC-017,10.4,Should return 400 if password exceeds maximum character limit
+TC-018,1,Should return 200 if account is successfully verified
+TC-018,2,Should return 400 if invalid parameter is provided
+TC-018,3,Should return 404 if user is not found
+TC-018,4,Should return 401 if invalid verification code is provided
+TC-018,5,Should return 200 if account is already verified
+TC-018,6,Should return 500 if an unexpected error occurs
+TC-019,1,Should return 200 and send reset password instructions to the email
+TC-019,2,Should return 400 if request body is invalid
+TC-019,3,Should return 404 if user is not found
+TC-019,4,Should return 500 if an unexpected error occurs
+TC-020,1,Should return 200 and reset password successfully
+TC-020,2,Should return 400 if parameters are invalid
+TC-020,3,Should return 401 if token is invalid or expired
+TC-021,1,Should return 200 and success message if email is sent successfully
+TC-021,2,Should return 404 and error message if email sending fails
+TC-021,3,Should return 400 if any required field is missing in the request body
+TC-021,4,Should return 400 if email format is invalid in the request body
