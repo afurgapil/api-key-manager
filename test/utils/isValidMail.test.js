@@ -1,4 +1,4 @@
-const isValidEmail = require("../utils/isValidMail");
+const isValidEmail = require("../../utils/isValidMail");
 
 describe("TC-015", () => {
   it("should return true for valid email addresses", () => {
