@@ -83,3 +83,18 @@ TC-021,1,Should return 200 and success message if email is sent successfully
 TC-021,2,Should return 404 and error message if email sending fails
 TC-021,3,Should return 400 if any required field is missing in the request body
 TC-021,4,Should return 400 if email format is invalid in the request body
+TC-022,1,Should return all logs
+TC-022,2,Should return 400 if invalid userId is provided
+TC-022,3,Should handle database connection errors
+TC-022,4,Should handle SQL query errors
+TC-022,5,Should return 404 if no logs are found for the user
+TC-023,1,Should delete log if both logId and userId exist
+TC-023,2,Should return 404 if log or user is not found
+TC-023,3,Should return 400 if logId or userId is missing
+TC-023,4,Should handle database connection errors
+TC-023,5,Should handle SQL query errors
+TC-024,1,Should return 200 if error logs are deleted successfully
+TC-024,2,Should return 404 if user not exists
+TC-024,3,Should return 404 if no error logs are found for the specified user
+TC-024,4,Should return 500 if an error occurs during delete operation
+TC-024,5,Should return 500 if database connection fails

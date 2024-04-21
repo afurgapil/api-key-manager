@@ -1,22 +1,25 @@
-Test Case ID ,Test Case Description                                         ,Test Status ,Comments
-TC-001       ,Random code generated  successfully returns a 6 digit number. ,Passed      ,-
-TC-002       ,Random unique id generated  successfully.                     ,Passed      ,-
-TC-003       ,User token authorized successfully.                           ,Passed      ,-
-TC-004       ,Mail delivery system works successfully.                      ,Passed      ,-
-TC-005       ,usePath works successfully.                                   ,Passed      ,-
-TC-006       ,User variable checked successfully.                           ,Passed      ,-
-TC-007       ,Error logged successfully.                                    ,Passed      ,-
-TC-008       ,User updated successfully.                                    ,Passed      ,-
-TC-009       ,Verification Code updated successfully.                       ,Passed      ,-
-TC-010       ,Tracker works successfully.                                   ,Passed      ,-
-TC-011       ,User key fetched successfully.                                ,Passed      ,-
-TC-012       ,User Data fetched successfully.                               ,Passed      ,-
-TC-013       ,Data encrypted successfully.                                  ,Passed      ,-
-TC-014       ,Data decrypted successfully.                                  ,Passed      ,-
-TC-015       ,Mail checked successfully.                                    ,Passed      ,-
-TC-016       ,User sign up successfully.                                    ,Passed      ,Check Try-Catch block again
-TC-017       ,User signed successfully.                                     ,Passed      ,-
-TC-018       ,User verified successfully.                                   ,Passed      ,-
-TC-019       ,User password request triggerd successfully.                  ,Passed      ,-
-TC-020       ,User password changed successfully.                           ,Passed      ,-
-TC-021       ,User can communicate successfully .                           ,Not Completed      ,500 can not handled
+Test Case ID ,Test Case Description                                         ,Test Status   ,Comments
+TC-001       ,Random code generated  successfully returns a 6 digit number. ,Passed        ,-
+TC-002       ,Random unique id generated  successfully.                     ,Passed        ,-
+TC-003       ,User token authorized successfully.                           ,Passed        ,-
+TC-004       ,Mail delivery system works successfully.                      ,Passed        ,-
+TC-005       ,usePath works successfully.                                   ,Passed        ,-
+TC-006       ,User variable checked successfully.                           ,Passed        ,-
+TC-007       ,Error logged successfully.                                    ,Passed        ,-
+TC-008       ,User updated successfully.                                    ,Passed        ,-
+TC-009       ,Verification Code updated successfully.                       ,Passed        ,-
+TC-010       ,Tracker works successfully.                                   ,Passed        ,-
+TC-011       ,User key fetched successfully.                                ,Passed        ,-
+TC-012       ,User Data fetched successfully.                               ,Passed        ,-
+TC-013       ,Data encrypted successfully.                                  ,Passed        ,-
+TC-014       ,Data decrypted successfully.                                  ,Passed        ,-
+TC-015       ,Mail checked successfully.                                    ,Passed        ,-
+TC-016       ,User sign up successfully.                                    ,Passed        ,Check Try-Catch block again
+TC-017       ,User signed successfully.                                     ,Passed        ,-
+TC-018       ,User verified successfully.                                   ,Passed        ,-
+TC-019       ,User password request triggerd successfully.                  ,Passed        ,-
+TC-020       ,User password changed successfully.                           ,Passed        ,-
+TC-021       ,User can communicate successfully .                           ,Not Completed ,500 can not handled
+TC-022       ,Logs fetched  successfully.                                   ,Completed     ,check last
+TC-023       ,Log deleted  successfully.                                    ,Not Completed ,check last
+TC-024       ,All Log records deleted  successfully.                        ,Not Completed ,check 2

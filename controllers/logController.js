@@ -1,7 +1,17 @@
+const checkIndexExists = require("../utils/basicQueries/checkIndexExists");
 const pool = require("../utils/settings/usePool");
 exports.get_all = async function (req, res) {
   try {
-    const selectSql = `SELECT * FROM error_logs ORDER BY timestamp DESC;`;
+    const userId = req.params.userId;
+    if (!userId) {
+      return res.status(400).json({ error: "Invalid parameter." });
+    }
+    const userExists = await checkIndexExists("user", userId);
+    if (!userExists) {
+      return res.status(400).json({ error: "User not found." });
+    }
+    const selectSql = `SELECT * FROM error_logs WHERE user_id = ? ORDER BY timestamp DESC`;
+
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
@@ -10,7 +20,7 @@ exports.get_all = async function (req, res) {
         return res.status(500).json({ error: "Database connection failed." });
       }
 
-      connection.query(selectSql, (selectQueryErr, results) => {
+      connection.query(selectSql, [userId], (selectQueryErr, results) => {
         connection.release();
 
         if (selectQueryErr) {
@@ -21,7 +31,9 @@ exports.get_all = async function (req, res) {
             .status(500)
             .json({ error: "Error retrieving error logs." });
         }
-
+        if (results.length === 0) {
+          return res.status(404).json({ error: "No error logs found." });
+        }
         return res.status(200).json({ data: results });
       });
     });
@@ -33,9 +45,19 @@ exports.get_all = async function (req, res) {
 
 exports.delete = async function (req, res) {
   try {
-    const logId = req.params.logId;
-    const deleteSql = `DELETE FROM error_logs WHERE id = ?`;
-
+    const { logId, userId } = req.body;
+    const deleteSql = `DELETE FROM error_logs WHERE (id, user_id) = (?, ?)`;
+    if (!logId || !userId) {
+      return res.status(400).json({ error: "Invalid paramater." });
+    }
+    const isLogExists = await checkIndexExists("error_logs", logId);
+    const isUserExists = await checkIndexExists("user", userId);
+    if (!isLogExists) {
+      return res.status(404).json({ error: "Log not found." });
+    }
+    if (!isUserExists) {
+      return res.status(404).json({ error: "User not found." });
+    }
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
@@ -44,24 +66,32 @@ exports.delete = async function (req, res) {
         return res.status(500).json({ error: "Database connection failed." });
       }
 
-      connection.query(deleteSql, [logId], (deleteQueryErr, results) => {
-        connection.release();
+      connection.query(
+        deleteSql,
+        [logId, userId],
+        (deleteQueryErr, results) => {
+          connection.release();
 
-        if (deleteQueryErr) {
-          console.error("Error deleting error logs: " + deleteQueryErr.message);
-          return res.status(500).json({ error: "Error deleting error logs." });
-        }
+          if (deleteQueryErr) {
+            console.error(
+              "Error deleting error logs: " + deleteQueryErr.message
+            );
+            return res
+              .status(500)
+              .json({ error: "Error deleting error logs." });
+          }
 
-        if (results.affectedRows === 0) {
+          if (results.affectedRows === 0) {
+            return res.status(404).json({
+              error: "No error logs found for the specified path_id.",
+            });
+          }
+
           return res
-            .status(404)
-            .json({ error: "No error logs found for the specified path_id." });
+            .status(200)
+            .json({ message: "Error logs deleted successfully." });
         }
-
-        return res
-          .status(200)
-          .json({ message: "Error logs deleted successfully." });
-      });
+      );
     });
   } catch (error) {
     console.error("An error occurred. " + error.message);
@@ -71,8 +101,15 @@ exports.delete = async function (req, res) {
 
 exports.deleteAll = async function (req, res) {
   try {
-    const deleteSql = `DELETE FROM error_logs`;
-
+    const userId = req.params.userId;
+    const deleteSql = `DELETE FROM error_logs WHERE user_id = ?`;
+    if (!userId) {
+      return res.status(400).json({ error: "Invalid parameter." });
+    }
+    const isUserExists = await checkIndexExists("user", userId);
+    if (!isUserExists) {
+      return res.status(404).json({ error: "User not found." });
+    }
     pool.getConnection((getConnectionErr, connection) => {
       if (getConnectionErr) {
         console.error(
@@ -81,7 +118,7 @@ exports.deleteAll = async function (req, res) {
         return res.status(500).json({ error: "Database connection failed." });
       }
 
-      connection.query(deleteSql, (deleteQueryErr, results) => {
+      connection.query(deleteSql, [userId], (deleteQueryErr, results) => {
         connection.release();
 
         if (deleteQueryErr) {
@@ -92,9 +129,8 @@ exports.deleteAll = async function (req, res) {
         if (results.affectedRows === 0) {
           return res
             .status(404)
-            .json({ error: "No error logs found for the specified path_id." });
+            .json({ error: "No error logs found for the specified user." });
         }
-
         return res
           .status(200)
           .json({ message: "Error logs deleted successfully." });

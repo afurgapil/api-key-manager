@@ -33,7 +33,7 @@ function ErrorLogs() {
   }, [logs, filter, sortOrder]);
   const fetchLogs = async () => {
     try {
-      const response = await fetch(`${USER_API.GET_LOGS}`, {
+      const response = await fetch(`${USER_API.GET_LOGS}/${user.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -54,12 +54,16 @@ function ErrorLogs() {
   };
   const handleRemove = async (logId) => {
     try {
-      const response = await fetch(`${USER_API.DELETE_LOG}/${logId}`, {
+      const response = await fetch(`${USER_API.DELETE_LOG}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
         },
+        body: JSON.stringify({
+          logId: logId,
+          userId: user.id,
+        }),
       });
 
       if (!response.ok) {
@@ -75,7 +79,7 @@ function ErrorLogs() {
   };
   const handleRemoveAll = async () => {
     try {
-      const response = await fetch(`${USER_API.DELETE_ALL_LOG}`, {
+      const response = await fetch(`${USER_API.DELETE_ALL_LOG}/${user.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
