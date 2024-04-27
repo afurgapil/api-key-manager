@@ -303,6 +303,15 @@ describe("TC-023", () => {
 });
 
 describe("TC-024", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterAll((done) => {
+    server.close(() => {
+      done();
+    });
+  });
   it("1-Should return 200 if error logs are deleted successfully", async () => {
     const userId = "00192e95-8ed7-43d2-a871-cd1cc69f2021";
     const mockConnection = {
