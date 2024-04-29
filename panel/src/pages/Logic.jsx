@@ -7,13 +7,13 @@ import { useTranslation } from "react-i18next";
 function Logic() {
   const { t } = useTranslation();
   return (
-    <div className="min-h-screen w-full py-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-800">
+    <div className="min-h-screen w-full py-8 flex flex-col justify-start items-center bg-neutral-200 dark:bg-slate-300">
       <Helmet>
         <title> {t("helmet.logic.title")}</title>
         <meta name="description" lang="en" content="A page for logic" />
       </Helmet>
       <div className="w-full flex justify-center items-center">
-        <h3 className="text-center font-[Handjet] text-black dark:text-white text-7xl md:text-[96px]">
+        <h3 className="text-center font-[Handjet] text-black dark:text-slate-800 text-7xl md:text-[96px]">
           {t("pagesLogic.howItWorks")}
         </h3>
       </div>

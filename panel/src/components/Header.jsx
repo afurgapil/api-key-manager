@@ -150,6 +150,14 @@ function Header() {
                   </li> */}
                   <li onClick={() => toggleMobileMenu()}>
                     <NavLink
+                      to="/pricing"
+                      className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
+                    >
+                      {t("componentsHeader.pricing")}
+                    </NavLink>
+                  </li>
+                  <li onClick={() => toggleMobileMenu()}>
+                    <NavLink
                       to="/contact"
                       className="block py-2 pr-4 pl-3 text-white dark:text-gray-400 rounded-none border-b md:border-0 md:rounded-md border-gray-100 hover:bg-gray-50 hover:text-green-800      dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >

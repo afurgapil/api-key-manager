@@ -24,6 +24,9 @@
     "notFound": {
       "title": "404 | APILMAN"
     },
+    "pricing": {
+      "title": "Preise | APILMAN"
+    },
     "resetCheck": {
       "title": "Zurücksetzen | APILMAN"
     },
@@ -181,6 +184,40 @@
     "content": "Hoppla! Die von Ihnen gesuchte Seite konnte nicht gefunden werden.",
     "button": "Zurück zur Startseite"
   },
+  "pagesPricing": {
+    "pageTitle": "Preise",
+    "pageSubtitle": "Unabhängig von Ihrem Status entwickeln sich unsere Angebote entsprechend Ihren Bedürfnissen.",
+    "monthly": "Monatlich",
+    "annual": "Jährlich",
+    "bronze": {
+      "title": "Bronze",
+      "priceMonthly": "$0.00",
+      "priceAnnual": "$0.00",
+      "priceDesc": "Für immer kostenlos",
+      "list1": "1 API",
+      "list2": "API-Analyse",
+      "list3": "Fehlerprotokolle"
+    },
+    "gold": {
+      "title": "Gold",
+      "priceMonthly": "$4.99",
+      "priceAnnual": "$49.99",
+      "priceDesc": "Alle Grundlagen für neue Apps",
+      "list1": "5 API",
+      "list2": "API-Analyse",
+      "list3": "Fehlerprotokolle"
+    },
+    "diamond": {
+      "title": "Diamant",
+      "priceMonthly": "$9.99",
+      "priceAnnual": "$99.99",
+      "priceDesc": "Alles, was Sie für Ihre App benötigen",
+      "list1": "10 API",
+      "list2": "API-Analyse",
+      "list3": "Fehlerprotokolle"
+    },
+    "updateBtn": "Update Now"
+  },
   "pagesResetCheck": {
     "confirmAccountTitle": "Bestätigen Sie Ihr Konto",
     "verificationCodeLabel": "Bestätigungscode",
@@ -260,6 +297,7 @@
     "dashboard": "Dashboard",
     "apis": "APIs",
     "logs": "Logs",
+    "pricing": "Preise",
     "community": "Gemeinschaft",
     "contact": "Kontakt",
     "faq": "FAQ",

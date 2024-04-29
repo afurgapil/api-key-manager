@@ -1,9 +1,19 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logoWhite from "../assets/logo-white.svg";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../hooks/useUser";
 function Home() {
   const { t } = useTranslation();
+  const user = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user && Object.keys(user).length > 0) {
+      navigate("/dashboard");
+    }
+  }, [user]);
+
   return (
     <main className="bg-encryption bg-scroll bg-center bg-no-repeat bg-cover flex flex-col min-h-screen justify-center items-center">
       <Helmet>

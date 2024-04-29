@@ -24,6 +24,9 @@
     "notFound": {
       "title": "404 | APILMAN"
     },
+    "pricing": {
+      "title": "Pricing | APILMAN"
+    },
     "resetCheck": {
       "title": "Reset | APILMAN"
     },
@@ -181,6 +184,40 @@
     "content": "Oops! The page you are looking for could not be found.",
     "button": "Go back to Home"
   },
+  "pagesPricing": {
+    "pageTitle": "Pricing",
+    "pageSubtitle": "Whatever your status, our offers evolve according to your needs.",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "bronze": {
+      "title": "Bronze",
+      "priceMonthly": "$0.00",
+      "priceAnnual": "$0.00",
+      "priceDesc": "Forever Free",
+      "list1": "1 API",
+      "list2": "API Analytics",
+      "list3": "Error Logs"
+    },
+    "gold": {
+      "title": "Gold",
+      "priceMonthly": "$4.99",
+      "priceAnnual": "$44.99",
+      "priceDesc": "All the basics for new apps",
+      "list1": "5 API",
+      "list2": "API Analytics",
+      "list3": "Error Logs"
+    },
+    "diamond": {
+      "title": "Diamond",
+      "priceMonthly": "$9.99",
+      "priceAnnual": "$99.99",
+      "priceDesc": "Everything you need for your app",
+      "list1": "10 API",
+      "list2": "API Analytics",
+      "list3": "Error Logs"
+    },
+    "updateBtn": "Update Now"
+  },
   "pagesResetCheck": {
     "confirmAccountTitle": "Confirm Your Account",
     "verificationCodeLabel": "Verification Code",
@@ -260,6 +297,7 @@
     "dashboard": "Dashboard",
     "apis": "APIs",
     "logs": "Logs",
+    "pricing": "Pricing",
     "community": "Community",
     "contact": "Contact",
     "faq": "FAQ",

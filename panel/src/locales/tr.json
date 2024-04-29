@@ -24,6 +24,9 @@
     "notFound": {
       "title": "404 | APILMAN"
     },
+    "pricing": {
+      "title": "Fiyatlandırma | APILMAN"
+    },
     "resetCheck": {
       "title": "Sıfırla | APILMAN"
     },
@@ -181,6 +184,40 @@
     "content": "Ups! Aradığınız sayfa bulunamadı.",
     "button": "Ana Sayfaya Dön"
   },
+  "pagesPricing": {
+    "pageTitle": "Fiyatlandırma",
+    "pageSubtitle": "Durumunuz ne olursa olsun, tekliflerimiz ihtiyaçlarınıza göre evrim geçirir.",
+    "monthly": "Aylık",
+    "annual": "Yıllık",
+    "bronze": {
+      "title": "Bronz",
+      "priceMonthly": "$0.00",
+      "priceAnnual": "$0.00",
+      "priceDesc": "Sonsuza Kadar Ücretsiz",
+      "list1": "1 API",
+      "list2": "API Analitiği",
+      "list3": "Hata Kayıtları"
+    },
+    "gold": {
+      "title": "Altın",
+      "priceMonthly": "$4.99",
+      "priceAnnual": "$44.99",
+      "priceDesc": "Yeni uygulamalar için tüm temel özellikler",
+      "list1": "5 API",
+      "list2": "API Analitiği",
+      "list3": "Hata Kayıtları"
+    },
+    "diamond": {
+      "title": "Elmas",
+      "priceMonthly": "$9.99",
+      "priceAnnual": "$99.99",
+      "priceDesc": "Uygulamanız için ihtiyacınız olan her şey",
+      "list1": "10 API",
+      "list2": "API Analitiği",
+      "list3": "Hata Kayıtları"
+    },
+    "updateBtn": "Update Now"
+  },
   "pagesResetCheck": {
     "confirmAccountTitle": "Hesabınızı Doğrulayın",
     "verificationCodeLabel": "Doğrulama Kodu",
@@ -260,6 +297,7 @@
     "dashboard": "Panel",
     "apis": "API'lar",
     "logs": "Kayıtlar",
+    "pricing": "Fiyatlandırma",
     "community": "Topluluk",
     "contact": "İletişim",
     "faq": "SSS",

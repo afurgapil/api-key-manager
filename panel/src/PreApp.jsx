@@ -17,6 +17,7 @@ import ErrorLogs from "./pages/ErrorLogs";
 import Contact from "./pages/Contact";
 import Logic from "./pages/Logic";
 import Faq from "./pages/Faq";
+import Pricing from "./pages/Pricing";
 function PreApp() {
   const privateRoutes = [
     { path: "/dashboard", element: Dashboard },
@@ -32,6 +33,7 @@ function PreApp() {
     { path: "/faq", element: Faq },
     { path: "/reset-check/:mail", element: ResetCheck },
     { path: "/reset-request", element: ResetRequest },
+    { path: "/pricing", element: Pricing },
   ];
   return (
     <Routes>
