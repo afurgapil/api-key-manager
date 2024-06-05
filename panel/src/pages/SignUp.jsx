@@ -357,6 +357,5 @@ function SignUp() {
     </section>
   );
 }
-//TODO kayit basarili ise ekrana badge ile yazdir ve oyle yonlendir
 
 export default SignUp;

@@ -1,8 +1,10 @@
 module.exports = function resetMail(email, encodedEmail, code) {
+  // TODO
   const resetCheckURL = "http://localhost:3001/reset/check";
 
   const mailOptions = {
-    from: "apicookbook@gmail.com",
+    // TODO
+    from: "your@mail.com",
     to: email,
     subject: "Password Reset Request",
     html: `
