@@ -12,7 +12,7 @@ function Home() {
     if (user && Object.keys(user).length > 0) {
       navigate("/dashboard");
     }
-  }, [user]);
+  }, [navigate, user]);
 
   return (
     <main className="bg-encryption bg-scroll bg-center bg-no-repeat bg-cover flex flex-col min-h-screen justify-center items-center">

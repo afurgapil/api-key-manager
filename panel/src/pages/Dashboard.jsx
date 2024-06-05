@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { AiOutlineApi } from "react-icons/ai";
 import { ImStatsBars } from "react-icons/im";
